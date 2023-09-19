@@ -1,12 +1,6 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
-import 'package:event_app/src/core/constants/strings.dart';
-import 'package:event_app/src/core/utils/image_constant.dart';
-import 'package:event_app/src/core/utils/theme/theme_helper.dart';
-import 'package:event_app/src/general_widgets/base_button.dart';
-import 'package:event_app/src/general_widgets/custom_elevated_button.dart';
-import 'package:event_app/src/general_widgets/custom_icon_button.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
-import 'package:event_app/src/general_widgets/spacing.dart';
+import 'package:event_app/src/general_widgets/first_homescreen_button.dart';
 import 'package:flutter/material.dart';
 
 class ExampleScreen extends StatelessWidget {
@@ -15,30 +9,48 @@ class ExampleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppStrings.appName),
-      ),
-      body: Column(
+      body: Stack(
         children: [
-          const Text('Hello World'),
-          CustomElevatedButton(
-            text: "Fortess",
-            rightIcon: const Icon(Icons.abc_rounded),
-            margin: const EdgeInsets.all(Dimensions.medium),
+          Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CustomImageView(
+                  svgPath: 'assets/images/home_screen_logo.svg',
+                ),
+                SizedBox(
+                  height: Dimensions.medium,
+                ),
+                Center(
+                  child: CustomImageView(
+                    svgPath: 'assets/images/wetin_dey_sup.svg',
+                  ),
+                ),
+              ],
+            ),
           ),
-          const Spacing.mediumHeight(),
-          CustomIconButton(decoration: BoxDecoration(color: Colors.amber)),
-          const Spacing.mediumHeight(),
-          CustomImageView(
-            height: 100,
-            width: 100,
-            // imagePath: ImageConstant.imgFrame2,
-            url: 'jsj',
-          ),
-          CustomImageView(
-            color: Colors.amber,
-            svgPath: ImageConstant.imgAlarm,
-          ),
+          Positioned(
+            left: 0.0,
+            right: 0.0,
+            bottom: Dimensions.large,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: Dimensions.medium),
+              child: Column(
+                children: [
+                  FirstHomeScreenButton(
+                    textColor: Color(0xFFCFFF96),
+                  ),
+                  SizedBox(
+                    height: Dimensions.small,
+                  ),
+                  FirstHomeScreenButton(
+                      backgroundColor: Color(0xFF),
+                      buttonText: 'Sign In',
+                      textColor: Color(0xFF063B27))
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
