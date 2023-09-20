@@ -1,6 +1,7 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/date_time_utils.dart';
 import 'package:event_app/src/features/calendar/data/calendar_utils.dart';
+import 'package:event_app/src/general_widgets/app_text_field.dart';
 import 'package:event_app/src/general_widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -111,41 +112,43 @@ class _CalendarTableState extends State<CalendarTable> {
             ),
           ),
           onHeaderTapped: (focusedDay) {},
-          onDayLongPressed: (selectedDay, focusedDay) {
-            showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                scrollable: true,
-                title: const Text('Add Events'),
-                content: Column(
-                  children: [
-                    TextField(
-                      controller: _eventController,
-                    ),
-                  ],
-                ),
-                actions: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
-                    child: CustomElevatedButton(
-                      text: 'Submit',
-                      onTap: () {
-                        kEvents.addAll({
-                          selectedDay: [
-                            Event(
-                                title: _eventController.text, date: selectedDay)
-                          ]
-                        });
-                        Navigator.pop(context);
-                        _selectedEvents.value = _getEventsForDay(selectedDay);
-                        _eventController.clear();
-                      },
-                    ),
-                  )
-                ],
-              ),
-            );
-          },
+          //!Remove this when it has been confirmed that the feature is not needed
+          // onDayLongPressed: (selectedDay, focusedDay) {
+          //   showDialog(
+          //     context: context,
+          //     builder: (context) => AlertDialog(
+          //       scrollable: true,
+          //       title: const Text('Add Events'),
+          //       content: Column(
+          //         children: [
+          //           AppTextField(
+          //             controller: _eventController,
+          //           ),
+          //         ],
+          //       ),
+          //       actions: [
+          //         Padding(
+          //           padding: const EdgeInsets.only(bottom: 12),
+          //           child: CustomElevatedButton(
+          //             height: 48,
+          //             text: 'Submit',
+          //             onTap: () {
+          //               kEvents.addAll({
+          //                 selectedDay: [
+          //                   Event(
+          //                       title: _eventController.text, date: selectedDay)
+          //                 ]
+          //               });
+          //               Navigator.pop(context);
+          //               _selectedEvents.value = _getEventsForDay(selectedDay);
+          //               _eventController.clear();
+          //             },
+          //           ),
+          //         )
+          //       ],
+          //     ),
+          //   );
+          // },
           onFormatChanged: (format) {
             if (_calendarFormat != format) {
               setState(() {
