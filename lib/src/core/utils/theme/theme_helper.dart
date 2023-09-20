@@ -158,4 +158,5 @@ ThemeData get theme => ThemeHelper().themeData();
 class AppColors{
  AppColors._();
  static Color primary= Colors.red;
+ static Color primaryBlack= Colors.black;
 }

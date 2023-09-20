@@ -9,8 +9,8 @@ import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
 
-class ExampleScreen extends StatelessWidget {
-  const ExampleScreen({super.key});
+class HomeScreenOne extends StatelessWidget {
+  const HomeScreenOne({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +25,7 @@ class ExampleScreen extends StatelessWidget {
                   CustomImageView(
                     svgPath: 'assets/images/homepage_logo.svg',
                   ),
+                  SizedBox(height: Dimensions.medium,),
                   const Text(
                     'Wetin Dey Sup?',
                     style: TextStyle(
