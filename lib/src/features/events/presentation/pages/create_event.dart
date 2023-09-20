@@ -1,6 +1,6 @@
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
-import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_field.dart';
+import 'package:event_app/src/general_widgets/custom_container_text_field.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
 import 'package:flutter/material.dart';
 
