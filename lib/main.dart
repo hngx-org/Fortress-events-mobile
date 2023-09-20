@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'src/core/constants/strings.dart';
 import 'src/core/utils/theme/theme_helper.dart';
-import 'src/features/start_up/pages/homepage_one.dart';
+import 'src/features/start_up/pages/example_screen.dart';
 
 void main() {
   runApp(const MyApp());
