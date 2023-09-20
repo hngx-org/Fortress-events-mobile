@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'src/core/constants/strings.dart';
 import 'src/core/utils/theme/theme_helper.dart';
+import 'src/features/calendar/pages/calendar_screen.dart';
 import 'src/features/start_up/pages/example_screen.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       //TODO: Handle the app navigation
       // routes:
-      home: const ExampleScreen(),
+      home: const CalendarScreen(),
     );
   }
 }

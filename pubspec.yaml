@@ -38,6 +38,7 @@ dependencies:
   cached_network_image: ^3.2.1
   flutter_svg: ^1.1.6
   intl: ^0.18.0
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:
