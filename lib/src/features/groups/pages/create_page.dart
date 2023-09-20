@@ -1,13 +1,13 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
-import 'package:event_app/src/general_widgets/custom_container_text_field.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
+import 'package:event_app/src/general_widgets/custom_container_text_field.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
 
-class CreateEvent extends StatelessWidget {
-  const CreateEvent({super.key});
+class CreatePage extends StatelessWidget {
+  const CreatePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class CreateEvent extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                "Create Event",
+                "Add Group",
                 style: AppTextStyles.textMdBold.copyWith(
                   color: AppColors.gray900,
                 ),
@@ -43,7 +43,7 @@ class CreateEvent extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Title",
+                          "GroupName",
                           style: AppTextStyles.textXsMeduim.copyWith(
                             color: AppColors.gray900,
                           ),
@@ -52,7 +52,7 @@ class CreateEvent extends StatelessWidget {
                         CustomContainerTextField(
                           boxheight: MediaQuery.sizeOf(context).height * 0.06,
                           boxwidth: MediaQuery.sizeOf(context).width,
-                          item: "Add Event Title",
+                          item: "Enter group name",
                         ),
                         SizedBox(
                           height: MediaQuery.sizeOf(context).height * 0.04,
@@ -60,60 +60,18 @@ class CreateEvent extends StatelessWidget {
                         CustomContainerTextField(
                           boxheight: MediaQuery.sizeOf(context).height * 0.2,
                           boxwidth: MediaQuery.sizeOf(context).width,
-                          item: "Event Description",
+                          item: "Group Description",
                           lines: 6,
                         ),
                         SizedBox(
                           height: MediaQuery.sizeOf(context).height * 0.04,
                         ),
-                        Row(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Date"),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CustomContainerRightIcon(
-                                      displaydata: "June 19",
-                                      onPressed: () {},
-                                      displayicon: Icons.calendar_today_rounded,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                             SizedBox(
-                          width: 16,
-                        ),
-                             Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Time"),
-                            Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomContainerRightIcon(
-                              displaydata: "02:00pm",
-                              onPressed: () {},
-                              displayicon: Icons.watch,
-                            ),
-                          ],
-                        ),
-                          ],
-                        ),
-                          ],
-                        ),
-                       
-                       
                         
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Select Group"),
+                            Text("Add Members"),
+                            Spacing.smallHeight(),
                             Container(
                               height: MediaQuery.sizeOf(context).height * 0.06,
                               width: MediaQuery.sizeOf(context).width,
@@ -129,7 +87,7 @@ class CreateEvent extends StatelessWidget {
                                       icon: Icon(Icons.search),
                                     ),
                                     Text(
-                                      "Search Groups",
+                                      "Search People...",
                                       style:
                                           AppTextStyles.textSmallRegular.copyWith(
                                         color: AppColors.gray700Main,
