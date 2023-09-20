@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'src/core/constants/strings.dart';
-import 'src/core/utils/theme/theme_helper.dart';
-import 'src/features/start_up/pages/example_screen.dart';
+import 'src/features/comment_section/notifications_two.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,16 +9,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: AppStrings.appName,
-      debugShowCheckedModeBanner: false,
-      //TODO: Handle the app theming
-      theme: theme,
-      //TODO: Handle the app navigation
-      // routes:
-      home: const ExampleScreen(),
+    return GetMaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const NoficationsTwoPage(),
     );
   }
 }
