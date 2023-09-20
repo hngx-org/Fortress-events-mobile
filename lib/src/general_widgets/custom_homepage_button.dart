@@ -1,6 +1,5 @@
 
 import 'package:event_app/src/core/constants/dimensions.dart';
-import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class HompageButtons extends StatelessWidget {

@@ -1,7 +1,6 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/constants/strings.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
-import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/general_widgets/base_button.dart';
 import 'package:event_app/src/general_widgets/custom_elevated_button.dart';
 import 'package:event_app/src/general_widgets/custom_homepage_button.dart';
@@ -45,15 +44,15 @@ class ExampleScreen extends StatelessWidget {
             child: Column(
               children: [
                 HompageButtons(
-                  buttonColor: AppColors.primary1000,
+                  buttonColor: Color(0xFF063B27),
                   buttonTitle: 'Get Started',
-                  buttonTitleColor: AppColors.accentGreen100,
+                  buttonTitleColor: Color(0xFFCFFF92),
                 ),
                 SizedBox(height: Dimensions.tiny,),
                 HompageButtons(
-                  buttonColor: AppColors.accentGreen100,
+                  buttonColor: Color(0xFFCFFF92),
                   buttonTitle: 'Sign in',
-                  buttonTitleColor: AppColors.primary1000,
+                  buttonTitleColor: Color(0xFF063B27),
                 ),
               ],
             ),
