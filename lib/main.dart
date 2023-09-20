@@ -1,4 +1,5 @@
 import 'package:event_app/src/features/events/presentation/pages/create_event.dart';
+import 'package:event_app/src/features/groups/pages/create_group.dart';
 import 'package:flutter/material.dart';
 import 'src/core/constants/strings.dart';
 import 'src/core/utils/theme/theme_helper.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       //TODO: Handle the app navigation
       // routes:
-      home: const CalendarScreen(),
+      home: const CreateGroup(),
 // =======
 //       // home: const ExampleScreen(),
 //       home: CreateEvent(),
