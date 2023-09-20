@@ -10,6 +10,8 @@ import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets/custom_list_tile.dart';
+
 class MakeAWish4Screen extends StatelessWidget {
   MakeAWish4Screen({super.key});
 
@@ -57,68 +59,62 @@ class MakeAWish4Screen extends StatelessWidget {
 
   final Widget _settingsWidget = Container(
     padding: const EdgeInsets.all(16),
-    child: const Column(
+    child: Column(
       children: <Widget>[
-        Card(
-          child: Column(
-            children: [
-              ListTile(
-                leading: Icon(Icons.brush),
-                title: Text('Appearance'),
-                contentPadding: EdgeInsets.all(16),
-                trailing: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.brush),
-                title: Text('Language & Region'),
-                contentPadding: EdgeInsets.all(16),
-                trailing: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                ),
-              ),
-            ],
-          ),
-        ),
-        Spacing.smallHeight(),
-        Card(
-          child: Column(
-            children: [
-              ListTile(
-                leading: Icon(Icons.brush),
-                title: Text('Help & Support'),
-                contentPadding: EdgeInsets.all(16),
-                trailing: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.brush),
-                title: Text('About'),
-                contentPadding: EdgeInsets.all(16),
-                trailing: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                ),
-              ),
-            ],
-          ),
-        ),
-        Spacing.smallHeight(),
-        Card(
-          child: ListTile(
-            visualDensity:
-                VisualDensity(vertical: VisualDensity.minimumDensity),
-            title: Text(
-              'Logout',
-              style: TextStyle(
-                color: Colors.red,
+        customCard(
+          children: [
+            CustomListTile(
+              leading: const Icon(Icons.brush),
+              title: const Text('Appearance'),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
               ),
             ),
-            trailing: Icon(Icons.exit_to_app_rounded, color: Colors.red),
-            contentPadding: EdgeInsets.all(16),
-          ),
-        )
+            const Spacing.smallHeight(),
+            CustomListTile(
+              leading: const Icon(Icons.brush),
+              title: const Text('Language & Region'),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+              ),
+            ),
+          ],
+        ),
+        const Spacing.smallHeight(),
+        customCard(
+          children: [
+            CustomListTile(
+              leading: const Icon(Icons.brush),
+              title: const Text('Help & Support'),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+              ),
+            ),
+            const Spacing.smallHeight(),
+            CustomListTile(
+              leading: const Icon(Icons.brush),
+              title: const Text('About'),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+              ),
+            ),
+          ],
+        ),
+        const Spacing.smallHeight(),
+        customCard(
+          children: [
+            CustomListTile(
+              title: const Text(
+                'Logout',
+                style: TextStyle(
+                  color: Colors.red,
+                ),
+              ),
+              trailing:
+                  const Icon(Icons.exit_to_app_rounded, color: Colors.red),
+            ),
+          ],
+        ),
       ],
     ),
   );
@@ -133,12 +129,15 @@ class MakeAWish4Screen extends StatelessWidget {
       //TODO: implement reusable bottom bar widget
       //bottomNavigationBar: CustomBottomNavBar(),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _userProfileSubWidget,
-            const Spacing.mediumHeight(),
-            _settingsWidget,
-          ],
+        child: Container(
+          color: PrimaryColors().blueGray400,
+          child: Column(
+            children: [
+              _userProfileSubWidget,
+              const Spacing.largeHeight(),
+              _settingsWidget,
+            ],
+          ),
         ),
       ),
     );
@@ -147,56 +146,20 @@ class MakeAWish4Screen extends StatelessWidget {
 
 class User {
   static String handle = "Salome", email = 'salome367@gmail.com';
+  // static var profileImage = AssetImage(ImageConstant.imgEllipse1);
   static var profileImage = const AssetImage('assets/images/img_ellipse1.png');
-  //const NetworkImage("https://via.placeholder.com/110x110");
 }
 
-class CustomListView extends StatelessWidget {
-  Widget? leading, title, trailing;
-  SizedBox emptySizedBox = const SizedBox(
-    width: 0,
-  );
-
-  CustomListView({this.title, this.leading, this.trailing, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    title ??= emptySizedBox;
-    leading ??= emptySizedBox;
-    trailing ??= emptySizedBox;
-
-    return Row(
-      children: [
-        leading!,
-        if (leading != emptySizedBox)
-          const SizedBox(
-            width: 8,
-          ),
-        Expanded(
-          child: SizedBox(
-            child: title,
-          ),
-        ),
-        const SizedBox(
-          width: 8,
-        ),
-        trailing!,
-      ],
-    );
-  }
-}
-
-Widget customCard() {
+Widget customCard({required List<Widget> children}) {
   return Container(
-    width: 122,
-    height: 34,
     decoration: ShapeDecoration(
+      color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
     ),
     child: Column(
-      children: [],
+      children: children,
     ),
   );
 }
