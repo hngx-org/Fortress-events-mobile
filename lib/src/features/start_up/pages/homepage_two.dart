@@ -1,3 +1,5 @@
+import 'package:event_app/src/features/calendar/pages/test.dart';
+import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 import 'package:event_app/src/general_widgets/custom_elevated_button.dart';
 import 'package:event_app/src/general_widgets/first_homescreen_button.dart';
 import 'package:flutter/material.dart';
@@ -81,39 +83,45 @@ class HomepageTwo extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: Dimensions.medium),
-                          padding: const EdgeInsets.all(15.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30.0),
-                            // Rounded edges
-                            color: Colors.white,
-                            // White background color
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CustomImageView(
-                                svgPath: 'assets/images/google_icon.svg',
-                              ),
-                              const SizedBox(width: 5.0),
-                              const Text(
-                                'Google',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, TimeLineHomepageThree.routeName);
+                            // Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard(),));
+                          },
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                horizontal: Dimensions.medium),
+                            padding: const EdgeInsets.all(15.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30.0),
+                              // Rounded edges
+                              color: Colors.white,
+                              // White background color
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.1),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CustomImageView(
+                                  svgPath: 'assets/images/google_icon.svg',
+                                ),
+                                const SizedBox(width: 5.0),
+                                const Text(
+                                  'Google',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(

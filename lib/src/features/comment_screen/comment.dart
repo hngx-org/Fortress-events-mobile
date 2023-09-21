@@ -1,6 +1,6 @@
+import 'package:event_app/src/features/comment_screen/post_events_comments.dart';
+import 'package:event_app/src/features/comment_screen/pre_events_comments.dart';
 import 'package:flutter/material.dart';
-import 'package:event_app/src/features/comment_section/post_events_comments.dart';
-import 'package:event_app/src/features/comment_section/pre_events_comments.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 
 class CommentScreen extends StatefulWidget {

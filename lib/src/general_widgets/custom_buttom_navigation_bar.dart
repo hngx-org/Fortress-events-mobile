@@ -1,6 +1,11 @@
 import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/theme_helper.dart';
+import 'package:event_app/src/features/calendar/pages/calendar_screen.dart';
+import 'package:event_app/src/features/events/presentation/pages/create_event.dart';
+import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
 import 'package:event_app/src/features/start_up/pages/example_screen.dart';
+import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
+import 'package:event_app/src/features/start_up/pages/make_a_wish_4/make_a_wish_4_screen.dart';
 import 'package:event_app/src/general_widgets/custom_icon_button.dart';
 import 'package:event_app/src/general_widgets/general_widgets_exports.dart';
 import 'package:flutter/material.dart';
@@ -16,21 +21,14 @@ class _BottomNavigationState extends State<BottomNavigationButton> {
   int _Index = 0;
 
   final List<Widget> _BottomNavigationList = [
+    // TimeLineHomepageThree(),
     Container(
-      color: Colors.white,
+      color: Colors.green,
     ),
-    Container(
-      color: Colors.black,
-    ),
-    Container(
-      color: Colors.red,
-    ),
-    Container(
-      color: Colors.brown,
-    ),
-    Container(
-      color: Colors.blue,
-    ),
+    MyPeopleScreen(),
+    CreateEvent(),
+    CalendarScreen(),
+    MakeAWish4Screen()
   ];
   @override
   Widget build(BuildContext context) {

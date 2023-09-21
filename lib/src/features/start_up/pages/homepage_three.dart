@@ -1,5 +1,6 @@
 import 'package:event_app/src/core/utils/theme/theme_helper.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_cards/homepage_three_timeline_card.dart';
+import 'package:event_app/src/general_widgets/custom_buttom_navigation_bar.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ class _TimeLineHomepageThreeState extends State<TimeLineHomepageThree> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+          bottomNavigationBar: BottomNavigationButton(),
           appBar: AppBar(
             backgroundColor: Colors.white,
             bottom: PreferredSize(
