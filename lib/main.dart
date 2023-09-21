@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       //TODO: Handle the app navigation
       // routes:
 
-      home: const HomepageTwo(),
+      home: const HomeScreenOne(),
 
 // =======
 //       // home: const ExampleScreen(),
