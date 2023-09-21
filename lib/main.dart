@@ -1,3 +1,5 @@
+import 'package:event_app/src/general_widgets/custom_nav_bar.dart';
+import 'package:event_app/src/general_widgets/general_widgets_exports.dart';
 import 'package:event_app/src/features/events/presentation/pages/create_event.dart';
 import 'package:event_app/src/features/groups/pages/create_group.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +26,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       //TODO: Handle the app navigation
       // routes:
-      home: const CreateGroup(),
-// =======
-//       // home: const ExampleScreen(),
-//       home: CreateEvent(),
-// >>>>>>> dev
+      home: const BottomNavigationButton(),
     );
   }
 }
