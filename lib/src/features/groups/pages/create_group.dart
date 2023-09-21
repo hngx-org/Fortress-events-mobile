@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 class CreateGroup extends StatelessWidget {
   const CreateGroup({super.key});
+  static const routeName = '/create-group-screen';
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,6 @@ class CreateGroup extends StatelessWidget {
                       SizedBox(
                         height: MediaQuery.sizeOf(context).height * 0.04,
                       ),
-                      
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
