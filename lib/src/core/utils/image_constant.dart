@@ -42,6 +42,14 @@ class ImageConstant {
 
   static String imgNavrankings = '$imagePath/img_navrankings.svg';
 
+  static String imgMyPeople = '$imagePath/img_mypeople.svg';
+
+  static String imgCalender = '$imagePath/img_calendar.svg';
+
+  static String imgAdd = '$imagePath/img_add.svg';
+
+  static String imgActivity = '$imagePath/img_activity.svg';
+
   static String imageNotFound = 'assets/images/image_not_found.png';
 
   static String imgArrowRight = '$imagePath/img_arrow_right.svg';

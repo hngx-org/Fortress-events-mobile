@@ -1,9 +1,11 @@
+
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_two.dart';
 import 'package:flutter/material.dart';
 import 'src/core/constants/strings.dart';
 import 'src/core/utils/theme/theme_helper.dart';
 import 'src/features/start_up/pages/homepage_one.dart';
+
 import 'package:event_app/src/features/events/presentation/pages/create_event.dart';
 import 'package:event_app/src/features/groups/pages/create_group.dart';
 import 'package:flutter/material.dart';
@@ -31,12 +33,10 @@ class MyApp extends StatelessWidget {
       //TODO: Handle the app navigation
       // routes:
 
+
       home: const HomeScreenOne(),
 
-// =======
-//       // home: const ExampleScreen(),
-//       home: CreateEvent(),
-// >>>>>>> dev
+
     );
   }
 }
