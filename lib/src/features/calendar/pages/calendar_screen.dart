@@ -1,8 +1,6 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/features/calendar/widgets/calendar_widget.dart';
-
-import 'package:event_app/src/general_widgets/general_widgets_exports.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
 import '../../../core/utils/theme/text_styles.dart';

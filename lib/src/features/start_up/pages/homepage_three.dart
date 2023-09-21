@@ -18,7 +18,6 @@ class _TimeLineHomepageThreeState extends State<TimeLineHomepageThree> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-          bottomNavigationBar: BottomNavigationButton(),
           appBar: AppBar(
             backgroundColor: Colors.white,
             bottom: PreferredSize(
