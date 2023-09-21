@@ -51,4 +51,10 @@ class ImageConstant {
   static String imgActivity = '$imagePath/img_activity.svg';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
+
+  static String imgArrowRight = '$imagePath/img_arrow_right.svg';
+
+  static String imgCalendar = '$imagePath/img_calendar.svg';
+
+  static String imgClock = '$imagePath/img_clock.svg';
 }
