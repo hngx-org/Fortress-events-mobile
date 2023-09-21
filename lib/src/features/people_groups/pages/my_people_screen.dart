@@ -1,5 +1,6 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
+import 'package:event_app/src/features/groups/pages/create_group.dart';
 import 'package:event_app/src/features/people_groups/widgets/people_group_card.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,13 @@ class MyPeopleScreen extends StatelessWidget {
         actions: [
           InkWell(
             splashFactory: NoSplash.splashFactory,
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CreateGroup(),
+                  ));
+            },
             child: Row(
               children: [
                 CustomImageView(

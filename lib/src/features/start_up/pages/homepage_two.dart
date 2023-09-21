@@ -16,7 +16,7 @@ class HomepageTwo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      color: Color(0xFF9699A0),
+      color: const Color(0xFF9699A0),
       child: Stack(
         children: [
           Center(
@@ -26,7 +26,7 @@ class HomepageTwo extends StatelessWidget {
                 CustomImageView(
                   svgPath: 'assets/images/homepage_logo.svg',
                 ),
-                SizedBox(
+                const SizedBox(
                   height: Dimensions.medium,
                 ),
                 const Text(
@@ -85,11 +85,15 @@ class HomepageTwo extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, TimeLineHomepageThree.routeName);
-                            // Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard(),));
+                            // Navigator.pushNamed(context, TimeLineHomepageThree.routeName);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Dashboard(),
+                                ));
                           },
                           child: Container(
-                            margin: EdgeInsets.symmetric(
+                            margin: const EdgeInsets.symmetric(
                                 horizontal: Dimensions.medium),
                             padding: const EdgeInsets.all(15.0),
                             decoration: BoxDecoration(
@@ -124,11 +128,11 @@ class HomepageTwo extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: Dimensions.medium,
                         ),
                         Container(
-                          margin: EdgeInsets.symmetric(
+                          margin: const EdgeInsets.symmetric(
                               horizontal: Dimensions.medium),
                           padding: const EdgeInsets.all(15.0),
                           decoration: BoxDecoration(

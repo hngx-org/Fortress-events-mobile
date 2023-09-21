@@ -29,9 +29,13 @@ class MyApp extends StatelessWidget {
       //TODO: Handle the app theming
       theme: theme,
       //TODO: Handle the app navigation
- 
-      // home: const HomeScreenOne(),
-      home: Dashboard(),
+
+      // routes:
+
+
+
+      home: const HomeScreenOne(),
+      // home: Dashboard(),
       routes: {
         HomeScreenOne.routeName: (context) => const HomeScreenOne(),
         HomepageTwo.routeName: (context) => const HomepageTwo(),
@@ -42,6 +46,7 @@ class MyApp extends StatelessWidget {
         CreateEvent.routeName: (context) => const CreateEvent(),
         CalendarScreen.routeName: (context) => const CalendarScreen(),
       },
+
 
     );
   }
