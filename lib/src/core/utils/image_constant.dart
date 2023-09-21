@@ -49,4 +49,7 @@ class ImageConstant {
   static String imgCalendar = '$imagePath/img_calendar.svg';
 
   static String imgClock = '$imagePath/img_clock.svg';
+
+   static String imgLocation = '$imagePath/img_location.svg';
+   
 }

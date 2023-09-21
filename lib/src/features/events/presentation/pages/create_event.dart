@@ -2,9 +2,12 @@ import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
+import 'package:event_app/src/features/events/presentation/widgets/custom_container_left_icon.dart';
+import 'package:event_app/src/features/events/presentation/widgets/custom_heading_style.dart';
 import 'package:event_app/src/general_widgets/custom_container_text_field.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
 import 'package:event_app/src/general_widgets/custom_icon_container.dart';
+import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +16,9 @@ class CreateEvent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
           decoration: BoxDecoration(
             color: AppColors.baseWhite,
           ),
@@ -25,7 +28,7 @@ class CreateEvent extends StatelessWidget {
                 title: Text(
                   "Create Event",
                   style: AppTextStyles.textMdBold.copyWith(
-                    color: AppColors.gray900,
+                    color: AppColors.gray700Main,
                   ),
                 ),
                 trailing: IconButton(
@@ -83,8 +86,8 @@ class CreateEvent extends StatelessWidget {
                                       CustomContainerRightIcon(
                                         displaydata: "June 19",
                                         onPressed: () {},
-                                        displayicon:
-                                            Icons.calendar_today_rounded,
+                                        iconSvgPath: ImageConstant.imgCalendar,
+                                        iconColor: AppColors.gray700Main,
                                       ),
                                     ],
                                   ),
@@ -95,7 +98,9 @@ class CreateEvent extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Time"),
+                                  CustomHeading(
+                                    content: 'Time',
+                                  ),
                                   Spacing.smallHeight(),
                                   Column(
                                     crossAxisAlignment:
@@ -104,7 +109,8 @@ class CreateEvent extends StatelessWidget {
                                       CustomContainerRightIcon(
                                         displaydata: "02:00pm",
                                         onPressed: () {},
-                                        displayicon: Icons.watch,
+                                        iconSvgPath: ImageConstant.imgClock,
+                                        iconColor: AppColors.gray700Main,
                                       ),
                                     ],
                                   ),
@@ -114,44 +120,31 @@ class CreateEvent extends StatelessWidget {
                           ),
                           Spacing.smallHeight(),
                           CustomIconContainer(
-                              containerText: "Location",
-                              spacingWidth: 0.1,
-                              containerColor: AppColors.gray300,
-                              containerHPadding: 16,
-                              containerVPadding: 8,
-                              iconSvgPath: ImageConstant.imgClock,
-                              iconColor: AppColors.gray900,
-                              iconHeight: 20,
-                              iconWidth: 20),
+                            containerText: " Add Location",
+                            spacingWidth: 4,
+                            containerColor: AppColors.gray300,
+                            containerHPadding: 16,
+                            containerVPadding: 8,
+                            iconSvgPath: ImageConstant.imgLocation,
+                            iconColor: AppColors.gray900,
+                            iconHeight: 20,
+                            iconWidth: 20,
+                            containerHeight: Dimensions.small * 5,
+                            containerWidth: Dimensions.smedium * 13,
+                            onTap: () {},
+                          ),
                           Spacing.smallHeight(),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Select Group"),
                               Spacing.smallHeight(),
-                              Container(
-                                height:
-                                    MediaQuery.sizeOf(context).height * 0.06,
-                                width: MediaQuery.sizeOf(context).width,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: Colors.black),
-                                ),
-                                child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(Icons.search),
-                                      ),
-                                      Text(
-                                        "Search Groups",
-                                        style: AppTextStyles.textSmallRegular
-                                            .copyWith(
-                                          color: AppColors.gray700Main,
-                                        ),
-                                      ),
-                                    ]),
+                              CustomContainerLeftIcon(
+                                iconSvgPath: ImageConstant.imgSearchnormal,
+                                iconColor: AppColors.gray700Main,
+                                containerHeight: 52,
+                                containerWidth: 343,
+                                displaydata: 'Search Groups',
                               ),
                             ],
                           ),
@@ -165,16 +158,15 @@ class CreateEvent extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.primary1000,
-        child: Icon(
-          Icons.add,
-          size: Dimensions.smedium,
-          color: AppColors.accentGreen100,
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: AppColors.primary1000,
+          onPressed: () {},
+          child: CustomImageView(
+            svgPath: ImageConstant.imgArrowRight,
+            color: AppColors.accentGreen100,
+          ),
         ),
-        onPressed: (() {}),
       ),
     );
   }

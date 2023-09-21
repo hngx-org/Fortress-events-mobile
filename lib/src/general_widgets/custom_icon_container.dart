@@ -34,6 +34,8 @@ class CustomIconContainer extends StatelessWidget {
   final double iconHeight;
   final double iconWidth;
   final VoidCallback? onTap;
+  final double? containerHeight;
+  final double? containerWidth;
 
   const CustomIconContainer({
     super.key,
@@ -48,11 +50,15 @@ class CustomIconContainer extends StatelessWidget {
     required this.iconHeight,
     required this.iconWidth,
     this.onTap,
+    this.containerHeight,
+    this.containerWidth,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: containerHeight,
+      width: containerWidth,
       padding: EdgeInsets.symmetric(
         horizontal: containerHPadding,
         vertical: containerVPadding,
