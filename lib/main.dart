@@ -1,3 +1,4 @@
+import 'package:event_app/src/features/calendar/pages/test.dart';
 import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_two.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
     
 
       home: const HomeScreenOne(),
+      // home: Dashboard(),
 
       routes: {
         HomeScreenOne.routeName: (context) => const HomeScreenOne(),
