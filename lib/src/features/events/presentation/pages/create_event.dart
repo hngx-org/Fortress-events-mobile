@@ -36,6 +36,7 @@ class CreateEvent extends StatelessWidget {
               Divider(
                 color: Colors.grey,
               ),
+              Spacing.smallHeight(),
               Padding(
                 padding: EdgeInsets.all(Dimensions.medium),
                 child: Column(
@@ -57,7 +58,7 @@ class CreateEvent extends StatelessWidget {
                             boxwidth: MediaQuery.sizeOf(context).width,
                             item: "Add Event Title",
                           ),
-                         Spacing.smallHeight(),
+                          Spacing.smallHeight(),
                           CustomContainerTextField(
                             boxheight: 85,
                             boxwidth: MediaQuery.sizeOf(context).width,
@@ -74,28 +75,31 @@ class CreateEvent extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text("Date"),
+                                  Spacing.smallHeight(),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       CustomContainerRightIcon(
                                         displaydata: "June 19",
                                         onPressed: () {},
-                                        displayicon: Icons.calendar_today_rounded,
+                                        displayicon:
+                                            Icons.calendar_today_rounded,
                                       ),
                                     ],
                                   ),
                                 ],
                               ),
-                              SizedBox(
-                                width: 16,
-                              ),
+                              Spacing.mediumWidth(),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text("Time"),
+                                  Spacing.smallHeight(),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       CustomContainerRightIcon(
                                         displaydata: "02:00pm",
@@ -119,14 +123,15 @@ class CreateEvent extends StatelessWidget {
                               iconColor: AppColors.gray900,
                               iconHeight: 20,
                               iconWidth: 20),
-                               Spacing.smallHeight(),
+                          Spacing.smallHeight(),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Select Group"),
-                               Spacing.smallHeight(),
+                              Spacing.smallHeight(),
                               Container(
-                                height: MediaQuery.sizeOf(context).height * 0.06,
+                                height:
+                                    MediaQuery.sizeOf(context).height * 0.06,
                                 width: MediaQuery.sizeOf(context).width,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
@@ -153,26 +158,23 @@ class CreateEvent extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Spacing.smallHeight(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                          height: 36,
-                          width: 36,
-                          child: FloatingActionButton(
-                            
-                            backgroundColor: AppColors.primary1000,
-                            onPressed: (){}),
-                        ),
-                      ],
-                    ),
+                    Spacing.mediumHeight(),
                   ],
                 ),
               ),
             ],
           ),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.primary1000,
+        child: Icon(
+          Icons.add,
+          size: Dimensions.smedium,
+          color: AppColors.accentGreen100,
+        ),
+        onPressed: (() {}),
       ),
     );
   }
