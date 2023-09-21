@@ -15,7 +15,7 @@ class ImageConstant {
   static String imgBluetooth = '$imagePath/img_bluetooth.svg';
 
   static String imgComputer = '$imagePath/img_computer.svg';
-
+  static String imgProfileAdd = '$imagePath/img_profile_add.svg';
   static String imgSignalLightGreenA100 =
       '$imagePath/img_signal_light_green_a100.svg';
 
@@ -60,4 +60,9 @@ class ImageConstant {
 
    static String imgLocation = '$imagePath/img_location.svg';
    
+  static String imgMore = '$imagePath/img_more.svg';
+
+  static String imgMessage = '$imagePath/img_message.svg';
+
+  static String imgHeart = '$imagePath/img_heart.svg';
 }

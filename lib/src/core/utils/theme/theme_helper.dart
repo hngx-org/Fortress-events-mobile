@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 String _appTheme = "primary";
 
 /// Helper class for managing themes and colors.
@@ -115,7 +114,7 @@ class TextThemes {
 
 /// Class containing the supported color schemes.
 class ColorSchemes {
-  static final primaryColorScheme = const ColorScheme.light();
+  static const primaryColorScheme = ColorScheme.light();
 }
 
 /// Class containing custom colors for a primary theme.
@@ -137,6 +136,10 @@ class PrimaryColors {
   // Gray
   Color get gray100 => const Color(0XFFF2F3F6);
   Color get gray200 => const Color(0XFFE6EBE9);
+  Color get gray300 => const Color(0XFFF2F4F7);
+  Color get gray500 => const Color(0XFFD0D5DD);
+  Color get gray800 => const Color(0XFF475467);
+  Color get gray1000 => const Color(0XFF1D2939);
 
   // Grayc
   Color get gray9000c => const Color(0X0C101828);
@@ -149,15 +152,27 @@ class PrimaryColors {
 
   // White
   Color get whiteA700 => const Color(0XFFFFFFFF);
+
+  // primary 100
+  Color get primary => const Color(0XFFCDD8D4);
+
+  // primary 900
+  Color get primary900 => const Color(0XFF1F4F3D);
+
+  // primary 400
+  Color get primary400 => const Color(0XFF9BB1A9);
+
+  // primary 1000
+  Color get primary1000 => const Color(0XFF063B27);
+
+  // red
+  Color get red => const Color(0XFFD92D20);
 }
 
 PrimaryColors get appTheme => ThemeHelper().themeColor();
 ThemeData get theme => ThemeHelper().themeData();
-
-
-class AppColors{
- AppColors._();
- static Color primary= Colors.red;
- static Color primaryBlack= Colors.black;
+class AppColor {
+  AppColor._();
+  static Color primary = Colors.red;
+  static Color primaryBlack = Colors.black;
 }
-

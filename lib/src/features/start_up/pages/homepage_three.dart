@@ -1,3 +1,4 @@
+import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/theme_helper.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_cards/homepage_three_timeline_card.dart';
 import 'package:event_app/src/general_widgets/custom_buttom_navigation_bar.dart';
@@ -45,7 +46,7 @@ class _TimeLineHomepageThreeState extends State<TimeLineHomepageThree> {
                 Text(
                   'Timeline',
                   style: TextStyle(
-                    color: AppColors.primaryBlack,
+                    color: AppColor.primaryBlack,
                   ),
                 ),
                 CustomImageView(

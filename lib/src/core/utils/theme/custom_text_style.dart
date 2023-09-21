@@ -23,6 +23,18 @@ class CustomTextStyles {
         color: appTheme.whiteA700,
         fontSize: 12,
       );
+  static get bodySmallPlusJarkataSansTextGrey800 =>
+      theme.textTheme.bodySmall!.plusJakartaSans.copyWith(
+        color: appTheme.gray800,
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+      );
+  static get bodySmallPlusJarkataSansTextPrimary1000 =>
+      theme.textTheme.bodySmall!.plusJakartaSans.copyWith(
+        color: appTheme.primary1000,
+        fontSize: 12,
+        fontWeight: FontWeight.w700,
+      );
   // Label text style
   static get labelLargeSFProTextWhiteA700 =>
       theme.textTheme.labelLarge!.sFProText.copyWith(
@@ -49,6 +61,30 @@ class CustomTextStyles {
   static get titleSmallTeal900Bold => theme.textTheme.titleSmall!.copyWith(
         color: appTheme.teal900,
         fontWeight: FontWeight.w700,
+      );
+  static get titleMediumWhiteA700Bold =>
+      theme.textTheme.bodyMedium!.plusJakartaSans.copyWith(
+        color: appTheme.whiteA700,
+        fontWeight: FontWeight.w700,
+        fontSize: 16,
+      );
+  static get titlesmallBlueGrey400 =>
+      theme.textTheme.bodySmall!.plusJakartaSans.copyWith(
+        color: appTheme.blueGray400,
+        fontWeight: FontWeight.w400,
+        fontSize: 12,
+      );
+  static get titleMediumGrey1000 =>
+      theme.textTheme.bodyMedium!.plusJakartaSans.copyWith(
+        color: appTheme.gray1000,
+        fontWeight: FontWeight.w600,
+        fontSize: 16,
+      );
+  static get titleSmallPrimary900 =>
+      theme.textTheme.bodyMedium!.plusJakartaSans.copyWith(
+        color: appTheme.primary900,
+        fontWeight: FontWeight.w600,
+        fontSize: 12,
       );
 }
 

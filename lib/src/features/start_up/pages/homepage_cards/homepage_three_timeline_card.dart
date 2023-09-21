@@ -50,7 +50,7 @@ class HomepageThreeTimelineCard extends StatelessWidget {
                     titleText,
                     style: TextStyle(
                       fontSize: 20,
-                      color: AppColors.primaryBlack,
+                      color: AppColor.primaryBlack,
                       fontWeight: FontWeight.w700,
                     ),
                   )

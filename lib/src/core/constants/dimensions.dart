@@ -9,6 +9,8 @@ class Dimensions {
   static const double medium = 16;
   static const double big = 24;
   static const double large = 32;
+  static const double biggerMedium = 20;
+  static const double bigSmall = 10;
 
   /**
    * *This is a private class and all its field were made static

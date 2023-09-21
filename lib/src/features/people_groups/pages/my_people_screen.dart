@@ -2,6 +2,7 @@ import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
 import 'package:event_app/src/features/groups/pages/create_group.dart';
 import 'package:event_app/src/features/people_groups/widgets/people_group_card.dart';
+import 'package:event_app/src/features/start_up/pages/notifications.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -66,9 +67,17 @@ class MyPeopleScreen extends StatelessWidget {
         padding: const EdgeInsets.all(Dimensions.medium),
         child: ListView.separated(
           separatorBuilder: (context, index) => const Spacing.mediumHeight(),
-          itemBuilder: (context, index) => const PeopleGroupCard(
+          itemBuilder: (context, index) => PeopleGroupCard(
             groupName: 'Techies 💻',
             groupDescription: 'Where we talk about anything tech-related',
+            onTap: () {
+              // todo: nav to the specific screen with dynamic data
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const FirstNotificationPage(),
+                  ));
+            },
           ),
           itemCount: 2,
         ),
