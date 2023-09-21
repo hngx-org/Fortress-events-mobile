@@ -1,6 +1,7 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/constants/strings.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
+import 'package:event_app/src/core/utils/theme/text_styles.dart';
 import 'package:event_app/src/general_widgets/base_button.dart';
 import 'package:event_app/src/general_widgets/custom_elevated_button.dart';
 import 'package:event_app/src/general_widgets/custom_homepage_button.dart';
@@ -25,14 +26,12 @@ class HomeScreenOne extends StatelessWidget {
                   CustomImageView(
                     svgPath: 'assets/images/homepage_logo.svg',
                   ),
-                  SizedBox(height: Dimensions.medium,),
+                  SizedBox(
+                    height: Dimensions.medium,
+                  ),
                   const Text(
                     'Wetin Dey Sup?',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 25,
-                    ),
+                    style: AppTextStyles.rebondBigBold,
                   ),
                 ],
               ),
@@ -49,7 +48,9 @@ class HomeScreenOne extends StatelessWidget {
                   buttonTitle: 'Get Started',
                   buttonTitleColor: Color(0xFFCFFF92),
                 ),
-                SizedBox(height: Dimensions.tiny,),
+                SizedBox(
+                  height: Dimensions.tiny,
+                ),
                 HompageButtons(
                   buttonColor: Color(0xFFCFFF92),
                   buttonTitle: 'Sign in',
@@ -58,7 +59,6 @@ class HomeScreenOne extends StatelessWidget {
               ],
             ),
           ),
-
         ],
       ),
     );

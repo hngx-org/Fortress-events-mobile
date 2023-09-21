@@ -1,4 +1,3 @@
-
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_two.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,6 @@ import 'src/core/utils/theme/theme_helper.dart';
 import 'src/features/calendar/pages/calendar_screen.dart';
 import 'src/features/start_up/pages/example_screen.dart';
 // import 'src/features/start_up/pages/example_screen.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -33,10 +31,7 @@ class MyApp extends StatelessWidget {
       //TODO: Handle the app navigation
       // routes:
 
-
-      home: const HomeScreenOne(),
-
-
+      home: const HomepageTwo(),
     );
   }
 }
