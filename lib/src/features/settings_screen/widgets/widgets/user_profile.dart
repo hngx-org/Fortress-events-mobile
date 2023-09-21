@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/dimensions.dart';
-import '../../../../general_widgets/custom_elevated_button.dart';
-import '../../../../general_widgets/spacing.dart';
+import '/src/general_widgets/custom_elevated_button.dart';
+import '/src/general_widgets/spacing.dart';
+import '/src/core/constants/dimensions.dart';
 import '../make_a_wish_4_screen.dart';
 
 // userprofile definition for user
