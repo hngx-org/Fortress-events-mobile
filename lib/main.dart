@@ -1,3 +1,5 @@
+import 'package:event_app/src/general_widgets/custom_nav_bar.dart';
+import 'package:event_app/src/general_widgets/general_widgets_exports.dart';
 import 'package:flutter/material.dart';
 import 'src/core/constants/strings.dart';
 import 'src/core/utils/theme/theme_helper.dart';
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       //TODO: Handle the app navigation
       // routes:
-      home: const ExampleScreen(),
+      home: const BottomNavigationButton(),
     );
   }
 }
