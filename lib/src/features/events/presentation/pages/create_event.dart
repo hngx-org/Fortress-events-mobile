@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 
 class CreateEvent extends StatelessWidget {
   const CreateEvent({super.key});
-  static const routeName = '/create-event-screen';
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +55,6 @@ class CreateEvent extends StatelessWidget {
                               color: AppColors.gray900,
                             ),
                           ),
-<<<<<<< HEAD
                           Spacing.smallHeight(),
                           CustomContainerTextField(
                             boxheight: 52,
@@ -90,91 +88,6 @@ class CreateEvent extends StatelessWidget {
                                         onPressed: () {},
                                         iconSvgPath: ImageConstant.imgCalendar,
                                         iconColor: AppColors.gray700Main,
-=======
-                        ),
-                        Spacing.smallHeight(),
-                        CustomContainerTextField(
-                          boxheight: MediaQuery.sizeOf(context).height * 0.06,
-                          boxwidth: MediaQuery.sizeOf(context).width,
-                          item: "Add Event Title",
-                        ),
-                        SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.04,
-                        ),
-                        CustomContainerTextField(
-                          boxheight: MediaQuery.sizeOf(context).height * 0.2,
-                          boxwidth: MediaQuery.sizeOf(context).width,
-                          item: "Event Description",
-                          lines: 6,
-                        ),
-                        SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.04,
-                        ),
-                        Row(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Date"),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CustomContainerRightIcon(
-                                      displaydata: "June 19",
-                                      onPressed: () {},
-                                      displayicon: Icons.calendar_today_rounded,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Time"),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CustomContainerRightIcon(
-                                      displaydata: "02:00pm",
-                                      onPressed: () {},
-                                      displayicon: Icons.watch,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Select Group"),
-                            Container(
-                              height: MediaQuery.sizeOf(context).height * 0.06,
-                              width: MediaQuery.sizeOf(context).width,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Colors.black),
-                              ),
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(Icons.search),
-                                    ),
-                                    Text(
-                                      "Search Groups",
-                                      style: AppTextStyles.textSmallRegular
-                                          .copyWith(
-                                        color: AppColors.gray700Main,
->>>>>>> dbb79c58ffbedc666986bf34216e0ca89eeb7b96
                                       ),
                                     ],
                                   ),
@@ -255,8 +168,6 @@ class CreateEvent extends StatelessWidget {
           ),
         ),
       ),
-        ),
-      ),  
     );
   }
 }
