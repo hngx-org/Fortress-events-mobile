@@ -160,3 +160,4 @@ class AppColors{
  static Color primary= Colors.red;
  static Color primaryBlack= Colors.black;
 }
+
