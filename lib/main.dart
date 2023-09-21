@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       //TODO: Handle the app navigation
       // routes:
-      home: const CreateGroup(),
+      home: const CreateEvent(),
 // =======
 //       // home: const ExampleScreen(),
 //       home: CreateEvent(),

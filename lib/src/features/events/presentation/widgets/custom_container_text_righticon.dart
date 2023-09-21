@@ -17,7 +17,7 @@ class CustomContainerRightIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.sizeOf(context).height * 0.08,
+      height: 52,
       width: MediaQuery.sizeOf(context).width * 0.40,
       decoration: BoxDecoration(
         color: AppColors.baseWhite,
