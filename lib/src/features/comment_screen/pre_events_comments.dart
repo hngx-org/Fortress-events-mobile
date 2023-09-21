@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:event_app/src/model.dart';
 
-class PostScreen extends StatelessWidget {
-  const PostScreen({super.key});
+class PreScreen extends StatelessWidget {
+  const PreScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +61,8 @@ class PostScreen extends StatelessWidget {
                                       color: (item.isLiked)
                                           ? const Color(0xff063B27)
                                           : Colors.grey)),
+                                          const SizedBox(width: 10),
+                                const Text('Reply', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),)
                             ],
                           ),
                           const SizedBox(height: 5),

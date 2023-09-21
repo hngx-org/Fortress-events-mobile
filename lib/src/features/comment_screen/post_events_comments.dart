@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:event_app/src/model.dart';
 
-class PreScreen extends StatelessWidget {
-  const PreScreen({super.key});
+class PostScreen extends StatelessWidget {
+  const PostScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +61,35 @@ class PreScreen extends StatelessWidget {
                                       color: (item.isLiked)
                                           ? const Color(0xff063B27)
                                           : Colors.grey)),
+                              const SizedBox(width: 10),
+                              const Text(
+                                'Reply',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 13),
+                              )
                             ],
                           ),
                           const SizedBox(height: 5),
-                          (item.hasPicture)
-                              ? Image.asset('assets/images/${item.picture}')
-                              : Container()
+                          Stack(
+                            children: [
+                              (item.hasPicture)
+                                  ? Image.asset(
+                                      'assets/images/${item.picture}',
+                                    )
+                                  : Container(),
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: IconButton(
+                                  icon: const Icon(Icons
+                                      .download, color: Colors.blue, ),
+                                  onPressed: () {
+                                    // Add your download functionality here
+                                  },
+                                ),
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ),
