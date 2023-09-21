@@ -1,7 +1,7 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/features/calendar/widgets/calendar_widget.dart';
-import 'package:event_app/src/features/calendar/widgets/test.dart';
+
 import 'package:event_app/src/general_widgets/general_widgets_exports.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class CalendarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
     return Scaffold(
-      bottomNavigationBar: CustomBottomBar1(),
+    
       backgroundColor: AppColors.gray300,
       appBar: AppBar(
         title: Text('Calendar',

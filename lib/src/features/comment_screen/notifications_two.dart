@@ -1,5 +1,5 @@
+import 'package:event_app/src/features/comment_screen/comment.dart';
 import 'package:flutter/material.dart';
-import 'package:event_app/src/features/comment_section/comment.dart';
 
 class NoficationsTwoPage extends StatefulWidget {
   const NoficationsTwoPage({super.key});
@@ -16,8 +16,8 @@ class _NoficationsTwoPageState extends State<NoficationsTwoPage> {
       onPressed: () => showModalBottomSheet<dynamic>(
           isScrollControlled: true,
           context: context,
-           shape: const RoundedRectangleBorder(
-               borderRadius: BorderRadius.vertical(top: Radius.circular(25.0))),
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0))),
           builder: (context) => const CommentScreen()),
       icon: const Center(child: Icon(Icons.abc, color: Colors.red, size: 100)),
     ));

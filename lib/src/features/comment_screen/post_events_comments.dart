@@ -1,5 +1,5 @@
+import 'package:event_app/src/features/comment_screen/model.dart';
 import 'package:flutter/material.dart';
-import 'package:event_app/src/model.dart';
 
 class PostScreen extends StatelessWidget {
   const PostScreen({super.key});

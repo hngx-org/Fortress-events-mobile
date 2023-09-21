@@ -48,17 +48,17 @@ class HomeScreenOne extends StatelessWidget {
             child: Column(
               children: [
                 HompageButtons(
-                  buttonColor: Color(0xFF063B27),
+                  buttonColor: const Color(0xFF063B27),
                   buttonTitle: 'Get Started',
-                  buttonTitleColor: Color(0xFFCFFF92),
+                  buttonTitleColor: const Color(0xFFCFFF92),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: Dimensions.tiny,
                 ),
                 HompageButtons(
-                  buttonColor: Color(0xFFCFFF92),
+                  buttonColor: const Color(0xFFCFFF92),
                   buttonTitle: 'Sign in',
-                  buttonTitleColor: Color(0xFF063B27),
+                  buttonTitleColor: const Color(0xFF063B27),
                 ),
               ],
             ),

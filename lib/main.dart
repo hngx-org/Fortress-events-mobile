@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       //TODO: Handle the app theming
       theme: theme,
       //TODO: Handle the app navigation
-      // routes:
+    
 
       home: const HomeScreenOne(),
 
