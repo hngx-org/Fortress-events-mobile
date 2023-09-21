@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 class CreateEvent extends StatelessWidget {
   const CreateEvent({super.key});
+  static const routeName = '/create-event-screen';
 
   @override
   Widget build(BuildContext context) {
@@ -85,31 +86,28 @@ class CreateEvent extends StatelessWidget {
                                 ),
                               ],
                             ),
-                             SizedBox(
-                          width: 16,
-                        ),
-                             Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Time"),
+                            SizedBox(
+                              width: 16,
+                            ),
                             Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomContainerRightIcon(
-                              displaydata: "02:00pm",
-                              onPressed: () {},
-                              displayicon: Icons.watch,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Time"),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CustomContainerRightIcon(
+                                      displaydata: "02:00pm",
+                                      onPressed: () {},
+                                      displayicon: Icons.watch,
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                          ],
-                        ),
-                          ],
-                        ),
-                       
-                       
-                        
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -130,8 +128,8 @@ class CreateEvent extends StatelessWidget {
                                     ),
                                     Text(
                                       "Search Groups",
-                                      style:
-                                          AppTextStyles.textSmallRegular.copyWith(
+                                      style: AppTextStyles.textSmallRegular
+                                          .copyWith(
                                         color: AppColors.gray700Main,
                                       ),
                                     ),

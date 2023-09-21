@@ -6,9 +6,10 @@ import 'package:event_app/src/general_widgets/general_widgets_exports.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
 import '../../../core/utils/theme/text_styles.dart';
+
 class CalendarScreen extends StatelessWidget {
   const CalendarScreen({super.key});
-
+  static const routeName = '/calendar-screen';
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class TimeLineHomepageThree extends StatefulWidget {
   const TimeLineHomepageThree({super.key});
+  static const routeName = '/homepage-three-screen';
 
   @override
   State<TimeLineHomepageThree> createState() => _TimeLineHomepageThreeState();
@@ -31,7 +32,8 @@ class _TimeLineHomepageThreeState extends State<TimeLineHomepageThree> {
                   Tab(text: 'Everyone'),
                   Tab(text: 'Friends'),
                 ],
-                indicator: const BoxDecoration( // Customize the indicator's appearance
+                indicator: const BoxDecoration(
+                  // Customize the indicator's appearance
                   color: Color(0xFFCFFF92),
                 ),
               ),
