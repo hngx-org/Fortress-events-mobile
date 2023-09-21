@@ -11,6 +11,7 @@ import '../../../general_widgets/spacing.dart';
 
 class MyPeopleScreen extends StatelessWidget {
   const MyPeopleScreen({super.key});
+  static const routeName = '/my-people-screen';
 
   @override
   Widget build(BuildContext context) {

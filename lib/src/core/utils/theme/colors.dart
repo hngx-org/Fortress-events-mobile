@@ -46,6 +46,8 @@ abstract class AppColors {
   static const Color gray200 = Color(0xfff9fafb);
   // gray100 Color Swatch
   static const Color gray100 = Color(0xfffcfcfd);
+  // gray50 Color Swatch
+  static const Color gray50 = Color(0xfff9fafb);
   // success1100 Color Swatch
   static const Color success1100 = Color(0xff054f31);
   // success1000 Color Swatch

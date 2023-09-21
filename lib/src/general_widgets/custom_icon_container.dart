@@ -3,25 +3,6 @@ import 'package:flutter/material.dart';
 import '../core/constants/dimensions.dart';
 import 'custom_image_view.dart';
 
-/// A custom container that contains an icon and a text with an optional
-/// spacing between them, and an optional onTap callback.
-/// Example usage:
-/// ```dart
-///  CustomIconContainer(
-///    containerText: '14 Events',
-///    containerTextStyle: AppTextStyles.textXsMeduim.copyWith(
-///      color: AppColors.primary1000,
-///    ),
-///    containerColor: AppColors.accentGreen100,
-///    containerHPadding: Dimensions.smedium,
-///    containerVPadding: Dimensions.xsmall,
-///    iconSvgPath: ImageConstant.imgCalendar,
-///    iconColor: AppColors.primary1000,
-///    iconHeight: 16,
-///    iconWidth: 16,
-///    spacingWidth: Dimensions.tiny,
-///)
-/// ```
 class CustomIconContainer extends StatelessWidget {
   final String containerText;
   final TextStyle? containerTextStyle;
@@ -36,6 +17,27 @@ class CustomIconContainer extends StatelessWidget {
   final VoidCallback? onTap;
   final double? containerHeight;
   final double? containerWidth;
+
+  /// A custom container that contains an icon and a text with an optional
+  /// spacing between them, and an optional onTap callback.
+  /// Example usage:
+  /// ```dart
+  ///  CustomIconContainer(
+  ///    containerText: '14 Events',
+  ///    containerTextStyle: AppTextStyles.textXsMeduim.copyWith(
+  ///      color: AppColors.primary1000,
+  ///    ),
+  ///    containerColor: AppColors.accentGreen100,
+  ///    containerHPadding: Dimensions.smedium,
+  ///    containerVPadding: Dimensions.xsmall,
+  ///    iconSvgPath: ImageConstant.imgCalendar,
+  ///    iconColor: AppColors.primary1000,
+  ///    iconHeight: 16,
+  ///    iconWidth: 16,
+  ///    spacingWidth: Dimensions.tiny,
+  ///    onTap: () {},
+  /// ),
+  /// ```
 
   const CustomIconContainer({
     super.key,
