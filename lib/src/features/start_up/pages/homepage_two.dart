@@ -8,15 +8,15 @@ import '../../../general_widgets/custom_image_view.dart';
 
 class HomepageTwo extends StatelessWidget {
   const HomepageTwo({super.key});
+  static const routeName = '/homepage-two-screen';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
         body: Container(
-          color: Color(0xFF9699A0),
-          child: Stack(
-      children: [
+      color: Color(0xFF9699A0),
+      child: Stack(
+        children: [
           Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -24,7 +24,9 @@ class HomepageTwo extends StatelessWidget {
                 CustomImageView(
                   svgPath: 'assets/images/homepage_logo.svg',
                 ),
-                SizedBox(height: Dimensions.medium,),
+                SizedBox(
+                  height: Dimensions.medium,
+                ),
                 const Text(
                   'Wetin Dey Sup?',
                   style: TextStyle(
@@ -45,7 +47,8 @@ class HomepageTwo extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20.0),
                   // Adjust the radius as needed
-                  topRight: Radius.circular(20.0), // Adjust the radius as needed
+                  topRight:
+                      Radius.circular(20.0), // Adjust the radius as needed
                 ),
                 color: Colors.white, // Container background color
               ),
@@ -53,10 +56,13 @@ class HomepageTwo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: Dimensions.medium, vertical: Dimensions.large),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Dimensions.medium,
+                        vertical: Dimensions.large),
                     child: Text(
                       'Welcome Onboard',
-                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
                     ),
                   ),
                   Container(
@@ -67,13 +73,17 @@ class HomepageTwo extends StatelessWidget {
                       children: [
                         const Padding(
                           padding: EdgeInsets.all(Dimensions.medium),
-                          child: Text('Sign Up using:', style: TextStyle(fontSize: 20),),
+                          child: Text(
+                            'Sign Up using:',
+                            style: TextStyle(fontSize: 20),
+                          ),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         Container(
-                          margin: EdgeInsets.symmetric(horizontal: Dimensions.medium),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: Dimensions.medium),
                           padding: const EdgeInsets.all(15.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30.0),
@@ -106,9 +116,12 @@ class HomepageTwo extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(height: Dimensions.medium,),
+                        SizedBox(
+                          height: Dimensions.medium,
+                        ),
                         Container(
-                          margin: EdgeInsets.symmetric(horizontal: Dimensions.medium),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: Dimensions.medium),
                           padding: const EdgeInsets.all(15.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30.0),
@@ -144,15 +157,15 @@ class HomepageTwo extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: Dimensions.large,),
-
-
+                  const SizedBox(
+                    height: Dimensions.large,
+                  ),
                 ],
               ),
             ),
           ),
-      ],
-    ),
-        ));
+        ],
+      ),
+    ));
   }
 }

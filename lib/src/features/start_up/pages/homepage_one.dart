@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 
 class HomeScreenOne extends StatelessWidget {
   const HomeScreenOne({super.key});
+  static const routeName = '/homepage-one-screen';
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,9 @@ class HomeScreenOne extends StatelessWidget {
                   CustomImageView(
                     svgPath: 'assets/images/homepage_logo.svg',
                   ),
-                  SizedBox(height: Dimensions.medium,),
+                  const SizedBox(
+                    height: Dimensions.medium,
+                  ),
                   const Text(
                     'Wetin Dey Sup?',
                     style: TextStyle(
@@ -49,7 +52,9 @@ class HomeScreenOne extends StatelessWidget {
                   buttonTitle: 'Get Started',
                   buttonTitleColor: Color(0xFFCFFF92),
                 ),
-                SizedBox(height: Dimensions.tiny,),
+                SizedBox(
+                  height: Dimensions.tiny,
+                ),
                 HompageButtons(
                   buttonColor: Color(0xFFCFFF92),
                   buttonTitle: 'Sign in',
@@ -58,7 +63,6 @@ class HomeScreenOne extends StatelessWidget {
               ],
             ),
           ),
-
         ],
       ),
     );
