@@ -1,4 +1,4 @@
-
+import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_two.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,6 @@ import 'src/core/utils/theme/theme_helper.dart';
 import 'src/features/calendar/pages/calendar_screen.dart';
 import 'src/features/start_up/pages/example_screen.dart';
 // import 'src/features/start_up/pages/example_screen.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -33,10 +32,17 @@ class MyApp extends StatelessWidget {
       //TODO: Handle the app navigation
       // routes:
 
-
       home: const HomeScreenOne(),
-
-
+      routes: {
+        HomeScreenOne.routeName: (context) => const HomeScreenOne(),
+        HomepageTwo.routeName: (context) => const HomepageTwo(),
+        TimeLineHomepageThree.routeName: (context) =>
+            const TimeLineHomepageThree(),
+        MyPeopleScreen.routeName: (context) => const MyPeopleScreen(),
+        CreateGroup.routeName: (context) => const CreateGroup(),
+        CreateEvent.routeName: (context) => const CreateEvent(),
+        CalendarScreen.routeName: (context) => const CalendarScreen(),
+      },
     );
   }
 }
