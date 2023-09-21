@@ -5,6 +5,7 @@ import 'package:event_app/src/features/events/presentation/pages/create_event.da
 import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
 import 'package:event_app/src/features/start_up/pages/example_screen.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
+import 'package:event_app/src/features/start_up/pages/make_a_wish_4/make_a_wish_4_screen.dart';
 import 'package:event_app/src/general_widgets/custom_icon_button.dart';
 import 'package:event_app/src/general_widgets/general_widgets_exports.dart';
 import 'package:flutter/material.dart';
@@ -27,9 +28,7 @@ class _BottomNavigationState extends State<BottomNavigationButton> {
     MyPeopleScreen(),
     CreateEvent(),
     CalendarScreen(),
-    Container(
-      color: Colors.red,
-    ),
+    MakeAWish4Screen()
   ];
   @override
   Widget build(BuildContext context) {
