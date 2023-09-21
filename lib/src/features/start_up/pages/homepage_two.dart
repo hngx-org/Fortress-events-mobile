@@ -1,4 +1,4 @@
-import 'package:event_app/src/features/calendar/pages/test.dart';
+import 'package:event_app/src/features/calendar/pages/dashboard.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 import 'package:event_app/src/general_widgets/custom_elevated_button.dart';
 import 'package:event_app/src/general_widgets/first_homescreen_button.dart';

@@ -7,9 +7,7 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-bottomNavigationBar: BottomNavigationButton(),
-
-
+      bottomNavigationBar: BottomNavigationButton(),
     );
   }
 }
