@@ -1,13 +1,13 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/constants/strings.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
-import 'package:event_app/src/core/utils/theme/theme_helper.dart';
-import 'package:event_app/src/general_widgets/base_button.dart';
 import 'package:event_app/src/general_widgets/custom_elevated_button.dart';
 import 'package:event_app/src/general_widgets/custom_icon_button.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
+
+import '../../../general_widgets/general_widgets_exports.dart';
 
 class ExampleScreen extends StatelessWidget {
   const ExampleScreen({super.key});
@@ -15,6 +15,7 @@ class ExampleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomBottomBar(),
       appBar: AppBar(
         title: const Text(AppStrings.appName),
       ),
@@ -37,6 +38,8 @@ class ExampleScreen extends StatelessWidget {
           ),
           CustomImageView(
             color: Colors.amber,
+            height: 30,
+            width: 30,
             svgPath: ImageConstant.imgAlarm,
           ),
         ],

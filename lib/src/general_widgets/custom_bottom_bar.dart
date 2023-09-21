@@ -1,4 +1,3 @@
-
 import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/app_decoration.dart';
 import 'package:event_app/src/core/utils/theme/theme_helper.dart';
@@ -21,26 +20,33 @@ class CustomBottomBarState extends State<CustomBottomBar> {
     BottomMenuModel(
       icon: ImageConstant.imgNavhome,
       activeIcon: ImageConstant.imgNavhome,
-      title: "Home",
-      type: BottomBarEnum.Home,
+      title: "Activity",
+      type: BottomBarEnum.Activity,
     ),
     BottomMenuModel(
       icon: ImageConstant.imgNavpeople,
       activeIcon: ImageConstant.imgNavpeople,
-      title: "People",
-      type: BottomBarEnum.People,
+      title: "My People",
+      type: BottomBarEnum.MyPeople,
+    ),
+    BottomMenuModel(
+      icon: ImageConstant.imgPlus,
+      activeIcon: ImageConstant.imgPlus,
+      title: "Addition",
+      type: BottomBarEnum.Addition,
+      // isCircle: true,
     ),
     BottomMenuModel(
       icon: ImageConstant.imgNavrankings,
-      activeIcon: ImageConstant.imgNavrankings,
-      title: "Rankings",
-      type: BottomBarEnum.Rankings,
+      activeIcon: ImageConstant.imgComputer,
+      title: "Calender",
+      type: BottomBarEnum.Calender,
     ),
     BottomMenuModel(
-      icon: ImageConstant.imgNavpeople,
-      activeIcon: ImageConstant.imgNavpeople,
-      title: "Me",
-      type: BottomBarEnum.Me,
+      icon: ImageConstant.imgSettings,
+      activeIcon: ImageConstant.imgSettings,
+      title: "Settings",
+      type: BottomBarEnum.Settings,
     )
   ];
 
@@ -135,10 +141,11 @@ class CustomBottomBarState extends State<CustomBottomBar> {
 }
 
 enum BottomBarEnum {
-  Home,
-  People,
-  Rankings,
-  Me,
+  Activity,
+  MyPeople,
+  Addition,
+  Calender,
+  Settings,
 }
 
 class BottomMenuModel {
@@ -147,6 +154,7 @@ class BottomMenuModel {
     required this.activeIcon,
     this.title,
     required this.type,
+    this.isCircle = false,
   });
 
   String icon;
@@ -156,6 +164,8 @@ class BottomMenuModel {
   String? title;
 
   BottomBarEnum type;
+
+  bool isCircle;
 }
 
 class DefaultWidget extends StatelessWidget {
@@ -164,7 +174,7 @@ class DefaultWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Colors.blue,
       padding: const EdgeInsets.all(10),
       child: const Center(
         child: Column(
@@ -172,7 +182,7 @@ class DefaultWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Please replace the respective Widget here',
+              'No Screen Found',
               style: TextStyle(
                 fontSize: 18,
               ),
