@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
         CreateGroup.routeName: (context) => const CreateGroup(),
         CreateEvent.routeName: (context) => const CreateEvent(),
         CalendarScreen.routeName: (context) => const CalendarScreen(),
+        
       },
     );
   }
