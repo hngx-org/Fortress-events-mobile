@@ -1,48 +1,58 @@
 name: event_app
 description: An Event App
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.6 <4.0.0'
+  sdk: ">=3.0.6 <4.0.0"
 
 dependencies:
+  cached_network_image: ^3.2.1
+  comment_box: ^0.0.18
+  cupertino_icons: ^1.0.2
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  cached_network_image: ^3.2.1
+  flutter_riverpod: ^2.3.6
   flutter_svg: ^1.1.6
-  intl: ^0.18.0
-  google_fonts: ^6.0.0
-  table_calendar: ^3.0.9
-  comment_box: ^0.0.18
-  image_picker: ^1.0.4
   flutter_toggle_tab: ^1.4.1
- 
+  hooks_riverpod: ^2.3.6
+  http: ^0.13.5
+  image_picker: ^1.0.4
+  intl: ^0.18.0
+  table_calendar: ^3.0.9
+#   comment_box: ^0.0.18
+#   image_picker: ^1.0.4
+#   flutter_toggle_tab: ^1.4.1
+#   firebase_core: ^2.16.0
+#   firebase_auth: ^4.10.0
+#   google_sign_in: ^6.1.5
+
+
 
 dev_dependencies:
+  custom_lint: ^0.5.3
+  flutter_lints: ^2.0.0
+  
   flutter_test:
     sdk: flutter
+  riverpod_lint: ^2.1.0
 
-  flutter_lints: ^2.0.0
+
 
 # The following section is specific to Flutter packages.
 flutter:
   uses-material-design: true
 
-  assets: 
+  assets:
     - assets/
     - assets/images/
 
-  fonts: 
+  fonts:
     - family: Plus Jakarta Sans
-      fonts: 
+      fonts:
         - asset: assets/fonts/PlusJakartaSansBold.ttf
           weight: 700
         - asset: assets/fonts/PlusJakartaSansRegular.ttf

@@ -51,7 +51,9 @@ class HomeScreenOne extends StatelessWidget {
                 CustomElevatedButton(
                   text: 'Get Started',
                   height: 48,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, HomepageTwo.routeName);
+                  },
                   buttonTextStyle: const TextStyle(
                     color: Color(0xFFCFFF92),
                     fontSize: 12,
