@@ -9,7 +9,8 @@ class AppApiData {
   static Uri baseUri(String path) => Uri(
         scheme: scheme,
         host: host,
-        path: '/api/$path', port: 3000,
+        path: '/api/$path',
+        port: 3000,
       );
   // static Uri baseUri = Uri.parse('https://jsonplaceholder.typicode.com/posts');
 }

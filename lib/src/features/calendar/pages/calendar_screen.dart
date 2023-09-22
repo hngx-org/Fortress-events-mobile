@@ -56,12 +56,12 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
           SizedBox(height: height * 0.9, child: const CalendarTable()),
           state.loadState == LoadState.loading
               ? CupertinoActivityIndicator()
-
               : state.loadState == LoadState.error
                   ? Text('Error ${state.errorMessage}')
                   : SizedBox(
                       height: 100,
-                      child: Text('${state.resp!.data!.first.title ?? 'chuks'}')),
+                      child:
+                          Text('${state.resp!.data!.first.title ?? 'chuks'}')),
           const Spacing.bigHeight(),
         ],
       ),

@@ -1,10 +1,14 @@
+import 'package:event_app/src/core/utils/app_enums.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
+import 'package:event_app/src/features/auth/notifiers/user_notifier.dart';
+import 'package:event_app/src/features/auth/notifiers/user_state.dart';
 import 'package:event_app/src/features/calendar/pages/dashboard.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 import 'package:event_app/src/general_widgets/custom_elevated_button.dart';
 import 'package:event_app/src/general_widgets/first_homescreen_button.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants/dimensions.dart';
 import '../../../general_widgets/custom_homepage_button.dart';
@@ -55,50 +59,59 @@ class HomepageTwo extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      // Navigator.pushNamed(context, TimeLineHomepageThree.routeName);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Dashboard(),
-                          ));
+                  Consumer(
+                    builder: (context, ref, child) {
+                      final notifier = ref.read(userNotifierProvider.notifier);
+                      final state = ref.watch(userNotifierProvider);
+                      _navigateToHome(ref, context);
+                
+
+                      return GestureDetector(
+                        onTap: () {
+                          notifier.googleSign();
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder: (context) => const Dashboard(),
+                          //     ));
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: Dimensions.medium),
+                          padding: const EdgeInsets.all(15.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30.0),
+                            // Rounded edges
+                            color: Colors.white,
+                            // White background color
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CustomImageView(
+                                svgPath: 'assets/images/google_icon.svg',
+                              ),
+                              const SizedBox(width: 5.0),
+                              const Text(
+                                'Google',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
                     },
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: Dimensions.medium),
-                      padding: const EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        // Rounded edges
-                        color: Colors.white,
-                        // White background color
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomImageView(
-                            svgPath: 'assets/images/google_icon.svg',
-                          ),
-                          const SizedBox(width: 5.0),
-                          const Text(
-                            'Google',
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                   ),
                   const Spacing.height(52)
                 ],
@@ -108,5 +121,17 @@ class HomepageTwo extends StatelessWidget {
         ),
       ),
     );
+  }
+        void _navigateToHome(WidgetRef ref, BuildContext context) async {
+    ref.listen<UserState>(userNotifierProvider, (previous, next) {
+      if (next.loadState == LoadState.success) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Dashboard(),
+            ));
+        return;
+      }
+    });
   }
 }

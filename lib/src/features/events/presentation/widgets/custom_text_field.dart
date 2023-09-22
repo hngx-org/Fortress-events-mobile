@@ -14,7 +14,8 @@ class CustomTextField extends StatelessWidget {
     this.boxheight,
     this.item,
     this.boxwidth,
-    this.lines = 1, required TextEditingController TextEditingController,
+    this.lines = 1,
+    required TextEditingController TextEditingController,
   });
 
   @override
@@ -22,7 +23,6 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       maxLines: lines,
       decoration: InputDecoration(
-        
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.gray500,
