@@ -48,7 +48,7 @@ class HomepageTwo extends StatelessWidget {
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20.0),
-                  // Adjust the radius as needed
+                  
                   topRight:
                       Radius.circular(20.0), // Adjust the radius as needed
                 ),
