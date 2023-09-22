@@ -4,7 +4,7 @@ import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_left_icon.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_heading_style.dart';
-import 'package:event_app/src/general_widgets/custom_container_text_field.dart';
+import 'package:event_app/src/features/events/presentation/widgets/custom_text_form.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
 import 'package:event_app/src/general_widgets/custom_icon_container.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
@@ -59,13 +59,13 @@ class CreateEvent extends StatelessWidget {
                               ),
                             ),
                             Spacing.smallHeight(),
-                            CustomContainerTextField(
+                            CustomTextField(
                               boxheight: 52,
                               boxwidth: MediaQuery.sizeOf(context).width,
                               item: "Add Event Title",
                             ),
                             Spacing.smallHeight(),
-                            CustomContainerTextField(
+                            CustomTextField(
                               boxheight: 85,
                               boxwidth: MediaQuery.sizeOf(context).width,
                               item: "Event Description",
@@ -73,6 +73,18 @@ class CreateEvent extends StatelessWidget {
                             ),
                             SizedBox(
                               height: MediaQuery.sizeOf(context).height * 0.04,
+                            ),
+                            Text(
+                              "Location",
+                              style: AppTextStyles.textXsMeduim.copyWith(
+                                color: AppColors.gray900,
+                              ),
+                            ),
+                            Spacing.smallHeight(),
+                            CustomTextField(
+                              boxheight: 52,
+                              boxwidth: MediaQuery.sizeOf(context).width,
+                              item: "Add Location",
                             ),
                             Row(
                               children: [
