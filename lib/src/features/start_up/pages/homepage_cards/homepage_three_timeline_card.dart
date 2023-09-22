@@ -25,8 +25,9 @@ class HomepageThreeTimelineCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(
-          horizontal: Dimensions.medium, vertical: Dimensions.medium),
+      margin: const EdgeInsets.only(
+        bottom: Dimensions.medium,
+      ),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20), // Adjust the radius as needed

@@ -1,4 +1,5 @@
 import 'package:event_app/src/core/utils/app_enums.dart';
+import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/features/calendar/notifiers/calendar_notifier.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_cards/homepage_three_timeline_card.dart';
@@ -81,12 +82,21 @@ class _TimeLineHomepageThreeState extends ConsumerState<TimeLineHomepageThree> {
                   child: CupertinoActivityIndicator(
                   color: AppColors.primary1000,
                 ))
-              : ListView.builder(
+              : 
+         Padding(
+            padding: const EdgeInsets.fromLTRB(
+              Dimensions.medium,
+              Dimensions.medium,
+              Dimensions.medium,
+              0,
+            ),
+            child:
+        ListView.builder(
                   itemCount: state.resp?.data?.length ?? 0,
                   itemBuilder: (context, index) {
                     final singleEvent = state.resp?.data?[index];
                     return HomepageThreeTimelineCard(model: singleEvent);
-                  })),
+                  })),),
     );
   }
 }
