@@ -4,8 +4,9 @@ import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_left_icon.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_heading_style.dart';
-import 'package:event_app/src/features/events/presentation/widgets/custom_text_form.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
+import 'package:event_app/src/features/events/presentation/widgets/custom_text_field.dart';
+import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
 import 'package:event_app/src/general_widgets/custom_icon_container.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
@@ -178,7 +179,12 @@ class CreateEvent extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.primary1000,
           onPressed: () {
-            //todo: Nav to the my people screenp
+            //todo: Nav to the my people screen
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MyPeopleScreen()),
+          );
+  
           },
           child: CustomImageView(
             svgPath: ImageConstant.imgArrowRight,
