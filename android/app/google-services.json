@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1035072356543",
+    "project_id": "fortress-events-app",
+    "storage_bucket": "fortress-events-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035072356543:android:b58b1a7b878e3d1142460a",
+        "android_client_info": {
+          "package_name": "com.example.event_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo2vCEMEgNAodORSIdI6C87464fQ1J3uQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
