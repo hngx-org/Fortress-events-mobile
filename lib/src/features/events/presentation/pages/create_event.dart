@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:event_app/src/core/constants/dimensions.dart';
-import 'package:event_app/src/core/services/network/api_services.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
@@ -16,7 +15,6 @@ import 'package:event_app/src/general_widgets/custom_icon_container.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 
 class CreateEvent extends StatefulWidget {
   const CreateEvent({super.key});
@@ -34,17 +32,24 @@ class _CreateEventState extends State<CreateEvent> {
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
 
-  _registerevent(){
-    var eventdata= {
-'    title': _titleController.text,
-    'description': _descriptionController.text,	
-    'location': _locationController.text,
-    'start_date': _dateController.text,
-    'start_time': _timeController.text,
-
+  _registerevent() {
+    var eventdata = {
+      '    title': _titleController.text,
+      'description': _descriptionController.text,
+      'location': _locationController.text,
+      'start_date': _dateController.text,
+      'start_time': _timeController.text,
     };
     var res = CallApi().postData(eventdata, 'events');
-    
+    var body = json.decode(res.body);
+    if (body['success'] ) {
+      Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyPeopleScreen()),
+            );
+    } else {
+      print("error");
+    }
   }
 
   @override
@@ -158,7 +163,6 @@ class _CreateEventState extends State<CreateEvent> {
                                       children: [
                                         CustomContainerRightIcon(
                                           displaydata: "02:00pm",
-                                        
                                           onPressed: () {},
                                           iconSvgPath: ImageConstant.imgClock,
                                           iconColor: AppColors.gray700Main,
@@ -207,6 +211,9 @@ class _CreateEventState extends State<CreateEvent> {
                   ),
                 ),
                 CustomElevatedButton(
+                  buttonTextStyle: AppTextStyles.textXsMeduim.copyWith(
+                    color: AppColors.accentGreen100,
+                  ),
                   text: 'Create Event',
                   height: 30,
                   buttonStyle: ElevatedButton.styleFrom(
