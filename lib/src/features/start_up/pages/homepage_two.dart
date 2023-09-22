@@ -1,7 +1,9 @@
+import 'package:event_app/src/core/utils/theme/text_styles.dart';
 import 'package:event_app/src/features/calendar/pages/dashboard.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 import 'package:event_app/src/general_widgets/custom_elevated_button.dart';
 import 'package:event_app/src/general_widgets/first_homescreen_button.dart';
+import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/dimensions.dart';
@@ -15,7 +17,7 @@ class HomepageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
-      heightFactor: 0.4,
+      heightFactor: 0.35,
       child: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -28,12 +30,13 @@ class HomepageTwo extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: Dimensions.medium, vertical: Dimensions.large),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: Dimensions.medium, vertical: Dimensions.big),
               child: Text(
                 'Welcome Onboard',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+                style:
+                    AppTextStyles.textXlBold.copyWith(fontSize: Dimensions.big),
               ),
             ),
             Container(
@@ -46,7 +49,7 @@ class HomepageTwo extends StatelessWidget {
                     padding: EdgeInsets.all(Dimensions.medium),
                     child: Text(
                       'Sign Up using:',
-                      style: TextStyle(fontSize: 20),
+                      style: AppTextStyles.textSmallBold,
                     ),
                   ),
                   const SizedBox(
@@ -97,6 +100,7 @@ class HomepageTwo extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const Spacing.height(52)
                 ],
               ),
             ),
