@@ -58,11 +58,13 @@ class ImageConstant {
 
   static String imgClock = '$imagePath/img_clock.svg';
 
-   static String imgLocation = '$imagePath/img_location.svg';
-   
+  static String imgLocation = '$imagePath/img_location.svg';
+
   static String imgMore = '$imagePath/img_more.svg';
 
   static String imgMessage = '$imagePath/img_message.svg';
 
   static String imgHeart = '$imagePath/img_heart.svg';
+
+  static String imgCloseFilled = '$imagePath/img_close_filled.svg';
 }

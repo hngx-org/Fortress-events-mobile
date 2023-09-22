@@ -10,6 +10,7 @@ import 'package:event_app/src/general_widgets/custom_icon_container.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CreateEvent extends StatelessWidget {
   const CreateEvent({super.key});
@@ -20,144 +21,146 @@ class CreateEvent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            color: AppColors.baseWhite,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          toolbarHeight: 76,
+          title: Text(
+            'Create Event',
+            style: AppTextStyles.textXlBold.copyWith(
+              color: AppColors.gray1000,
+            ),
           ),
-          child: Column(
-            children: [
-              ListTile(
-                title: Text(
-                  "Create Event",
-                  style: AppTextStyles.textMdBold.copyWith(
-                    color: AppColors.gray700Main,
-                  ),
-                ),
-                trailing: IconButton(
-                  icon: Icon(Icons.close),
-                  onPressed: () {},
-                ),
+          actions: [
+            IconButton.filledTonal(
+              onPressed: () {},
+              icon: const Icon(Icons.close),
+              color: Colors.black,
+            ),
+            /*  Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.primary100,
               ),
-              Divider(
-                color: Colors.grey,
+              padding: const EdgeInsets.all(Dimensions.small),
+              child: CustomImageView(
+                svgPath: ImageConstant.imgCloseFilled,
               ),
-              Spacing.smallHeight(),
-              Padding(
-                padding: EdgeInsets.all(Dimensions.medium),
-                child: Column(
+            ), */
+            // const Spacing.mediumWidth()
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(Dimensions.medium),
+            child: Column(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Title",
-                            style: AppTextStyles.textXsMeduim.copyWith(
-                              color: AppColors.gray900,
-                            ),
-                          ),
-                          Spacing.smallHeight(),
-                          CustomContainerTextField(
-                            boxheight: 52,
-                            boxwidth: MediaQuery.sizeOf(context).width,
-                            item: "Add Event Title",
-                          ),
-                          Spacing.smallHeight(),
-                          CustomContainerTextField(
-                            boxheight: 85,
-                            boxwidth: MediaQuery.sizeOf(context).width,
-                            item: "Event Description",
-                            lines: 6,
-                          ),
-                          SizedBox(
-                            height: MediaQuery.sizeOf(context).height * 0.04,
-                          ),
-                          Row(
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Date"),
-                                  Spacing.smallHeight(),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      CustomContainerRightIcon(
-                                        displaydata: "June 19",
-                                        onPressed: () {},
-                                        iconSvgPath: ImageConstant.imgCalendar,
-                                        iconColor: AppColors.gray700Main,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Spacing.mediumWidth(),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CustomHeading(
-                                    content: 'Time',
-                                  ),
-                                  Spacing.smallHeight(),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      CustomContainerRightIcon(
-                                        displaydata: "02:00pm",
-                                        onPressed: () {},
-                                        iconSvgPath: ImageConstant.imgClock,
-                                        iconColor: AppColors.gray700Main,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Spacing.smallHeight(),
-                          CustomIconContainer(
-                            containerText: " Add Location",
-                            spacingWidth: 4,
-                            containerColor: AppColors.gray300,
-                            containerHPadding: 16,
-                            containerVPadding: 8,
-                            iconSvgPath: ImageConstant.imgLocation,
-                            iconColor: AppColors.gray900,
-                            iconHeight: 20,
-                            iconWidth: 20,
-                            containerHeight: Dimensions.small * 5,
-                            containerWidth: Dimensions.smedium * 13,
-                            onTap: () {},
-                          ),
-                          Spacing.smallHeight(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Select Group"),
-                              Spacing.smallHeight(),
-                              CustomContainerLeftIcon(
-                                iconSvgPath: ImageConstant.imgSearchnormal,
-                                iconColor: AppColors.gray700Main,
-                                containerHeight: 52,
-                                containerWidth: 343,
-                                displaydata: 'Search Groups',
-                              ),
-                            ],
-                          ),
-                        ],
+                    Text(
+                      "Title",
+                      style: AppTextStyles.textXsMeduim.copyWith(
+                        color: AppColors.gray900,
                       ),
                     ),
-                    Spacing.mediumHeight(),
+                    const Spacing.smallHeight(),
+                    CustomContainerTextField(
+                      boxheight: 52,
+                      boxwidth: MediaQuery.sizeOf(context).width,
+                      item: "Add Event Title",
+                    ),
+                    const Spacing.smallHeight(),
+                    CustomContainerTextField(
+                      boxheight: 85,
+                      boxwidth: MediaQuery.sizeOf(context).width,
+                      item: "Event Description",
+                      lines: 6,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.sizeOf(context).height * 0.04,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text("Date"),
+                            const Spacing.smallHeight(),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomContainerRightIcon(
+                                  displaydata: "June 19",
+                                  onPressed: () {},
+                                  iconSvgPath: ImageConstant.imgCalendar,
+                                  iconColor: AppColors.gray700Main,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const CustomHeading(
+                              content: 'Time',
+                            ),
+                            const Spacing.smallHeight(),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomContainerRightIcon(
+                                  displaydata: "02:00pm",
+                                  onPressed: () {},
+                                  iconSvgPath: ImageConstant.imgClock,
+                                  iconColor: AppColors.gray700Main,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const Spacing.smallHeight(),
+                    CustomIconContainer(
+                      containerText: " Add Location",
+                      spacingWidth: 4,
+                      containerColor: AppColors.gray300,
+                      containerHPadding: 16,
+                      containerVPadding: 8,
+                      iconSvgPath: ImageConstant.imgLocation,
+                      iconColor: AppColors.gray900,
+                      iconHeight: 20,
+                      iconWidth: 20,
+                      containerHeight: Dimensions.small * 5,
+                      containerWidth: Dimensions.smedium * 13,
+                      onTap: () {},
+                    ),
+                    const Spacing.smallHeight(),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("Select Group"),
+                        const Spacing.smallHeight(),
+                        CustomContainerLeftIcon(
+                          iconSvgPath: ImageConstant.imgSearchnormal,
+                          iconColor: AppColors.gray700Main,
+                          containerHeight: 52,
+                          containerWidth: 343,
+                          displaydata: 'Search Groups',
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-              ),
-            ],
+                const Spacing.mediumHeight(),
+              ],
+            ),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
