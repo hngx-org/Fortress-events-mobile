@@ -18,10 +18,12 @@ void main() {
   ));
 }
 
+
 class FortressEventApp extends StatelessWidget {
+
   const FortressEventApp({super.key});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
