@@ -23,7 +23,7 @@ class FortressEventApp extends StatelessWidget {
 
   const FortressEventApp({super.key});
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context, ) {
     return MaterialApp(
       title: AppStrings.appName,
       debugShowCheckedModeBanner: false,

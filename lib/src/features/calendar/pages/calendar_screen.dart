@@ -61,7 +61,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                   ? Text('Error ${state.errorMessage}')
                   : SizedBox(
                       height: 100,
-                      child: Text('${state.resp?.data?.first.title ?? 'chuks'}')),
+                      child: Text('${state.resp!.data!.first.title ?? 'chuks'}')),
           const Spacing.bigHeight(),
         ],
       ),

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
-class Datum extends Equatable {
+class AppEvents extends Equatable {
   final String? id;
   final String? title;
   final String? description;
@@ -13,7 +13,7 @@ class Datum extends Equatable {
   final String? startTime;
   final String? endTime;
 
-  const Datum({
+  const AppEvents({
     this.id,
     this.title,
     this.description,
@@ -25,7 +25,7 @@ class Datum extends Equatable {
     this.endTime,
   });
 
-  factory Datum.fromMap(Map<String, dynamic> data) => Datum(
+  factory AppEvents.fromMap(Map<String, dynamic> data) => AppEvents(
         id: data['id'] as String?,
         title: data['title'] as String?,
         description: data['description'] as String?,
@@ -51,17 +51,17 @@ class Datum extends Equatable {
 
   /// `dart:convert`
   ///
-  /// Parses the string and returns the resulting Json object as [Datum].
-  factory Datum.fromJson(String data) {
-    return Datum.fromMap(json.decode(data) as Map<String, dynamic>);
+  /// Parses the string and returns the resulting Json object as [AppEvents].
+  factory AppEvents.fromJson(String data) {
+    return AppEvents.fromMap(json.decode(data) as Map<String, dynamic>);
   }
 
   /// `dart:convert`
   ///
-  /// Converts [Datum] to a JSON string.
+  /// Converts [AppEvents] to a JSON string.
   String toJson() => json.encode(toMap());
 
-  Datum copyWith({
+  AppEvents copyWith({
     String? id,
     String? title,
     String? description,
@@ -72,7 +72,7 @@ class Datum extends Equatable {
     String? startTime,
     String? endTime,
   }) {
-    return Datum(
+    return AppEvents(
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,

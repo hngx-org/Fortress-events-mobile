@@ -2,16 +2,16 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
-import 'datum.dart';
+import 'app_event.dart';
 
 class EventModel extends Equatable {
-  final List<Datum>? data;
+  final List<AppEvents>? data;
 
   const EventModel({this.data});
 
   factory EventModel.fromMap(Map<String, dynamic> data) => EventModel(
         data: (data['data'] as List<dynamic>?)
-            ?.map((e) => Datum.fromMap(e as Map<String, dynamic>))
+            ?.map((e) => AppEvents.fromMap(e as Map<String, dynamic>))
             .toList(),
       );
 
@@ -32,7 +32,7 @@ class EventModel extends Equatable {
   String toJson() => json.encode(toMap());
 
   EventModel copyWith({
-    List<Datum>? data,
+    List<AppEvents>? data,
   }) {
     return EventModel(
       data: data ?? this.data,
