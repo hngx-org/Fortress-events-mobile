@@ -43,7 +43,7 @@ class CustomContainerLeftIcon extends StatelessWidget {
               height: Dimensions.medium,
               width: Dimensions.medium,
             ),
-            Spacing.smallWidth(),
+            const Spacing.smallWidth(),
             Text(
               "$displaydata",
               style: AppTextStyles.textSmallRegular.copyWith(
@@ -54,6 +54,5 @@ class CustomContainerLeftIcon extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

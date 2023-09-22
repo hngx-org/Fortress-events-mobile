@@ -1,31 +1,33 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
-import 'package:event_app/src/core/utils/theme/theme_helper.dart';
-import 'package:event_app/src/general_widgets/custom_elevated_button.dart';
+import 'package:event_app/src/features/calendar/model/event_model/app_event.dart';
 import 'package:event_app/src/general_widgets/custom_icon_container.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../core/utils/theme/colors.dart';
 import '../../../../core/utils/theme/text_styles.dart';
 import '../../../../general_widgets/stacked_circle_avatars.dart';
+
 import '../../../people_groups/data/avatar_images.dart';
 
 class HomepageThreeTimelineCard extends StatelessWidget {
-  String titleText;
-  String subTitileText;
+  // String titleText;
+  // String subTitileText;
+  final AppEvents? model;
 
   HomepageThreeTimelineCard({
+    required this.model,
     super.key,
-    this.titleText = 'The Rapid UX Process',
-    this.subTitileText =
-        'Dive into the of creating seamless digital experiences.',
+    // this.titleText = 'The Rapid UX Process',
+    // this.subTitileText =
+    //     'Dive into the of creating seamless digital experiences.',
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(
-          horizontal: Dimensions.medium, vertical: Dimensions.medium),
+      margin: const EdgeInsets.only(
+        bottom: Dimensions.medium,
+      ),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
@@ -46,7 +48,7 @@ class HomepageThreeTimelineCard extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                    titleText,
+                    model?.title ?? '',
                     style: AppTextStyles.textMdBold.copyWith(
                       color: AppColors.gray900,
                     ),
@@ -63,8 +65,10 @@ class HomepageThreeTimelineCard extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.only(right: 36),
+            alignment: Alignment.centerLeft,
             child: Text(
-              subTitileText,
+              model?.description ?? '',
+              textAlign: TextAlign.left,
               style: AppTextStyles.textXsRegular.copyWith(
                 color: AppColors.gray800,
               ),

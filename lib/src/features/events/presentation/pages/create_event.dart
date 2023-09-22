@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:event_app/src/core/constants/dimensions.dart';
+import 'package:event_app/src/core/utils/date_time_utils.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
@@ -31,26 +32,56 @@ class _CreateEventState extends State<CreateEvent> {
   final TextEditingController _locationController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
+  
+ _registerevent() async {
+  var eventdata = {
+    'title': _titleController.text,
+    'description': _descriptionController.text,
+    'location': _locationController.text,
+    'start_date': _dateController.text,
+    'start_time': _timeController.text,
+  };
 
-  _registerevent() {
-    var eventdata = {
-      '    title': _titleController.text,
-      'description': _descriptionController.text,
-      'location': _locationController.text,
-      'start_date': _dateController.text,
-      'start_time': _timeController.text,
-    };
-    var res = CallApi().postData(eventdata, 'events');
-    var body = json.decode(res.body);
-    if (body['success'] ) {
-      Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MyPeopleScreen()),
-            );
+  var response = await CallApi().postData(eventdata, 'events');
+
+  if (response != null) {
+    if (response.statusCode == 200) {
+      var body = json.decode(response.body);
+      if (body['success'] == true) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyPeopleScreen()),
+        );
+      } else {
+        print("Error: ${body['message']}");
+      }
     } else {
-      print("error");
+      print("Error: HTTP ${response.statusCode} - ${response.reasonPhrase}");
     }
+  } else {
+    print("Error: Unable to send data. Check your internet connection.");
   }
+}
+
+
+
+DateTime selectedDate = DateTime.now();
+
+void _showDatePicker() async {
+  final DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: selectedDate,
+    firstDate: DateTime.now(),
+    lastDate: DateTime.now().add(const Duration(days: 365)),
+  );
+
+  if (picked != null && picked != selectedDate) {
+    setState(() {
+      selectedDate = picked;
+      _dateController.text = selectedDate.format('yyyy-MM-dd');
+    });
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -138,11 +169,14 @@ class _CreateEventState extends State<CreateEvent> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         CustomContainerRightIcon(
-                                          displaydata: "June 19",
-                                          onPressed: () {},
+                                          displaydata: '9',
+                                         
                                           iconSvgPath:
                                               ImageConstant.imgCalendar,
                                           iconColor: AppColors.gray700Main,
+                                           onPressed: () {
+                                            _showDatePicker();
+                                          },
                                         ),
                                       ],
                                     ),
