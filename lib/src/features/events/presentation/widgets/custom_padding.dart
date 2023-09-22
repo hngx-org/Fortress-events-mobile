@@ -6,7 +6,7 @@ class customPadding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(12) ,
+      padding: EdgeInsets.all(12),
     );
   }
 }

@@ -5,6 +5,8 @@ import 'package:event_app/src/general_widgets/custom_buttom_navigation_bar.dart'
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/utils/theme/text_styles.dart';
+
 class TimeLineHomepageThree extends StatefulWidget {
   const TimeLineHomepageThree({super.key});
   static const routeName = '/homepage-three-screen';
@@ -21,12 +23,14 @@ class _TimeLineHomepageThreeState extends State<TimeLineHomepageThree> {
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
+            automaticallyImplyLeading: false,
+            toolbarHeight: 76,
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(48.0),
               // Adjust the height as needed
               child: TabBar(
-                labelColor: Color(0xFF063B27),
-                unselectedLabelColor: Color(0xFF667085),
+                labelColor: const Color(0xFF063B27),
+                unselectedLabelColor: const Color(0xFF667085),
                 overlayColor: MaterialStateProperty.all(
                   const Color(0xFF063B27),
                 ),
@@ -37,6 +41,12 @@ class _TimeLineHomepageThreeState extends State<TimeLineHomepageThree> {
                 indicator: const BoxDecoration(
                   // Customize the indicator's appearance
                   color: Color(0xFFCFFF92),
+                  border: Border(
+                    bottom: BorderSide(
+                      color: AppColors.primary900,
+                      width: 2,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -45,8 +55,8 @@ class _TimeLineHomepageThreeState extends State<TimeLineHomepageThree> {
               children: [
                 Text(
                   'Timeline',
-                  style: TextStyle(
-                    color: AppColor.primaryBlack,
+                  style: AppTextStyles.textXlBold.copyWith(
+                    color: AppColors.gray1000,
                   ),
                 ),
                 CustomImageView(

@@ -15,12 +15,11 @@ class PeopleGroupCard extends StatelessWidget {
   final String groupDescription;
   final VoidCallback onTap;
 
-  const PeopleGroupCard({
-    super.key,
-    required this.groupName,
-    required this.groupDescription,
-    required this.onTap
-  });
+  const PeopleGroupCard(
+      {super.key,
+      required this.groupName,
+      required this.groupDescription,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {

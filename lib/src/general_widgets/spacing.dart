@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../core/constants/dimensions.dart';
 
-
 class Spacing extends StatelessWidget {
   final double height;
   final double width;
