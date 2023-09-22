@@ -15,7 +15,11 @@ class CalendarNotifier extends StateNotifier<CalendarState> {
       final List<SampleModel> sampleTest = await apiServices.getSample();
       debugLog(
           'Data Gotten APi used as an api setup: First : ${sampleTest.first}');
-      return sampleTest;
+
+      state = state.copyWith(
+        loadState: LoadState.success,
+        resp: sampleTest,
+      );
     } catch (e) {
       state = state.copyWith(
         loadState: LoadState.error,
