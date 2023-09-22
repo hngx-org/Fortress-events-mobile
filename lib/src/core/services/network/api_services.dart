@@ -29,9 +29,10 @@ class ApiServices {
 
   Future getSample() async {
     try {
-      debugLog('Attemping to get countries list');
+      debugLog('Attemping to get smaple list');
       final response = await _get(uri: AppApiData.baseUri);
       List<SampleModel> data = List<SampleModel>.from(
+        //!todo: check here
               jsonDecode(response.body).map((x) => SampleModel.fromJson(x)))
           .toList();
 
@@ -53,4 +54,4 @@ class ApiServices {
   }
 }
 
-final apoServicesProvider = Provider((ref) => ApiServices());
+final apiServicesProvider = Provider((ref) => ApiServices());

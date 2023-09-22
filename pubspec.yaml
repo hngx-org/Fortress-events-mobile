@@ -25,10 +25,14 @@ dependencies:
   table_calendar: ^3.0.9
 
 dev_dependencies:
+  custom_lint: ^0.5.3
   flutter_lints: ^2.0.0
+  
   flutter_test:
     sdk: flutter
   riverpod_lint: ^2.1.0
+
+
 
 # The following section is specific to Flutter packages.
 flutter:

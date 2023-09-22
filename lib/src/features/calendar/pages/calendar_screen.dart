@@ -21,7 +21,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       final data =
           await ref.read(calendarNotifierProvider.notifier).sampleImpl();
-      print('Data feteched==> $data');
+      print('Data feteched ==> $data');
     });
     super.initState();
   }

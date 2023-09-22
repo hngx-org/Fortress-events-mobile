@@ -3,6 +3,7 @@ import 'package:event_app/src/core/utils/app_enums.dart';
 class CalendarState {
   final LoadState loadState;
   final String errorMessage;
+  
 
   CalendarState({
     required this.loadState,
@@ -23,8 +24,8 @@ class CalendarState {
       String? errorMessage,
       bool? agreeToTerms}) {
     return CalendarState(
-        loadState: loadState ?? this.loadState,      
-        errorMessage: errorMessage ?? this.errorMessage,
-      );
+      loadState: loadState ?? this.loadState,
+      errorMessage: errorMessage ?? this.errorMessage,
+    );
   }
 }

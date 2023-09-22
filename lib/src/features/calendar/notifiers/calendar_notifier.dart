@@ -29,5 +29,5 @@ class CalendarNotifier extends StateNotifier<CalendarState> {
 
 final calendarNotifierProvider =
     StateNotifierProvider<CalendarNotifier, CalendarState>(
-  (_) => CalendarNotifier(_.read(apoServicesProvider)),
+  (_) => CalendarNotifier(_.read(apiServicesProvider)),
 );
