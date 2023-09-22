@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 String _appTheme = "primary";
 
@@ -50,6 +51,10 @@ class ThemeHelper {
         elevation: 0,
         scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark,
+        ),
       ),
       visualDensity: VisualDensity.standard,
       colorScheme: colorScheme,

@@ -1,3 +1,4 @@
+import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/theme_helper.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_cards/homepage_three_timeline_card.dart';
@@ -65,9 +66,17 @@ class _TimeLineHomepageThreeState extends State<TimeLineHomepageThree> {
               ],
             ),
           ),
-          body: ListView.builder(itemBuilder: (context, index) {
-            return HomepageThreeTimelineCard();
-          })),
+          body: Padding(
+            padding: const EdgeInsets.fromLTRB(
+              Dimensions.medium,
+              Dimensions.medium,
+              Dimensions.medium,
+              0,
+            ),
+            child: ListView.builder(itemBuilder: (context, index) {
+              return HomepageThreeTimelineCard();
+            }),
+          )),
     );
   }
 }
