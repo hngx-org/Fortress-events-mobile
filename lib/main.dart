@@ -11,13 +11,11 @@ import 'package:event_app/src/features/groups/pages/create_group.dart';
 import 'src/features/calendar/pages/calendar_screen.dart';
 // import 'package:firebase_core/firebase_core.dart';
 // import 'firebase_options.dart';
-
 void main() {
   runApp(const ProviderScope(
     child: FortressEventApp(),
   ));
 }
-
 class FortressEventApp extends StatelessWidget {
   const FortressEventApp({super.key});
   @override
