@@ -9,35 +9,34 @@ class SettingsCustomization extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 16, left: 16),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(30),
-        child: Card(
-          child: Column(
-            children: [
-              ...settings.map(
-                (e) => e.leadingIcon != null
-                    ? ListTile(
-                        horizontalTitleGap: 1,
-                        leading: e.leadingIcon,
-                        title: Text(
-                          e.settingName,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        elevation: 0,
+        child: Column(
+          children: [
+            ...settings.map(
+              (e) => e.leadingIcon != null
+                  ? ListTile(
+                      horizontalTitleGap: 1,
+                      leading: e.leadingIcon,
+                      title: Text(
+                        e.settingName,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
                         ),
-                        trailing: e.trailingIcon,
-                      )
-                    : ListTile(
-                        title: Text(
-                          e.settingName,
-                          style: TextStyle(color: e.color),
-                        ),
-                        trailing: e.trailingIcon,
                       ),
-              ),
-            ],
-          ),
+                      trailing: e.trailingIcon,
+                    )
+                  : ListTile(
+                      title: Text(
+                        e.settingName,
+                        style: TextStyle(color: e.color),
+                      ),
+                      trailing: e.trailingIcon,
+                    ),
+            ),
+          ],
         ),
       ),
     );
