@@ -3,7 +3,6 @@ import 'package:event_app/src/core/utils/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class AppTextField extends StatefulWidget {
   final double? width;
   final double? labelSize;

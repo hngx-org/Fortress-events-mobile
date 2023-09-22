@@ -81,8 +81,10 @@ class PostScreen extends StatelessWidget {
                                 bottom: 0,
                                 right: 0,
                                 child: IconButton(
-                                  icon: const Icon(Icons
-                                      .download, color: Colors.blue, ),
+                                  icon: const Icon(
+                                    Icons.download,
+                                    color: Colors.blue,
+                                  ),
                                   onPressed: () {
                                     // Add your download functionality here
                                   },

@@ -61,8 +61,12 @@ class PreScreen extends StatelessWidget {
                                       color: (item.isLiked)
                                           ? const Color(0xff063B27)
                                           : Colors.grey)),
-                                          const SizedBox(width: 10),
-                                const Text('Reply', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),)
+                              const SizedBox(width: 10),
+                              const Text(
+                                'Reply',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 13),
+                              )
                             ],
                           ),
                           const SizedBox(height: 5),
