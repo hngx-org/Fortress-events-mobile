@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:event_app/src/core/utils/image_constant.dart';
 import '/src/features/settings_screen/widgets/widgets/settings.dart';
 import '/src/features/settings_screen/widgets/widgets/user_profile.dart';
 import '/src/general_widgets/spacing.dart';
 
 //main screen for settings
-class MakeAWish4Screen extends StatelessWidget {
-  const MakeAWish4Screen({super.key});
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
+  static const routeName = '/settings';
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +43,7 @@ class MakeAWish4Screen extends StatelessWidget {
 
 class User {
   static String handle = "Salome", email = 'salome367@gmail.com';
-  static var profileImage = const AssetImage('assets/images/img_ellipse1.png');
+  static var profileImage = AssetImage(ImageConstant.imgSalomeDP);
+
   //const NetworkImage("https://via.placeholder.com/110x110");
 }

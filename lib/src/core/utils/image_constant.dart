@@ -32,6 +32,8 @@ class ImageConstant {
   static String imgSettings = '$imagePath/img_settings.svg';
 
   static String imgPlus = '$imagePath/img_plus.svg';
+  
+  static String imgSalomeDP = '$imagePath/salome_img.jpg';
 
   static String imgPlusLightGreenA100 =
       '$imagePath/img_plus_light_green_a100.svg';
