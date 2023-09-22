@@ -11,9 +11,8 @@ class CustomHeading extends StatelessWidget {
     return Text(
       content,
       style: AppTextStyles.textXsMeduim.copyWith(
-                color: AppColors.gray900,
-                
-              ),
+        color: AppColors.gray900,
+      ),
     );
   }
 }
