@@ -700,7 +700,7 @@ packages:
       sha256: dd904f795d4b4f3b870833847c461801f6750a9fa8e61ea5ac53f9422b31f250
       url: "https://pub.dev"
     source: hosted
-    version: "1.10.0"
+    version: "1.9.1"
   sqflite:
     dependency: transitive
     description:
@@ -862,9 +862,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-<<<<<<< HEAD
   dart: ">=3.0.6 <4.0.0"
-=======
-  dart: ">=3.1.0-185.0.dev <4.0.0"
->>>>>>> 5bdf528374e90cf49f489c027798f8772de829ff
   flutter: ">=3.7.0"
