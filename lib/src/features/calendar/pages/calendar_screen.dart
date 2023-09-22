@@ -21,7 +21,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await ref.read(calendarNotifierProvider.notifier).sampleImpl();
+      await ref.read(calendarNotifierProvider.notifier).getEvents();
     });
     super.initState();
   }
@@ -50,14 +50,14 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
             top: Dimensions.medium),
         children: [
           const Spacing.smallHeight(),
-          SizedBox(height: height * 0.7, child: const CalendarTable()),
+          SizedBox(height: height * 0.9, child: const CalendarTable()),
           state.loadState == LoadState.loading
               ? CupertinoActivityIndicator()
               : state.loadState == LoadState.error
                   ? Text('Error ${state.errorMessage}')
                   : SizedBox(
                       height: 100,
-                      child: Text('${state.resp?.first.title ?? 'chuks'}')),
+                      child: Text('${state.resp?.data?.first.title ?? 'chuks'}')),
           const Spacing.bigHeight(),
         ],
       ),

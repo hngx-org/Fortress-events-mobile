@@ -18,8 +18,8 @@ class CustomContainerLeftIcon extends StatelessWidget {
     this.onPressed,
     required this.iconSvgPath,
     required this.iconColor,
-     required this.containerHeight,
-     required this.containerWidth,
+    required this.containerHeight,
+    required this.containerWidth,
   });
 
   @override

@@ -58,7 +58,6 @@ class Settings {
   });
 }
 
-
 // sub settings datas defined using the setting model class
 final List<Settings> settingList1 = [
   Settings(

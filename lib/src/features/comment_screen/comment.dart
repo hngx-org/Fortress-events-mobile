@@ -81,8 +81,8 @@ class _CommentScreenState extends State<CommentScreen> {
                           label: const Text('Add a comment'),
                           suffixIcon: IconButton(
                             icon: const Icon(
-                              Icons.send, 
-                              color: Color.fromARGB(255, 1, 32, 10), 
+                              Icons.send,
+                              color: Color.fromARGB(255, 1, 32, 10),
                             ),
                             onPressed: () {
                               // Add the action you want to perform when the button is pressed

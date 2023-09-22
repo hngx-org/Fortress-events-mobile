@@ -171,6 +171,7 @@ class PrimaryColors {
 
 PrimaryColors get appTheme => ThemeHelper().themeColor();
 ThemeData get theme => ThemeHelper().themeData();
+
 class AppColor {
   AppColor._();
   static Color primary = Colors.red;
