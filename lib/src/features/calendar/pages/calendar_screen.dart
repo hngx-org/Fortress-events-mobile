@@ -34,31 +34,35 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
     return Scaffold(
       backgroundColor: AppColors.gray300,
       appBar: AppBar(
-        title: Text('Calendar',
-            style: AppTextStyles.textMdBold
-                .copyWith(color: const Color(0xFF1D2939))),
-        elevation: 0,
-        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        toolbarHeight: 76,
+        title: Text(
+          'Calendar',
+          style: AppTextStyles.textXlBold.copyWith(
+            color: AppColors.gray1000,
+          ),
+        ),
       ),
       body:
           // CalendarTable()
           ListView(
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.only(
-            left: Dimensions.medium,
-            right: Dimensions.medium,
-            top: Dimensions.medium),
+          left: Dimensions.medium,
+          right: Dimensions.medium,
+        ),
         children: [
-          const Spacing.smallHeight(),
+          // const Spacing.smallHeight(),
           SizedBox(height: height * 0.7, child: const CalendarTable()),
-          state.loadState == LoadState.loading
-              ? CupertinoActivityIndicator()
+          /* state.loadState == LoadState.loading
+              ? const CupertinoActivityIndicator()
               : state.loadState == LoadState.error
                   ? Text('Error ${state.errorMessage}')
                   : SizedBox(
                       height: 100,
-                      child: Text('${state.resp?.first.title ?? 'chuks'}')),
-          const Spacing.bigHeight(),
+                      child: Text(state.resp?.first.title ?? 'chuks'),
+                    ),
+          const Spacing.bigHeight(), */
         ],
       ),
     );

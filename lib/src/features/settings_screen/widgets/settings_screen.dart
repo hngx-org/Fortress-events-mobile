@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
+
+import '../../../core/utils/theme/colors.dart';
+import '../../../core/utils/theme/text_styles.dart';
 import '/src/features/settings_screen/widgets/widgets/settings.dart';
 import '/src/features/settings_screen/widgets/widgets/user_profile.dart';
 import '/src/general_widgets/spacing.dart';
@@ -14,11 +17,12 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       //TODO: Change this to custom appbar
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        toolbarHeight: 76,
         title: Text(
           'Settings',
-          style: TextStyle(
-            color: Colors.grey[900],
-            fontSize: 24,
+          style: AppTextStyles.textXlBold.copyWith(
+            color: AppColors.gray1000,
           ),
         ),
         backgroundColor: Colors.white,
