@@ -47,6 +47,7 @@ class CustomContainerRightIcon extends StatelessWidget {
               color: iconColor,
               height: Dimensions.medium,
               width: Dimensions.medium,
+              
             ),
           ),
         ],

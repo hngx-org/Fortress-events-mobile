@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/date_time_utils.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
@@ -42,10 +41,10 @@ class _CreateEventState extends State<CreateEvent> {
     'start_time': _timeController.text,
   };
 
+  print(eventdata);
   var response = await CallApi().postData(eventdata, 'events');
-
   if (response != null) {
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       var body = json.decode(response.body);
       if (body['success'] == true) {
         Navigator.push(
@@ -234,6 +233,7 @@ void _showDatePicker() async {
                                   containerHeight: 52,
                                   containerWidth: 343,
                                   displaydata: 'Search Groups',
+                                  //to do add get request to search a group
                                 ),
                               ],
                             ),
