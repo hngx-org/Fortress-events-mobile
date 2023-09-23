@@ -23,6 +23,7 @@ dependencies:
   image_picker: ^1.0.4
   intl: ^0.18.0
   table_calendar: ^3.0.9
+  google_sign_in: ^5.2.1
   
 #   comment_box: ^0.0.18
 #   firebase_core: ^2.16.0

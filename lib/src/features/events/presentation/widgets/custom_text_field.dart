@@ -15,7 +15,8 @@ class CustomTextField extends StatelessWidget {
     this.boxheight,
     this.item,
     this.boxwidth,
-    this.lines = 1,this.controller,
+    this.lines = 1,
+    this.controller,
   });
 
   @override
