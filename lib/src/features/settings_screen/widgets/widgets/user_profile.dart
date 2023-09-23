@@ -52,6 +52,22 @@ class UserProfile extends StatelessWidget {
               height: 34,
               text: "Edit Profile",
               margin: const EdgeInsets.all(Dimensions.medium),
+              onTap: () => showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: const Text("Feature coming soon"),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Close'),
+                      )
+                    ],
+                  );
+                },
+              ),
             ),
           ],
         ),
