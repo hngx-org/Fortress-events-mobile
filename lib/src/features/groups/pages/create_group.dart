@@ -6,6 +6,8 @@ import 'package:event_app/src/general_widgets/custom_container_text_field.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
 
+import '../../../general_widgets/custom_image_view.dart';
+
 class CreateGroup extends StatelessWidget {
   const CreateGroup({super.key});
   static const routeName = '/create-group-screen';
@@ -44,7 +46,7 @@ class CreateGroup extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "GroupName",
+                    "Group Name",
                     style: AppTextStyles.textXsMeduim.copyWith(
                       color: AppColors.gray900,
                     ),
@@ -66,7 +68,12 @@ class CreateGroup extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text("Add Members"),
+                      Text(
+                        "Add Members",
+                        style: AppTextStyles.textXsMeduim.copyWith(
+                          color: AppColors.gray900,
+                        ),
+                      ),
                       const Spacing.smallHeight(),
                       Container(
                         height: MediaQuery.sizeOf(context).height * 0.06,
@@ -78,10 +85,14 @@ class CreateGroup extends StatelessWidget {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.search),
+                              const Spacing.smallWidth(),
+                              CustomImageView(
+                                svgPath: 'assets/images/search_timeline.svg',
+                                height: 20,
+                                width: 20,
+                                color: AppColors.gray700Main,
                               ),
+                              const Spacing.smallWidth(),
                               Text(
                                 "Search People...",
                                 style: AppTextStyles.textSmallRegular.copyWith(
