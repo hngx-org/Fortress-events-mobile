@@ -25,7 +25,9 @@ class _FirstNotificationPageState extends State<FirstNotificationPage> {
         elevation: 0.0,
         leading: CustomNavigatorButton(
           iconColor: PrimaryColors().lightGreenA100,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         actions: [
           Padding(
