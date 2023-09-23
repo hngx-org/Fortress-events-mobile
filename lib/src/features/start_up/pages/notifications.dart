@@ -68,53 +68,55 @@ class _FirstNotificationPageState extends State<FirstNotificationPage> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Events time
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: Dimensions.medium,
-                vertical: Dimensions.medium,
-              ).copyWith(
-                bottom: Dimensions.small,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Events time
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Dimensions.medium,
+                  vertical: Dimensions.medium,
+                ).copyWith(
+                  bottom: Dimensions.small,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: Dimensions.small),
+                  child: DropdownButton<String>(
+                    value: AppStrings.selectedText,
+                    items: AppStrings.events.map((String event) {
+                      return DropdownMenuItem(
+                        value: event,
+                        child: Text(
+                          event,
+                          style: CustomTextStyles.titleMediumGrey1000,
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (String? selected) {
+                      setState(() {
+                        AppStrings.selectedText = selected!;
+                      });
+                    },
+                  ),
+                ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: Dimensions.small),
-                child: DropdownButton<String>(
-                  value: AppStrings.selectedText,
-                  items: AppStrings.events.map((String event) {
-                    return DropdownMenuItem(
-                      value: event,
-                      child: Text(
-                        event,
-                        style: CustomTextStyles.titleMediumGrey1000,
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? selected) {
-                    setState(() {
-                      AppStrings.selectedText = selected!;
-                    });
+              // Events Tiles
+              SizedBox(
+                height: 812,
+                width: 375,
+                child: ListView.builder(
+                  reverse: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return const CustomEventsTile();
                   },
                 ),
               ),
-            ),
-            // Events Tiles
-            SizedBox(
-              height: 812,
-              width: 375,
-              child: ListView.builder(
-                reverse: true,
-                physics: const BouncingScrollPhysics(),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return const CustomEventsTile();
-                },
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
