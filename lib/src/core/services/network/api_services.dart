@@ -5,7 +5,6 @@ import 'package:event_app/src/core/services/base_constants/failure.dart';
 import 'package:event_app/src/core/services/base_constants/logger.dart';
 import 'package:event_app/src/features/auth/model/user_model.dart';
 import 'package:event_app/src/features/calendar/model/event_model/event_model.dart';
-import 'package:event_app/src/features/calendar/model/sample_model/sample_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
