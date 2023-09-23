@@ -45,20 +45,10 @@ class _HomepageTwoState extends State<HomepageTwo> {
                 ),
               ),
               GestureDetector(
-                onTap: () {
-                  // Navigator.pushNamed(context, TimeLineHomepageThree.routeName);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Dashboard(),
-                      ));
-                },
+                onTap: _handleSignIn,
                 child: Container(
-                  margin: const EdgeInsets.only(
-                    left: Dimensions.medium,
-                    right: Dimensions.medium,
-                    bottom: Dimensions.large,
-                  ),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: Dimensions.medium),
                   padding: const EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.0),
@@ -74,25 +64,11 @@ class _HomepageTwoState extends State<HomepageTwo> {
                       ),
                     ],
                   ),
-                  GestureDetector(
-                    onTap: _handleSignIn,
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: Dimensions.medium),
-                      padding: const EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        // Rounded edges
-                        color: Colors.white,
-                        // White background color
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomImageView(
+                        svgPath: 'assets/images/google_icon.svg',
                       ),
                       const SizedBox(width: 5.0),
                       const Text(
@@ -106,12 +82,14 @@ class _HomepageTwoState extends State<HomepageTwo> {
                   ),
                 ),
               ),
+              const Spacing.mediumHeight(),
             ],
           ),
         ),
       ],
     );
   }
+
   Future<void> _handleSignIn() async {
     try {
       final userData = await _googleSignIn.signIn();
