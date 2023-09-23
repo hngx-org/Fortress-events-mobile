@@ -205,6 +205,9 @@ class _CalendarTableState extends State<CalendarTable> {
             },
           ),
         ),
+        const SizedBox(
+          height: 89,
+        ),
       ],
     );
   }

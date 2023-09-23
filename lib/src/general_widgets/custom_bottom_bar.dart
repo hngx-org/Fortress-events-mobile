@@ -39,8 +39,8 @@ class CustomBottomBarState extends State<CustomBottomBar> {
     BottomMenuModel(
       icon: ImageConstant.imgNavrankings,
       activeIcon: ImageConstant.imgComputer,
-      title: "Calender",
-      type: BottomBarEnum.Calender,
+      title: "Calendar",
+      type: BottomBarEnum.Calendar,
     ),
     BottomMenuModel(
       icon: ImageConstant.imgSettings,
@@ -144,7 +144,7 @@ enum BottomBarEnum {
   Activity,
   MyPeople,
   Addition,
-  Calender,
+  Calendar,
   Settings,
 }
 

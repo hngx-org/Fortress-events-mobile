@@ -4,7 +4,7 @@ import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/features/calendar/notifiers/calendar_notifier.dart';
 import 'package:event_app/src/features/calendar/widgets/calendar_widget.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/utils/theme/text_styles.dart';
@@ -45,25 +45,27 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
       ),
       body:
           // CalendarTable()
-          ListView(
-        physics: const BouncingScrollPhysics(),
+          Container(
         padding: const EdgeInsets.only(
           left: Dimensions.medium,
           right: Dimensions.medium,
         ),
-        children: [
-          const Spacing.smallHeight(),
-          SizedBox(height: height * 0.9, child: const CalendarTable()),
-          // state.loadState == LoadState.loading
-          //     ? CupertinoActivityIndicator()
+        child: ListView(
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            const Spacing.smallHeight(),
+            SizedBox(height: height * 0.9, child: const CalendarTable()),
+            // state.loadState == LoadState.loading
+            //     ? CupertinoActivityIndicator()
 
-          //     : state.loadState == LoadState.error
-          //         ? Text('Error ${state.errorMessage}')
-          //         : SizedBox(
-          //             height: 100,
-          //             child: Text('${state.resp!.data!.first.title ?? 'chuks'}')),
-          // const Spacing.bigHeight(),
-        ],
+            //     : state.loadState == LoadState.error
+            //         ? Text('Error ${state.errorMessage}')
+            //         : SizedBox(
+            //             height: 100,
+            //             child: Text('${state.resp!.data!.first.title ?? 'chuks'}')),
+            // const Spacing.bigHeight(),
+          ],
+        ),
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:event_app/src/core/utils/theme/theme_helper.dart';
 import 'package:event_app/src/features/calendar/pages/calendar_screen.dart';
 import 'package:event_app/src/features/events/presentation/pages/create_event.dart';
 import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
-import 'package:event_app/src/features/settings_screen/widgets/make_a_wish_4_screen.dart';
+import 'package:event_app/src/features/settings_screen/widgets/settings_screen.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 import 'package:event_app/src/general_widgets/custom_icon_button.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,7 @@ class _BottomNavigationState extends State<BottomNavigationButton> {
     MyPeopleScreen(),
     CreateEvent(),
     CalendarScreen(),
-    MakeAWish4Screen()
+    SettingsScreen()
   ];
   @override
   Widget build(BuildContext context) {
@@ -92,9 +92,9 @@ class _BottomNavigationState extends State<BottomNavigationButton> {
               label: ""),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              ImageConstant.imgCalender,
+              ImageConstant.imgCalendar,
             ),
-            label: 'Calender',
+            label: 'Calendar',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
