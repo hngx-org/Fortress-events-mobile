@@ -9,8 +9,7 @@ import 'package:event_app/src/features/events/presentation/widgets/custom_contai
 import 'package:event_app/src/features/events/presentation/widgets/custom_heading_style.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_text_field.dart';
-import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
-import 'package:event_app/src/general_widgets/custom_elevated_button.dart';
+import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 import 'package:event_app/src/general_widgets/custom_icon_container.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
@@ -43,23 +42,39 @@ class _CreateEventState extends State<CreateEvent> {
       'start_time': _timeController.text,
     };
 
-    log('Evernt Data => ${eventdata.toString()}');
+    log('Event Data => ${eventdata.toString()}');
 
     var response = await CallApi().postData(eventdata, 'events');
     if (response != null) {
-      if (response.statusCode == 201) {
-        var body = json.decode(response.body);
-        log('Body response => $body');
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MyPeopleScreen()),
-        );
-      } else {
-        print("Error: HTTP ${response.statusCode} - ${response.reasonPhrase}");
-      }
-    } else {
-      print("Error: Unable to send data. Check your internet connection.");
-    }
+  var body = json.decode(response.body);
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Event Created",
+        style: AppTextStyles.textXsBoldTitle.copyWith(
+          color: AppColors.primary700Main,
+        )),
+        content: Text("You have successfully created an event."),
+        actions: [
+          TextButton(
+            child: Text("OK"),
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TimeLineHomepageThree()),
+              );
+            },
+          ),
+        ],
+      );
+    },
+  );
+} else {
+  print("Error: Unable to send data. Check your internet connection.");
+}
+
   }
 
   DateTime selectedDate = DateTime.now();
@@ -153,7 +168,9 @@ class _CreateEventState extends State<CreateEvent> {
                               item: "Add Location",
                               controller: _locationController,
                             ),
+                            Spacing.smallHeight(),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -203,21 +220,8 @@ class _CreateEventState extends State<CreateEvent> {
                                 ),
                               ],
                             ),
-                            Spacing.smallHeight(),
-                            CustomIconContainer(
-                              containerText: " Add Location",
-                              spacingWidth: 4,
-                              containerColor: AppColors.gray300,
-                              containerHPadding: 16,
-                              containerVPadding: 8,
-                              iconSvgPath: ImageConstant.imgLocation,
-                              iconColor: AppColors.gray900,
-                              iconHeight: 20,
-                              iconWidth: 20,
-                              containerHeight: Dimensions.small * 5,
-                              containerWidth: Dimensions.smedium * 13,
-                              onTap: () {},
-                            ),
+                            
+                           
                             Spacing.smallHeight(),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -241,23 +245,7 @@ class _CreateEventState extends State<CreateEvent> {
                     ],
                   ),
                 ),
-                CustomElevatedButton(
-                  buttonTextStyle: AppTextStyles.textXsMeduim.copyWith(
-                    color: AppColors.accentGreen100,
-                  ),
-                  text: 'Create Event',
-                  height: 30,
-                  buttonStyle: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary1000,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  width: 80,
-                  onTap: () async {
-                    await _registerevent();
-                  },
-                ),
+                
               ],
             ),
           ),
@@ -265,13 +253,14 @@ class _CreateEventState extends State<CreateEvent> {
         floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.primary1000,
-          onPressed: () {
-            //todo: Nav to the my people screen
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MyPeopleScreen()),
-            );
-          },
+          onPressed: () async {
+                    await _registerevent();
+                  },
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => MyPeopleScreen()),
+            // );
+          
           child: CustomImageView(
             svgPath: ImageConstant.imgArrowRight,
             color: AppColors.accentGreen100,
