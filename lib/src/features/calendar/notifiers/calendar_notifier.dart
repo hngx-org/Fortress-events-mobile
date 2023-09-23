@@ -14,8 +14,7 @@ class CalendarNotifier extends StateNotifier<CalendarState> {
     try {
       state = state.copyWith(loadState: LoadState.loading);
       final EventModel sampleTest = await apiServices.getEvents();
-      debugLog(
-          'Event data ${sampleTest.toString()}');
+      debugLog('Event data ${sampleTest.toString()}');
       state = state.copyWith(
         loadState: LoadState.success,
         resp: sampleTest,

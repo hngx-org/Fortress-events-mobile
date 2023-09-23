@@ -1,5 +1,21 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<!-- package="com.fortress.app" -->
+
+<meta-data
+        android:name="com.google.android.gms.auth.api.credentials.HINTS_DISABLED"
+        android:value="false" />
+    <meta-data
+        android:name="com.google.android.gms.auth.api.credentials.GOOGLE_SIGN_IN_CLIENT_ID"
+        android:value="755571065048-4oougoquo854uaqnhem627tu5suanuqt.apps.googleusercontent.com" />
+
+   <meta-data
+            android:name="com.google.android.gms.google_app_id"
+            android:value="E:FE:40:96:77:1C:D6:2D:A4:37:82:89:74:A1:F9:70:9D:EC:D0:53:21:14:45:6A:AD:D5:6F:54:64:59:84:D8" />
+
     <application
+
+    
         android:label="event_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

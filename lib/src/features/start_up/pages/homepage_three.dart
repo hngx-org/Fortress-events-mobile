@@ -93,8 +93,11 @@ class _TimeLineHomepageThreeState extends ConsumerState<TimeLineHomepageThree> {
                 child: ListView.builder(
                     itemCount: state.resp?.data?.length ?? 0,
                     itemBuilder: (context, index) {
-                      final singleEvent =
-                          state.resp?.data?[index] ?? const AppEvents();
+                      final singleEvent = state.resp?.data?[index];
+// =======
+//                       final singleEvent =
+//                           state.resp?.data?[index] ?? const AppEvents();
+// >>>>>>> dev
                       return HomepageThreeTimelineCard(model: singleEvent);
                     })),
       ),
