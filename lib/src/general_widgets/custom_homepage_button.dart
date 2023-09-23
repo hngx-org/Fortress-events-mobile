@@ -1,4 +1,3 @@
-
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +12,7 @@ class HompageButtons extends StatelessWidget {
     this.buttonTitle = '',
     this.buttonColor = const Color(0xFF),
     this.buttonTitleColor = const Color(0xFF),
-});
-
+  });
 
   @override
   Widget build(BuildContext context) {

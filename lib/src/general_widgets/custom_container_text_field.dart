@@ -22,16 +22,15 @@ class CustomContainerTextField extends StatelessWidget {
     return TextFormField(
       maxLines: lines,
       decoration: InputDecoration(
-        
         border: OutlineInputBorder(
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: AppColors.gray500,
           ),
           borderRadius: BorderRadius.circular(
             Dimensions.small,
           ),
         ),
-        contentPadding: EdgeInsets.symmetric(
+        contentPadding: const EdgeInsets.symmetric(
             horizontal: Dimensions.smedium, vertical: Dimensions.medium),
         hintText: item,
         hintStyle: AppTextStyles.textSmallRegular.copyWith(

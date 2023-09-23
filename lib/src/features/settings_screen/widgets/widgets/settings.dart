@@ -1,3 +1,4 @@
+import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:flutter/material.dart';
 
 // custom widget used to customize subsettings
@@ -5,20 +6,41 @@ class SettingsCustomization extends StatelessWidget {
   final List<Settings> settings;
   const SettingsCustomization({super.key, required this.settings});
 
+  _showAlertDialog(context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: const Text("Feature coming soon"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Close"),
+            )
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 16, left: 16),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(30),
-        child: Card(
-          child: Column(
-            children: [
-              ...settings.map(
-                (e) => e.leadingIcon != null
-                    ? ListTile(
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        elevation: 0,
+        child: Column(
+          children: [
+            ...settings.map(
+              (e) => e.leadingIcon != null
+                  ? GestureDetector(
+                      onTap: () => _showAlertDialog(context),
+                      child: ListTile(
                         horizontalTitleGap: 1,
-                        leading: e.leadingIcon,
+                        leading: SizedBox(height: 20, child: e.leadingIcon),
                         title: Text(
                           e.settingName,
                           style: const TextStyle(
@@ -26,18 +48,27 @@ class SettingsCustomization extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        trailing: e.trailingIcon,
-                      )
-                    : ListTile(
+                        trailing: SizedBox(
+                          height: 20,
+                          child: e.trailingIcon,
+                        ),
+                      ),
+                    )
+                  : GestureDetector(
+                      onTap: () => _showAlertDialog(context),
+                      child: ListTile(
                         title: Text(
                           e.settingName,
                           style: TextStyle(color: e.color),
                         ),
-                        trailing: e.trailingIcon,
+                        trailing: SizedBox(
+                          height: 20,
+                          child: e.trailingIcon,
+                        ),
                       ),
-              ),
-            ],
-          ),
+                    ),
+            ),
+          ],
         ),
       ),
     );
@@ -47,49 +78,48 @@ class SettingsCustomization extends StatelessWidget {
 // class model for settings screen
 class Settings {
   final String settingName;
-  final Icon? leadingIcon;
-  final Icon trailingIcon;
+  final Image? leadingIcon;
+  final Image trailingIcon;
   final Color? color;
   Settings({
     required this.settingName,
-    this.trailingIcon = const Icon(Icons.arrow_forward_ios_rounded),
+    required this.trailingIcon,
     this.leadingIcon,
     this.color,
   });
 }
 
-
 // sub settings datas defined using the setting model class
+Image defaultIcon = Image.asset(ImageConstant.arrowRightIcon);
 final List<Settings> settingList1 = [
   Settings(
-    leadingIcon: const Icon(
-      Icons.brush_outlined,
-    ),
+    leadingIcon: Image.asset(ImageConstant.appearanceIcon),
     settingName: "Appearance",
+    trailingIcon: defaultIcon,
   ),
   Settings(
-      leadingIcon: const Icon(Icons.language),
-      settingName: "Languages & Region"),
+    leadingIcon: Image.asset(ImageConstant.languageRegionIcon),
+    settingName: "Languages & Region",
+    trailingIcon: defaultIcon,
+  ),
 ];
-
 final List<Settings> settingList2 = [
   Settings(
-    leadingIcon: const Icon(Icons.live_help_outlined),
+    leadingIcon: Image.asset(ImageConstant.helpSupportIcon),
     settingName: "Help & Support",
+    trailingIcon: defaultIcon,
   ),
   Settings(
-    leadingIcon: const Icon(Icons.info_outline_rounded),
+    leadingIcon: Image.asset(ImageConstant.aboutIcon),
     settingName: "About",
+    trailingIcon: defaultIcon,
   )
 ];
 
 final List<Settings> settingList3 = [
   Settings(
     settingName: "Logout",
-    trailingIcon: const Icon(
-      Icons.logout_outlined,
-      color: Colors.red,
-    ),
+    trailingIcon: Image.asset(ImageConstant.logoutIcon),
     color: Colors.red,
   ),
 ];

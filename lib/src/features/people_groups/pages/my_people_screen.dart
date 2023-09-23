@@ -19,6 +19,7 @@ class MyPeopleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         toolbarHeight: 76,
         title: Text(
@@ -34,7 +35,7 @@ class MyPeopleScreen extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CreateGroup(),
+                    builder: (context) => const CreateGroup(),
                   ));
             },
             child: Row(

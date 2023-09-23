@@ -1,6 +1,5 @@
-import 'package:event_app/src/features/comment_screen/model.dart';
 import 'package:flutter/material.dart';
-
+import 'package:event_app/src/features/comment_screen/model.dart';
 
 class PreScreen extends StatelessWidget {
   const PreScreen({super.key});
@@ -62,8 +61,12 @@ class PreScreen extends StatelessWidget {
                                       color: (item.isLiked)
                                           ? const Color(0xff063B27)
                                           : Colors.grey)),
-                                          const SizedBox(width: 10),
-                                const Text('Reply', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),)
+                              const SizedBox(width: 10),
+                              const Text(
+                                'Reply',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 13),
+                              )
                             ],
                           ),
                           const SizedBox(height: 5),
