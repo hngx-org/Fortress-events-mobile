@@ -65,3 +65,7 @@ flutter:
           weight: 700
         - asset: assets/fonts/PlusJakartaSansRomanSemiBold.ttf
           weight: 600
+    - family: Rebond Grotesque
+      fonts: 
+        - asset: assets/fonts/RebondGrotesqueBold.otf
+          weight: 700          

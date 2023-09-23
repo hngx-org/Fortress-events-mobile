@@ -1,7 +1,7 @@
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
 import 'package:event_app/src/features/calendar/pages/dashboard.dart';
 import 'package:flutter/material.dart';
-
+import 'package:event_app/src/core/utils/theme/text_styles.dart';
 import '../../../core/constants/dimensions.dart';
 import '../../../general_widgets/custom_image_view.dart';
 

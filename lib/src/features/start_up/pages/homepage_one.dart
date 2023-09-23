@@ -28,11 +28,7 @@ class HomeScreenOne extends StatelessWidget {
                 ),
                 const Text(
                   'Wetin Dey Sup?',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 25,
-                  ),
+                  style: AppTextStyles.rebondBigBold,
                 ),
               ],
             ),

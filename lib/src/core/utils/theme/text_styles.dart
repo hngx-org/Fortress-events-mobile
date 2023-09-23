@@ -144,4 +144,18 @@ abstract class AppTextStyles {
     height: 1.5,
     fontFamily: 'Plus Jakarta Sans',
   );
+
+  static const TextStyle rebondBigBold = TextStyle(
+    fontSize: 30,
+    fontWeight: FontWeight.w700,
+    height: 1.5,
+    fontFamily: 'Rebond Grotesque',
+  );
+
+  static const TextStyle rebondMediumBold = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+    height: 1.5,
+    fontFamily: 'Rebond Grotesque',
+  );
 }
