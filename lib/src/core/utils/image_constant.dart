@@ -33,6 +33,8 @@ class ImageConstant {
 
   static String imgPlus = '$imagePath/img_plus.svg';
 
+  static String imgSalomeDP = '$imagePath/salome_img.jpg';
+
   static String imgPlusLightGreenA100 =
       '$imagePath/img_plus_light_green_a100.svg';
 
@@ -65,4 +67,16 @@ class ImageConstant {
   static String imgMessage = '$imagePath/img_message.svg';
 
   static String imgHeart = '$imagePath/img_heart.svg';
+
+  static String aboutIcon = '$imagePath/about.png';
+
+  static String arrowRightIcon = '$imagePath/arrow-right.png';
+
+  static String appearanceIcon = '$imagePath/appearance.png';
+
+  static String languageRegionIcon = '$imagePath/language-region.png';
+
+  static String logoutIcon = '$imagePath/logout.png';
+
+  static String helpSupportIcon = '$imagePath/help-support.png';
 }
