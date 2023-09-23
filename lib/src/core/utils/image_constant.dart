@@ -44,7 +44,7 @@ class ImageConstant {
 
   static String imgMyPeople = '$imagePath/img_mypeople.svg';
 
-  static String imgCalender = '$imagePath/img_calendar.svg';
+  static String imgCalendar = '$imagePath/img_calendar.svg';
 
   static String imgAdd = '$imagePath/img_add.svg';
 
@@ -53,8 +53,6 @@ class ImageConstant {
   static String imageNotFound = 'assets/images/image_not_found.png';
 
   static String imgArrowRight = '$imagePath/img_arrow_right.svg';
-
-  static String imgCalendar = '$imagePath/img_calendar.svg';
 
   static String imgClock = '$imagePath/img_clock.svg';
 

@@ -7,8 +7,8 @@ import '/src/features/settings_screen/widgets/widgets/user_profile.dart';
 import '/src/general_widgets/spacing.dart';
 
 //main screen for settings
-class MakeAWish4Screen extends StatelessWidget {
-  const MakeAWish4Screen({super.key});
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
