@@ -15,6 +15,7 @@ import 'package:event_app/src/general_widgets/custom_icon_container.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer';
 
 class CreateEvent extends StatefulWidget {
   const CreateEvent({super.key});
@@ -31,56 +32,53 @@ class _CreateEventState extends State<CreateEvent> {
   final TextEditingController _locationController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
-  
- _registerevent() async {
-  var eventdata = {
-    'title': _titleController.text,
-    'description': _descriptionController.text,
-    'location': _locationController.text,
-    'start_date': _dateController.text,
-    'start_time': _timeController.text,
-  };
 
-  print(eventdata);
-  var response = await CallApi().postData(eventdata, 'events');
-  if (response != null) {
-    if (response.statusCode == 201) {
-      var body = json.decode(response.body);
-      if (body['success'] == true) {
+  Future _registerevent() async {
+    final eventdata = {
+      "creator_id": "creator_id",
+      'title': _titleController.text,
+      'description': _descriptionController.text,
+      'location': _locationController.text,
+      'start_date': _dateController.text,
+      'start_time': _timeController.text,
+    };
+
+    log('Evernt Data => ${eventdata.toString()}');
+
+    var response = await CallApi().postData(eventdata, 'events');
+    if (response != null) {
+      if (response.statusCode == 201) {
+        var body = json.decode(response.body);
+        log('Body response => $body');
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => MyPeopleScreen()),
         );
       } else {
-        print("Error: ${body['message']}");
+        print("Error: HTTP ${response.statusCode} - ${response.reasonPhrase}");
       }
     } else {
-      print("Error: HTTP ${response.statusCode} - ${response.reasonPhrase}");
+      print("Error: Unable to send data. Check your internet connection.");
     }
-  } else {
-    print("Error: Unable to send data. Check your internet connection.");
   }
-}
 
+  DateTime selectedDate = DateTime.now();
 
+  void _showDatePicker() async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
+    );
 
-DateTime selectedDate = DateTime.now();
-
-void _showDatePicker() async {
-  final DateTime? picked = await showDatePicker(
-    context: context,
-    initialDate: selectedDate,
-    firstDate: DateTime.now(),
-    lastDate: DateTime.now().add(const Duration(days: 365)),
-  );
-
-  if (picked != null && picked != selectedDate) {
-    setState(() {
-      selectedDate = picked;
-      _dateController.text = selectedDate.format('yyyy-MM-dd');
-    });
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        _dateController.text = selectedDate.format('yyyy-MM-dd');
+      });
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +127,7 @@ void _showDatePicker() async {
                               boxheight: 52,
                               boxwidth: MediaQuery.sizeOf(context).width,
                               item: "Add Event Title",
-                              TextEditingController: _timeController,
+                              controller: _titleController,
                             ),
                             Spacing.smallHeight(),
                             CustomTextField(
@@ -137,7 +135,7 @@ void _showDatePicker() async {
                               boxwidth: MediaQuery.sizeOf(context).width,
                               item: "Event Description",
                               lines: 6,
-                              TextEditingController: _descriptionController,
+                              controller: _descriptionController,
                             ),
                             SizedBox(
                               height: MediaQuery.sizeOf(context).height * 0.04,
@@ -153,7 +151,7 @@ void _showDatePicker() async {
                               boxheight: 52,
                               boxwidth: MediaQuery.sizeOf(context).width,
                               item: "Add Location",
-                              TextEditingController: _locationController,
+                              controller: _locationController,
                             ),
                             Row(
                               children: [
@@ -169,11 +167,10 @@ void _showDatePicker() async {
                                       children: [
                                         CustomContainerRightIcon(
                                           displaydata: '9',
-                                         
                                           iconSvgPath:
                                               ImageConstant.imgCalendar,
                                           iconColor: AppColors.gray700Main,
-                                           onPressed: () {
+                                          onPressed: () {
                                             _showDatePicker();
                                           },
                                         ),
@@ -257,8 +254,8 @@ void _showDatePicker() async {
                     ),
                   ),
                   width: 80,
-                  onTap: () {
-                    _registerevent();
+                  onTap: () async {
+                    await _registerevent();
                   },
                 ),
               ],

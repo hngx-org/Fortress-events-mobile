@@ -8,21 +8,22 @@ class CustomTextField extends StatelessWidget {
   final String? item;
   final double? boxwidth;
   final int? lines;
+  final TextEditingController? controller;
 
   const CustomTextField({
     super.key,
     this.boxheight,
     this.item,
     this.boxwidth,
-    this.lines = 1, required TextEditingController TextEditingController,
+    this.lines = 1,this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       maxLines: lines,
       decoration: InputDecoration(
-        
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.gray500,
