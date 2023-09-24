@@ -14,6 +14,7 @@ class GroupsApiService {
       AppApiData.baseUri('groups'),
     );
     // print(response.statusCode);
+    print(response.body);
     if (response.statusCode == 200) {
       final List result = jsonDecode(response.body)['groups'];
       // print('The result is $result');

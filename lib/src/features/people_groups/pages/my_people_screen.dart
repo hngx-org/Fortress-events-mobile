@@ -2,7 +2,7 @@ import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
 import 'package:event_app/src/features/groups/pages/create_group.dart';
 import 'package:event_app/src/features/people_groups/widgets/people_group_card.dart';
-import 'package:event_app/src/features/start_up/pages/notifications.dart';
+import 'package:event_app/src/features/people_groups/pages/group_events_screen.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -75,15 +75,17 @@ class MyPeopleScreen extends ConsumerWidget {
           data: (groups) => ListView.separated(
             separatorBuilder: (context, index) => const Spacing.mediumHeight(),
             itemBuilder: (context, index) => PeopleGroupCard(
-              groupName: groups[index].name ?? 'Dummy name',
-              groupDescription:
-                  groups[index].description ?? 'Dummy description',
+              groupName: groups[index].title!,
+              groupDescription: groups[index].description!,
               onTap: () {
                 // todo: nav to the specific screen with dynamic data
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const FirstNotificationPage(),
+                      builder: (context) => GroupEventsScreen(
+                        groupId: groups[index].id ?? 'Dummy id',
+                        groupTitle: groups[index].title ?? 'Dummy name',
+                      ),
                     ));
               },
             ),
@@ -96,8 +98,6 @@ class MyPeopleScreen extends ConsumerWidget {
             child: CupertinoActivityIndicator(),
           ),
         ),
-
-        /*  */
       ),
     );
   }
