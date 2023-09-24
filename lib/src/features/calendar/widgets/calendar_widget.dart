@@ -73,9 +73,10 @@ class _CalendarTableState extends ConsumerState<CalendarTable> {
     return Column(
       children: [
         state.loadState == LoadState.loading
-            ? const CupertinoActivityIndicator(
+            ? const Center(
+                child: CupertinoActivityIndicator(
                 color: AppColors.primary1000,
-              )
+              ))
             : TableCalendar<Event>(
                 firstDay: kFirstDay,
                 lastDay: kLastDay,

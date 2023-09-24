@@ -13,13 +13,16 @@ import '../../../core/utils/image_constant.dart';
 class PeopleGroupCard extends StatelessWidget {
   final String groupName;
   final String groupDescription;
+  // final String groupId;
   final VoidCallback onTap;
 
-  const PeopleGroupCard(
-      {super.key,
-      required this.groupName,
-      required this.groupDescription,
-      required this.onTap});
+  const PeopleGroupCard({
+    super.key,
+    required this.groupName,
+    required this.groupDescription,
+    required this.onTap,
+    // required this.groupId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +47,9 @@ class PeopleGroupCard extends StatelessWidget {
                   style: AppTextStyles.textMdBold.copyWith(
                     color: AppColors.gray1000,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
                 ),
                 CustomImageView(
                   svgPath: ImageConstant.imgArrowRight,
@@ -55,12 +61,12 @@ class PeopleGroupCard extends StatelessWidget {
               ],
             ),
             const Spacing.smallHeight(),
-            Text(
+            /* Text(
               groupDescription,
               style: AppTextStyles.textXsRegular.copyWith(
                 color: AppColors.gray800,
               ),
-            ),
+            ), */
             const Spacing.smallHeight(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -123,6 +123,42 @@ class ApiServices {
     }
   }
 
+  Future getAllGroups() async {
+    try {
+      debugLog('Attemping to get all groups');
+      final response = await _get(uri: AppApiData.baseUri('groups'));
+      final data = GroupsModel.fromJson(response.body);
+      return data;
+    } on SocketException catch (ex, stackTrace) {
+      throw Failure(
+          message: 'You don\'t have internet connection',
+          devMessage: stackTrace.toString());
+    } on FormatException {
+      throw Failure(
+        message: 'Username or password is incorrect',
+        devMessage: 'Error at formatException',
+      );
+    } on Failure catch (ex, stackTrace) {
+      throw Failure(
+          message: ex.message,
+          devMessage: 'Error:${ex}, Stacktrace: $stackTrace');
+    }
+  }
+
+  Future logout() async {
+    try {
+      final response = await _get(uri: AppApiData.baseUri('logout'));
+      return response;
+    } on SocketException catch (ex, stackTrace) {
+      throw Failure(
+          message: 'You don\'t have internet connection',
+          devMessage: stackTrace.toString());
+    } on Failure catch (ex, stackTrace) {
+      throw Failure(
+          message: 'Something went wrong, unable to logout',
+          devMessage: 'Error:${ex}, stacktrace:: $stackTrace.toString()');
+    }
+  }
 }
 
 final apiServicesProvider = Provider((ref) => ApiServices());

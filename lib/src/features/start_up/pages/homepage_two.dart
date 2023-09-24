@@ -105,7 +105,8 @@ class _HomepageTwoState extends ConsumerState<HomepageTwo> {
       if (userData != null) {
         final user = CreateAccount(
             photoUrl: userData.photoUrl == null
-                ? userData.photoUrl ?? 'https://th.bing.com/th/id/R.cec69a569d2d2224a738afb5ad8a419f?rik=VFoqor%2bvcZqRHA&riu=http%3a%2f%2fronaldmottram.co.nz%2fwp-content%2fuploads%2f2019%2f01%2fdefault-user-icon-8.jpg&ehk=KdwKcNMijBB2LcdEzKdT%2bIvtpFWIKQT2HetK7wCogdA%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1'
+                ? userData.photoUrl ??
+                    'https://th.bing.com/th/id/R.cec69a569d2d2224a738afb5ad8a419f?rik=VFoqor%2bvcZqRHA&riu=http%3a%2f%2fronaldmottram.co.nz%2fwp-content%2fuploads%2f2019%2f01%2fdefault-user-icon-8.jpg&ehk=KdwKcNMijBB2LcdEzKdT%2bIvtpFWIKQT2HetK7wCogdA%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1'
                 : 'https://th.bing.com/th/id/R.cec69a569d2d2224a738afb5ad8a419f?rik=VFoqor%2bvcZqRHA&riu=http%3a%2f%2fronaldmottram.co.nz%2fwp-content%2fuploads%2f2019%2f01%2fdefault-user-icon-8.jpg&ehk=KdwKcNMijBB2LcdEzKdT%2bIvtpFWIKQT2HetK7wCogdA%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1',
             email: userData.email,
             displayName: userData.displayName ?? '');

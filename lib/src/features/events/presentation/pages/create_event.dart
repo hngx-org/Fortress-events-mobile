@@ -5,28 +5,45 @@ import 'package:event_app/src/core/utils/date_time_utils.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
+import 'package:event_app/src/features/auth/notifiers/user_notifier.dart';
 import 'package:event_app/src/features/events/network/eventcall_api.dart';
+import 'package:event_app/src/features/events/presentation/models/groups_model/group.dart';
+import 'package:event_app/src/features/events/presentation/models/groups_model/groups_model.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_left_icon.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_heading_style.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_text_field.dart';
+import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
+import 'package:event_app/src/general_widgets/dropdown_field.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:developer';
 
-class CreateEvent extends StatefulWidget {
+import 'package:intl/intl.dart';
+
+class CreateEvent extends ConsumerStatefulWidget {
   const CreateEvent({super.key});
 
   static const routeName = '/create-event-screen';
 
   @override
-  State<CreateEvent> createState() => _CreateEventState();
+  ConsumerState<CreateEvent> createState() => _CreateEventState();
 }
 
-class _CreateEventState extends State<CreateEvent> {
+class _CreateEventState extends ConsumerState<CreateEvent> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await groupsData();
+    });
+  }
+
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
@@ -61,8 +78,6 @@ class _CreateEventState extends State<CreateEvent> {
       );
       return false;
     } else if (_titleController.text.length < 3 ||
-        _descriptionController.text.length < 5  ||
-        _locationController.text.length < 5) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -85,52 +100,56 @@ class _CreateEventState extends State<CreateEvent> {
     return true;
   }
 
-
-
   Future _registerevent() async {
     if (!validateForm()) {
       return; // Don't proceed if form is not valid
     }
+    final state = ref.watch(userNotifierProvider);
     final eventdata = {
-      "creator_id": "creator_id",
+      "creator_id": state.resp?.id,
       'title': _titleController.text,
       'description': _descriptionController.text,
       'location': _locationController.text,
       'start_date': _dateController.text,
       'start_time': _timeController.text,
-      'group_id': _groupController.text,
+      'group_id': _groupController.text, //'05dc4497-9993-4aa2-b0d8-ab679dc98ace
     };
 
     log('Event Data => ${eventdata.toString()}');
 
-    var response = await CallApi().postData(eventdata, 'events');
+    final response = await CallApi().postData(eventdata, 'events');
+    log('response: ${response?.body ?? ''}');
     if (response != null) {
-      var body = json.decode(response.body);
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Event Created",
-                style: AppTextStyles.textXsBoldTitle.copyWith(
-                  color: AppColors.primary700Main,
-                )),
-            content: Text("You have successfully created an event."),
-            actions: [
-              TextButton(
-                child: Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop(); // Close the dialog
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TimeLineHomepageThree()),
-                  );
-                },
-              ),
-            ],
-          );
-        },
-      );
+      if (response.statusCode == 201) {
+        var body = json.decode(response.body);
+        log('Decoded body : $body');
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Event Created",
+                  style: AppTextStyles.textXsBoldTitle.copyWith(
+                    color: AppColors.primary700Main,
+                  )),
+              content: Text("You have successfully created an event."),
+              actions: [
+                TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the dialog
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyPeopleScreen()),
+                    );
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      } else {
+        log('Error');
+      }
     } else {
       print("Error: Unable to send data. Check your internet connection.");
     }
@@ -241,11 +260,15 @@ class _CreateEventState extends State<CreateEvent> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       CustomContainerRightIcon(
-                                        displaydata: '9',
+                                        displaydata: _dateController.text,
                                         iconSvgPath: ImageConstant.imgCalendar,
                                         iconColor: AppColors.gray700Main,
                                         onPressed: () async {
-                                          await _showDatePicker();
+                                          final date = await openDatePicker(
+                                              context: context);
+                                          _dateController.text =
+                                              date ?? '01/01/23';
+                                          setState(() {});
                                         },
                                       ),
                                     ],
@@ -279,28 +302,16 @@ class _CreateEventState extends State<CreateEvent> {
                             ],
                           ),
                           Spacing.smallHeight(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Select Group"),
-                              Spacing.smallHeight(),
-                              CustomContainerLeftIcon(
-                                iconSvgPath: ImageConstant.imgSearchnormal,
-                                iconColor: AppColors.gray700Main,
-                                onPressed: () {
-                                  print('see');
-                                },
-                                containerHeight: 52,
-                                containerWidth: 343,
-                                displaydata: 'Search Groups',
-                                controller: _groupController,
-                                //to do add get request to search a group
-                              ),
-                            ],
-                          ),
+                          DropDownField(
+                            values: groupsList,
+                            // ['data 1', 'Data 2'],
+                            hintText: 'Groups',
+                            label: 'Search Group',
+                            onChanged: (p0) {},
+                          )
                         ],
                       ),
-                      Spacing.smallHeight(),
+                      Spacing.largeHeight(),
                     ],
                   ),
                 ),
@@ -321,5 +332,51 @@ class _CreateEventState extends State<CreateEvent> {
         ),
       ),
     );
+  }
+
+  Future<String?> openDatePicker({
+    required BuildContext context,
+  }) async {
+    final today = DateTime.now();
+    String formattedDate = '';
+    DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: today,
+        firstDate: DateTime.utc(1900),
+        lastDate: today.add(
+          const Duration(days: 30 * 3),
+        ),
+        builder: (BuildContext context, child) {
+          return Theme(
+            data: ThemeData.light().copyWith(
+              colorScheme: ColorScheme.light(
+                primary: AppColors.gray900,
+              ),
+            ),
+            child: child!,
+          );
+        });
+
+    if (pickedDate != null) {
+      formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+      return formattedDate;
+    }
+
+    return null;
+  }
+
+  List<String> groupsList = ['Search'];
+
+  List<Group>? groups = [];
+  Future groupsData() async {
+    final api = ApiServices();
+
+    final GroupsModel groupsResponse = await api.getAllGroups();
+    groups = [...groupsResponse.groups ?? []];
+    final allTitle = groupsResponse.groups!.map((e) => e.title ?? "").toList();
+    print('data retreved lenght ${allTitle.length}');
+    groupsList = [...allTitle.toSet()];
+    print('data in groups stils  ${groupsList.length}');
+    setState(() {});
   }
 }
