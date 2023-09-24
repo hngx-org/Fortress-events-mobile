@@ -1,25 +1,22 @@
 import 'package:event_app/src/core/utils/app_enums.dart';
-import 'package:event_app/src/features/auth/model/user_model.dart';
-
-
+import 'package:event_app/src/features/auth/model/profile_details/user.dart';
 
 
 class UserState {
   final LoadState loadState;
   final String errorMessage;
   // final List<AppEvents>? resp;
-  final UserModel? resp;
+  final User? resp;
 
   UserState({required this.loadState, this.errorMessage = '', this.resp});
 
   factory UserState.initialState() {
-    return UserState(
-        loadState: LoadState.idle, errorMessage: '', resp: null);
+    return UserState(loadState: LoadState.idle, errorMessage: '', resp: null);
   }
 
   UserState copyWith({
     LoadState? loadState,
-    UserModel? resp,
+    User? resp,
     String? errorMessage,
   }) {
     return UserState(
