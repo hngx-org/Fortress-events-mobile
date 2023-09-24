@@ -31,13 +31,14 @@ class FortressEventApp extends StatelessWidget {
       theme: theme,
       //TODO: Handle the app navigation
       home: const HomeScreenOne(),
+
       routes: {
         HomeScreenOne.routeName: (context) => const HomeScreenOne(),
         HomepageTwo.routeName: (context) => const HomepageTwo(),
         TimeLineHomepageThree.routeName: (context) =>
             const TimeLineHomepageThree(),
         MyPeopleScreen.routeName: (context) => const MyPeopleScreen(),
-        CreateGroup.routeName: (context) => const CreateGroup(),
+        CreateGroup.routeName: (context) => CreateGroup(),
         CreateEvent.routeName: (context) => const CreateEvent(),
         CalendarScreen.routeName: (context) => const CalendarScreen(),
       },

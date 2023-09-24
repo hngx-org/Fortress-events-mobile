@@ -40,7 +40,7 @@ class MyPeopleScreen extends ConsumerWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const CreateGroup(),
+                    builder: (context) =>  CreateGroup(),
                   ));
             },
             child: Row(
