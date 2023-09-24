@@ -35,7 +35,7 @@ class MyPeopleScreen extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const CreateGroup(),
+                    builder: (context) =>  CreateGroup(),
                   ));
             },
             child: Row(
