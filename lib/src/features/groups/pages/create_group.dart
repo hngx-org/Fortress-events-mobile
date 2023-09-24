@@ -28,7 +28,57 @@ class _CreateGroupState extends State<CreateGroup> {
   final TextEditingController _groupController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
+  bool validateForm() {
+    if (_groupController.text.isEmpty ||
+            _descriptionController.text.isEmpty 
+        ) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Validation Error"),
+            content: Text("Please fill in all fields."),
+            actions: [
+              TextButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return false;
+    } else if (_groupController.text.length < 3 ||
+        _descriptionController.text.length < 5 ) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Validation Error"),
+            content: Text("Please fill in all fields with valid data."),
+            actions: [
+              TextButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return false;
+    }
+    return true;
+  }
+
+
   Future _registergroup() async {
+    if (!validateForm()) {
+    return; // Don't proceed if form is not valid
+  }
     final eventdata = {
       "creator_id": "creator_id",
       'title': _groupController.text,
