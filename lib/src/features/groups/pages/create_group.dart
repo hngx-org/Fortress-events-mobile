@@ -32,6 +32,15 @@ class CreateGroup extends ConsumerStatefulWidget {
 }
 
 class _CreateGroupState extends ConsumerState<CreateGroup> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await usersData();
+    });
+  }
   final TextEditingController _groupController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
