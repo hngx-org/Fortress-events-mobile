@@ -5,6 +5,7 @@ import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
+import 'package:event_app/src/features/auth/notifiers/user_notifier.dart';
 import 'package:event_app/src/features/events/network/eventcall_api.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_text_field.dart';
@@ -13,18 +14,19 @@ import 'package:event_app/src/general_widgets/custom_container_text_field.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CreateGroup extends StatefulWidget {
+class CreateGroup extends ConsumerStatefulWidget {
   CreateGroup({
     super.key,
   });
   static const routeName = '/create-group-screen';
 
   @override
-  State<CreateGroup> createState() => _CreateGroupState();
+  ConsumerState<CreateGroup> createState() => _CreateGroupState();
 }
 
-class _CreateGroupState extends State<CreateGroup> {
+class _CreateGroupState extends ConsumerState<CreateGroup> {
   final TextEditingController _groupController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
@@ -79,8 +81,9 @@ class _CreateGroupState extends State<CreateGroup> {
     if (!validateForm()) {
     return; // Don't proceed if form is not valid
   }
+  final state = ref.watch(userNotifierProvider);
     final eventdata = {
-      "creator_id": "creator_id",
+      "creator_id": state.resp?.id,
       'title': _groupController.text,
       'description': _descriptionController.text,
     };
