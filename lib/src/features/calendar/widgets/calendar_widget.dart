@@ -1,20 +1,25 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
+import 'package:event_app/src/core/utils/app_enums.dart';
 import 'package:event_app/src/core/utils/date_time_utils.dart';
+import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/features/calendar/data/calendar_utils.dart';
+import 'package:event_app/src/features/calendar/model/event_model/event_model.dart';
+import 'package:event_app/src/features/calendar/notifiers/calendar_notifier.dart';
 import 'package:event_app/src/general_widgets/app_text_field.dart';
 import 'package:event_app/src/general_widgets/custom_elevated_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class CalendarTable extends StatefulWidget {
+class CalendarTable extends ConsumerStatefulWidget {
   const CalendarTable({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _CalendarTableState createState() => _CalendarTableState();
+  ConsumerState<CalendarTable> createState() => _CalendarTableState();
 }
 
-class _CalendarTableState extends State<CalendarTable> {
+class _CalendarTableState extends ConsumerState<CalendarTable> {
   late final ValueNotifier<List<Event>> _selectedEvents;
   CalendarFormat _calendarFormat = CalendarFormat.month;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
@@ -27,7 +32,11 @@ class _CalendarTableState extends State<CalendarTable> {
   @override
   void initState() {
     super.initState();
-
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await ref.read(calendarNotifierProvider.notifier).getEvents();
+      final state = ref.watch(calendarNotifierProvider);
+      populateEventsFromApi(state.resp! ?? const EventModel());
+    });
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
   }
@@ -56,110 +65,117 @@ class _CalendarTableState extends State<CalendarTable> {
     }
   }
 
-  final _eventController = TextEditingController();
+  // final _eventController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(calendarNotifierProvider);
     return Column(
       children: [
-        TableCalendar<Event>(
-          firstDay: kFirstDay,
-          lastDay: kLastDay,
-          rowHeight: 45,
-          availableGestures: AvailableGestures.all,
-          headerStyle: HeaderStyle(
-            formatButtonVisible: false,
-            titleCentered: true,
-            titleTextStyle: const TextStyle(
-                fontWeight: FontWeight.w600, fontSize: 14, color: Colors.black),
-            headerPadding: const EdgeInsets.all(Dimensions.zero),
-            headerMargin:
-                const EdgeInsets.symmetric(vertical: Dimensions.medium),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(40),
-            ),
-          ),
-          focusedDay: _focusedDay,
-          selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-          rangeStartDay: _rangeStart,
-          rangeEndDay: _rangeEnd,
-          calendarFormat: _calendarFormat,
-          rangeSelectionMode: _rangeSelectionMode,
-          eventLoader: _getEventsForDay,
-          startingDayOfWeek: StartingDayOfWeek.sunday,
-          calendarStyle: const CalendarStyle(
-            rangeHighlightColor: Color(0xFF063B27),
-            rowDecoration: BoxDecoration(
-              color: Colors.white,
-            ),
-            markersAutoAligned: true,
-            selectedDecoration:
-                BoxDecoration(color: Color(0xFF063B27), shape: BoxShape.circle),
-            markerDecoration:
-                BoxDecoration(color: Color(0xFF063B27), shape: BoxShape.circle),
-            markerMargin: EdgeInsets.only(top: Dimensions.tiny),
-          ),
-          onDaySelected: _onDaySelected,
-          daysOfWeekHeight: 42,
-          daysOfWeekStyle: const DaysOfWeekStyle(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Dimensions.medium),
-                topRight: Radius.circular(Dimensions.medium),
+        state.loadState == LoadState.loading
+            ? const CupertinoActivityIndicator(
+                color: AppColors.primary1000,
+              )
+            : TableCalendar<Event>(
+                firstDay: kFirstDay,
+                lastDay: kLastDay,
+                rowHeight: 45,
+                availableGestures: AvailableGestures.all,
+                headerStyle: HeaderStyle(
+                  formatButtonVisible: false,
+                  titleCentered: true,
+                  titleTextStyle: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                      color: Colors.black),
+                  headerPadding: const EdgeInsets.all(Dimensions.zero),
+                  headerMargin:
+                      const EdgeInsets.symmetric(vertical: Dimensions.medium),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                ),
+                focusedDay: _focusedDay,
+                selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                rangeStartDay: _rangeStart,
+                rangeEndDay: _rangeEnd,
+                calendarFormat: _calendarFormat,
+                rangeSelectionMode: _rangeSelectionMode,
+                eventLoader: _getEventsForDay,
+                startingDayOfWeek: StartingDayOfWeek.sunday,
+                calendarStyle: const CalendarStyle(
+                  rangeHighlightColor: Color(0xFF063B27),
+                  rowDecoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  markersAutoAligned: true,
+                  selectedDecoration: BoxDecoration(
+                      color: Color(0xFF063B27), shape: BoxShape.circle),
+                  markerDecoration: BoxDecoration(
+                      color: Color(0xFF063B27), shape: BoxShape.circle),
+                  markerMargin: EdgeInsets.only(top: Dimensions.tiny),
+                ),
+                onDaySelected: _onDaySelected,
+                daysOfWeekHeight: 42,
+                daysOfWeekStyle: const DaysOfWeekStyle(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(Dimensions.medium),
+                      topRight: Radius.circular(Dimensions.medium),
+                    ),
+                  ),
+                ),
+                onHeaderTapped: (focusedDay) {},
+                //!Remove this when it has been confirmed that the feature is not needed
+                // onDayLongPressed: (selectedDay, focusedDay) {
+                //   showDialog(
+                //     context: context,
+                //     builder: (context) => AlertDialog(
+                //       scrollable: true,
+                //       title: const Text('Add Events'),
+                //       content: Column(
+                //         children: [
+                //           AppTextField(
+                //             controller: _eventController,
+                //           ),
+                //         ],
+                //       ),
+                //       actions: [
+                //         Padding(
+                //           padding: const EdgeInsets.only(bottom: 12),
+                //           child: CustomElevatedButton(
+                //             height: 48,
+                //             text: 'Submit',
+                //             onTap: () {
+                //               kEvents.addAll({
+                //                 selectedDay: [
+                //                   Event(
+                //                       title: _eventController.text, date: selectedDay)
+                //                 ]
+                //               });
+                //               Navigator.pop(context);
+                //               _selectedEvents.value = _getEventsForDay(selectedDay);
+                //               _eventController.clear();
+                //             },
+                //           ),
+                //         )
+                //       ],
+                //     ),
+                //   );
+                // },
+                onFormatChanged: (format) {
+                  if (_calendarFormat != format) {
+                    setState(() {
+                      _calendarFormat = format;
+                    });
+                  }
+                },
+                onPageChanged: (focusedDay) {
+                  _focusedDay = focusedDay;
+                },
               ),
-            ),
-          ),
-          onHeaderTapped: (focusedDay) {},
-          //!Remove this when it has been confirmed that the feature is not needed
-          // onDayLongPressed: (selectedDay, focusedDay) {
-          //   showDialog(
-          //     context: context,
-          //     builder: (context) => AlertDialog(
-          //       scrollable: true,
-          //       title: const Text('Add Events'),
-          //       content: Column(
-          //         children: [
-          //           AppTextField(
-          //             controller: _eventController,
-          //           ),
-          //         ],
-          //       ),
-          //       actions: [
-          //         Padding(
-          //           padding: const EdgeInsets.only(bottom: 12),
-          //           child: CustomElevatedButton(
-          //             height: 48,
-          //             text: 'Submit',
-          //             onTap: () {
-          //               kEvents.addAll({
-          //                 selectedDay: [
-          //                   Event(
-          //                       title: _eventController.text, date: selectedDay)
-          //                 ]
-          //               });
-          //               Navigator.pop(context);
-          //               _selectedEvents.value = _getEventsForDay(selectedDay);
-          //               _eventController.clear();
-          //             },
-          //           ),
-          //         )
-          //       ],
-          //     ),
-          //   );
-          // },
-          onFormatChanged: (format) {
-            if (_calendarFormat != format) {
-              setState(() {
-                _calendarFormat = format;
-              });
-            }
-          },
-          onPageChanged: (focusedDay) {
-            _focusedDay = focusedDay;
-          },
-        ),
         const SizedBox(height: 8.0),
         Expanded(
           child: ValueListenableBuilder<List<Event>>(
