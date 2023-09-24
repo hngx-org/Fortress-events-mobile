@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '/src/general_widgets/custom_elevated_button.dart';
 import '/src/general_widgets/spacing.dart';
 import '/src/core/constants/dimensions.dart';
-import '../settings_screen.dart';
+import '../model/users_model.dart';
 
 // userprofile definition for user
 class UserProfile extends StatelessWidget {

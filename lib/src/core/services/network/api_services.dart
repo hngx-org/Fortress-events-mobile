@@ -80,14 +80,14 @@ class ApiServices {
     try {
       debugLog('Attemping to  sign up ');
       final response = await _get(
-          uri: 
-          //  Uri.parse(              'http://ec2-18-119-101-235.us-east-2.compute.amazonaws.com:3000/auth/login/google')
-          Uri(
-        scheme: AppApiData.scheme,
-        host: AppApiData.host,
-        path: 'auth/login/google',
-        port: 3000,
-      ),
+        uri:
+            //  Uri.parse(              'http://ec2-18-119-101-235.us-east-2.compute.amazonaws.com:3000/auth/login/google')
+            Uri(
+          scheme: AppApiData.scheme,
+          host: AppApiData.host,
+          path: 'auth/login/google',
+          port: 3000,
+        ),
       );
       UserModel data = UserModel.fromJson(response.body);
       return data;
@@ -104,6 +104,21 @@ class ApiServices {
       throw Failure(
           message: ex.message,
           devMessage: 'Error:${ex}, Stacktrace: $stackTrace');
+    }
+  }
+
+  Future logout() async {
+    try {
+      final response = await _get(uri: AppApiData.baseUri('logout'));
+      return response;
+    } on SocketException catch (ex, stackTrace) {
+      throw Failure(
+          message: 'You don\'t have internet connection',
+          devMessage: stackTrace.toString());
+    } on Failure catch (ex, stackTrace) {
+      throw Failure(
+          message: 'Something went wrong, unable to logout',
+          devMessage: 'Error:${ex}, stacktrace:: $stackTrace.toString()');
     }
   }
 }
