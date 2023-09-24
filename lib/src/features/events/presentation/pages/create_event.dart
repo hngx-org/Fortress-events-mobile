@@ -33,7 +33,7 @@ class _CreateEventState extends State<CreateEvent> {
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
 
-  
+
 
   Future _registerevent() async {
     final eventdata = {
