@@ -55,12 +55,12 @@ class PeopleGroupCard extends StatelessWidget {
               ],
             ),
             const Spacing.smallHeight(),
-            Text(
+            /* Text(
               groupDescription,
               style: AppTextStyles.textXsRegular.copyWith(
                 color: AppColors.gray800,
               ),
-            ),
+            ), */
             const Spacing.smallHeight(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
