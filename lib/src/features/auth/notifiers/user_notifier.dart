@@ -27,7 +27,6 @@ class UserNotifier extends StateNotifier<UserState> {
       state = state.copyWith(loadState: LoadState.idle);
     }
   }
-
 }
 
 final userNotifierProvider = StateNotifierProvider<UserNotifier, UserState>(

@@ -7,6 +7,8 @@ import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
 import 'package:event_app/src/features/auth/notifiers/user_notifier.dart';
 import 'package:event_app/src/features/events/network/eventcall_api.dart';
+import 'package:event_app/src/features/events/presentation/models/groups_model/group.dart';
+import 'package:event_app/src/features/events/presentation/models/groups_model/groups_model.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_left_icon.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_heading_style.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
@@ -15,6 +17,7 @@ import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 import 'package:event_app/src/general_widgets/custom_icon_container.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
+import 'package:event_app/src/general_widgets/dropdown_field.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,6 +35,15 @@ class CreateEvent extends ConsumerStatefulWidget {
 }
 
 class _CreateEventState extends ConsumerState<CreateEvent> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await groupsData();
+    });
+  }
+
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
@@ -102,7 +114,7 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
       'location': _locationController.text,
       'start_date': _dateController.text,
       'start_time': _timeController.text,
-      'group_id': _groupController.text,
+      'group_id': _groupController.text, //'05dc4497-9993-4aa2-b0d8-ab679dc98ace
     };
 
     log('Event Data => ${eventdata.toString()}');
@@ -292,28 +304,16 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
                             ],
                           ),
                           Spacing.smallHeight(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Select Group"),
-                              Spacing.smallHeight(),
-                              CustomContainerLeftIcon(
-                                iconSvgPath: ImageConstant.imgSearchnormal,
-                                iconColor: AppColors.gray700Main,
-                                onPressed: () {
-                                  print('see');
-                                },
-                                containerHeight: 52,
-                                containerWidth: 343,
-                                displaydata: 'Search Groups',
-                                controller: _groupController,
-                                //to do add get request to search a group
-                              ),
-                            ],
-                          ),
+                          DropDownField(
+                            values: groupsList,
+                            // ['data 1', 'Data 2'],
+                            hintText: 'Groups',
+                            label: 'Search Group',
+                            onChanged: (p0) {},
+                          )
                         ],
                       ),
-                      Spacing.smallHeight(),
+                      Spacing.largeHeight(),
                     ],
                   ),
                 ),
@@ -365,5 +365,20 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
     }
 
     return null;
+  }
+
+  List<String> groupsList = ['Search'];
+
+  List<Group>? groups = [];
+  Future groupsData() async {
+    final api = ApiServices();
+
+    final GroupsModel groupsResponse = await api.getAllGroups();
+    groups = [...groupsResponse.groups ?? []];
+    final allTitle = groupsResponse.groups!.map((e) => e.title ?? "").toList();
+    print('data retreved lenght ${allTitle.length}');
+    groupsList = [...allTitle.toSet()];
+    print('data in groups stils  ${groupsList.length}');
+    setState(() {});
   }
 }

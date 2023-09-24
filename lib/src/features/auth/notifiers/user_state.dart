@@ -1,7 +1,6 @@
 import 'package:event_app/src/core/utils/app_enums.dart';
 import 'package:event_app/src/features/auth/model/profile_details/user.dart';
 
-
 class UserState {
   final LoadState loadState;
   final String errorMessage;

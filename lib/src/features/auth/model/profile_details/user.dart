@@ -8,7 +8,11 @@ class User extends Equatable {
   final String? email;
   final String? avatar;
 
-  const User({this.id = '717433fa-5ee2-484f-96dd-ca6b73fe6209', this.name, this.email, this.avatar});
+  const User(
+      {this.id = '717433fa-5ee2-484f-96dd-ca6b73fe6209',
+      this.name,
+      this.email,
+      this.avatar});
 
   factory User.fromMap(Map<String, dynamic> data) => User(
         id: data['id'] as String?,

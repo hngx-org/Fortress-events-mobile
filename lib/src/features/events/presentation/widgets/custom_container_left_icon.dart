@@ -23,7 +23,6 @@ class CustomContainerLeftIcon extends StatelessWidget {
     required this.containerHeight,
     required this.containerWidth,
     this.controller,
- 
   });
 
   @override

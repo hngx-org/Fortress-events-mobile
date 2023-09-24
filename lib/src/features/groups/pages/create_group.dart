@@ -29,9 +29,7 @@ class _CreateGroupState extends State<CreateGroup> {
   final TextEditingController _descriptionController = TextEditingController();
 
   bool validateForm() {
-    if (_groupController.text.isEmpty ||
-            _descriptionController.text.isEmpty 
-        ) {
+    if (_groupController.text.isEmpty || _descriptionController.text.isEmpty) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -51,7 +49,7 @@ class _CreateGroupState extends State<CreateGroup> {
       );
       return false;
     } else if (_groupController.text.length < 3 ||
-        _descriptionController.text.length < 5 ) {
+        _descriptionController.text.length < 5) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -74,11 +72,10 @@ class _CreateGroupState extends State<CreateGroup> {
     return true;
   }
 
-
   Future _registergroup() async {
     if (!validateForm()) {
-    return; // Don't proceed if form is not valid
-  }
+      return; // Don't proceed if form is not valid
+    }
     final eventdata = {
       "creator_id": "creator_id",
       'title': _groupController.text,
