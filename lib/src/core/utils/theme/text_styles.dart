@@ -144,4 +144,11 @@ abstract class AppTextStyles {
     height: 1.5,
     fontFamily: 'Plus Jakarta Sans',
   );
+
+  static const TextStyle textXsBoldTitle = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w700, // medium
+    height: 1.5,
+    fontFamily: 'Rebond Grotesque',
+  );
 }

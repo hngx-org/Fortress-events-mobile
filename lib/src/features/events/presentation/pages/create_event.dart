@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:event_app/src/core/constants/dimensions.dart';
+import 'package:event_app/src/core/services/network/api_services.dart';
 import 'package:event_app/src/core/utils/date_time_utils.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
@@ -9,8 +10,7 @@ import 'package:event_app/src/features/events/presentation/widgets/custom_contai
 import 'package:event_app/src/features/events/presentation/widgets/custom_heading_style.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_text_field.dart';
-import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
-import 'package:event_app/src/general_widgets/custom_elevated_button.dart';
+import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 import 'package:event_app/src/general_widgets/custom_icon_container.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
@@ -32,10 +32,65 @@ class _CreateEventState extends State<CreateEvent> {
   final TextEditingController _locationController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
+  final TextEditingController _groupController = TextEditingController();
+
+  bool validateForm() {
+    if (_titleController.text.isEmpty ||
+            _descriptionController.text.isEmpty ||
+            _locationController.text.isEmpty
+        // _dateController.text.isEmpty ||
+        // _timeController.text.isEmpty ||
+        // _groupController.text.isEmpty
+        ) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Validation Error"),
+            content: Text("Please fill in all fields."),
+            actions: [
+              TextButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return false;
+    } else if (_titleController.text.length < 3 ||
+        _descriptionController.text.length < 5git  ||
+        _locationController.text.length < 5) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Validation Error"),
+            content: Text("Please fill in all fields with valid data."),
+            actions: [
+              TextButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return false;
+    }
+    return true;
+  }
 
 
 
   Future _registerevent() async {
+    if (!validateForm()) {
+      return; // Don't proceed if form is not valid
+    }
     final eventdata = {
       "creator_id": "creator_id",
       'title': _titleController.text,
@@ -43,22 +98,39 @@ class _CreateEventState extends State<CreateEvent> {
       'location': _locationController.text,
       'start_date': _dateController.text,
       'start_time': _timeController.text,
+      'group_id': _groupController.text,
     };
 
-    log('Evernt Data => ${eventdata.toString()}');
+    log('Event Data => ${eventdata.toString()}');
 
     var response = await CallApi().postData(eventdata, 'events');
     if (response != null) {
-      if (response.statusCode == 201) {
-        var body = json.decode(response.body);
-        log('Body response => $body');
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MyPeopleScreen()),
-        );
-      } else {
-        print("Error: HTTP ${response.statusCode} - ${response.reasonPhrase}");
-      }
+      var body = json.decode(response.body);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Event Created",
+                style: AppTextStyles.textXsBoldTitle.copyWith(
+                  color: AppColors.primary700Main,
+                )),
+            content: Text("You have successfully created an event."),
+            actions: [
+              TextButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TimeLineHomepageThree()),
+                  );
+                },
+              ),
+            ],
+          );
+        },
+      );
     } else {
       print("Error: Unable to send data. Check your internet connection.");
     }
@@ -66,7 +138,7 @@ class _CreateEventState extends State<CreateEvent> {
 
   DateTime selectedDate = DateTime.now();
 
-  void _showDatePicker() async {
+  Future _showDatePicker() async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
@@ -113,152 +185,124 @@ class _CreateEventState extends State<CreateEvent> {
                   padding: EdgeInsets.all(Dimensions.medium),
                   child: Column(
                     children: [
-                      Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Title",
-                              style: AppTextStyles.textXsMeduim.copyWith(
-                                color: AppColors.gray900,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Title",
+                            style: AppTextStyles.textXsMeduim.copyWith(
+                              color: AppColors.gray900,
+                            ),
+                          ),
+                          Spacing.smallHeight(),
+                          CustomTextField(
+                            boxheight: 52,
+                            boxwidth: MediaQuery.sizeOf(context).width,
+                            item: "Add Event Title",
+                            controller: _titleController,
+                          ),
+                          Spacing.bigHeight(),
+                          CustomTextField(
+                            boxheight: 85,
+                            boxwidth: MediaQuery.sizeOf(context).width,
+                            item: "Event Description",
+                            lines: 6,
+                            controller: _descriptionController,
+                          ),
+                          SizedBox(
+                            height: MediaQuery.sizeOf(context).height * 0.04,
+                          ),
+                          Text(
+                            "Location",
+                            style: AppTextStyles.textXsMeduim.copyWith(
+                              color: AppColors.gray900,
+                            ),
+                          ),
+                          Spacing.smallHeight(),
+                          CustomTextField(
+                            boxheight: 52,
+                            boxwidth: MediaQuery.sizeOf(context).width,
+                            item: "Add Location",
+                            controller: _locationController,
+                          ),
+                          Spacing.smallHeight(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Date"),
+                                  Spacing.smallHeight(),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      CustomContainerRightIcon(
+                                        displaydata: '9',
+                                        iconSvgPath: ImageConstant.imgCalendar,
+                                        iconColor: AppColors.gray700Main,
+                                        onPressed: () async {
+                                          await _showDatePicker();
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                            ),
-                            Spacing.smallHeight(),
-                            CustomTextField(
-                              boxheight: 52,
-                              boxwidth: MediaQuery.sizeOf(context).width,
-                              item: "Add Event Title",
-                              controller: _titleController,
-                            ),
-                            Spacing.smallHeight(),
-                            CustomTextField(
-                              boxheight: 85,
-                              boxwidth: MediaQuery.sizeOf(context).width,
-                              item: "Event Description",
-                              lines: 6,
-                              controller: _descriptionController,
-                            ),
-                            SizedBox(
-                              height: MediaQuery.sizeOf(context).height * 0.04,
-                            ),
-                            Text(
-                              "Location",
-                              style: AppTextStyles.textXsMeduim.copyWith(
-                                color: AppColors.gray900,
+                              Spacing.mediumWidth(),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomHeading(
+                                    content: 'Time',
+                                  ),
+                                  Spacing.smallHeight(),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      CustomContainerRightIcon(
+                                        displaydata: "02:00pm",
+                                        onPressed: () {},
+                                        iconSvgPath: ImageConstant.imgClock,
+                                        iconColor: AppColors.gray700Main,
+                                        controller: _timeController,
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                            ),
-                            Spacing.smallHeight(),
-                            CustomTextField(
-                              boxheight: 52,
-                              boxwidth: MediaQuery.sizeOf(context).width,
-                              item: "Add Location",
-                              controller: _locationController,
-                            ),
-                            Row(
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Date"),
-                                    Spacing.smallHeight(),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        CustomContainerRightIcon(
-                                          displaydata: '9',
-                                          iconSvgPath:
-                                              ImageConstant.imgCalendar,
-                                          iconColor: AppColors.gray700Main,
-                                          onPressed: () {
-                                            _showDatePicker();
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Spacing.mediumWidth(),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CustomHeading(
-                                      content: 'Time',
-                                    ),
-                                    Spacing.smallHeight(),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        CustomContainerRightIcon(
-                                          displaydata: "02:00pm",
-                                          onPressed: () {},
-                                          iconSvgPath: ImageConstant.imgClock,
-                                          iconColor: AppColors.gray700Main,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Spacing.smallHeight(),
-                            CustomIconContainer(
-                              containerText: " Add Location",
-                              spacingWidth: 4,
-                              containerColor: AppColors.gray300,
-                              containerHPadding: 16,
-                              containerVPadding: 8,
-                              iconSvgPath: ImageConstant.imgLocation,
-                              iconColor: AppColors.gray900,
-                              iconHeight: 20,
-                              iconWidth: 20,
-                              containerHeight: Dimensions.small * 5,
-                              containerWidth: Dimensions.smedium * 13,
-                              onTap: () {},
-                            ),
-                            Spacing.smallHeight(),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Select Group"),
-                                Spacing.smallHeight(),
-                                CustomContainerLeftIcon(
-                                  iconSvgPath: ImageConstant.imgSearchnormal,
-                                  iconColor: AppColors.gray700Main,
-                                  containerHeight: 52,
-                                  containerWidth: 343,
-                                  displaydata: 'Search Groups',
-                                  //to do add get request to search a group
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
+                          Spacing.smallHeight(),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Select Group"),
+                              Spacing.smallHeight(),
+                              CustomContainerLeftIcon(
+                                iconSvgPath: ImageConstant.imgSearchnormal,
+                                iconColor: AppColors.gray700Main,
+                                onPressed: () {
+                                  print('see');
+                                },
+                                containerHeight: 52,
+                                containerWidth: 343,
+                                displaydata: 'Search Groups',
+                                controller: _groupController,
+                                //to do add get request to search a group
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                       Spacing.smallHeight(),
                     ],
                   ),
-                ),
-                CustomElevatedButton(
-                  buttonTextStyle: AppTextStyles.textXsMeduim.copyWith(
-                    color: AppColors.accentGreen100,
-                  ),
-                  text: 'Create Event',
-                  height: 30,
-                  buttonStyle: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary1000,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  width: 80,
-                  onTap: () async {
-                    await _registerevent();
-                  },
                 ),
               ],
             ),
@@ -267,12 +311,8 @@ class _CreateEventState extends State<CreateEvent> {
         floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.primary1000,
-          onPressed: () {
-            //todo: Nav to the my people screen
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MyPeopleScreen()),
-            );
+          onPressed: () async {
+            await _registerevent();
           },
           child: CustomImageView(
             svgPath: ImageConstant.imgArrowRight,

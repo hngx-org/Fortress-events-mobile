@@ -12,6 +12,8 @@ class CustomContainerLeftIcon extends StatelessWidget {
   final Color iconColor;
   final double containerHeight;
   final double containerWidth;
+  final TextEditingController? controller;
+
   const CustomContainerLeftIcon({
     super.key,
     this.displaydata,
@@ -20,37 +22,41 @@ class CustomContainerLeftIcon extends StatelessWidget {
     required this.iconColor,
     required this.containerHeight,
     required this.containerWidth,
+    this.controller,
+ 
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: containerHeight,
-      width: containerWidth,
-      decoration: BoxDecoration(
-        color: AppColors.baseWhite,
-        border: Border.all(color: AppColors.gray500),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Dimensions.medium),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            CustomImageView(
-              svgPath: iconSvgPath,
-              color: iconColor,
-              height: Dimensions.medium,
-              width: Dimensions.medium,
-            ),
-            const Spacing.smallWidth(),
-            Text(
-              "$displaydata",
-              style: AppTextStyles.textSmallRegular.copyWith(
-                color: AppColors.gray700Main,
+    return GestureDetector(
+      child: Container(
+        height: containerHeight,
+        width: containerWidth,
+        decoration: BoxDecoration(
+          color: AppColors.baseWhite,
+          border: Border.all(color: AppColors.gray500),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: Dimensions.medium),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CustomImageView(
+                svgPath: iconSvgPath,
+                color: iconColor,
+                height: Dimensions.medium,
+                width: Dimensions.medium,
               ),
-            ),
-          ],
+              const Spacing.smallWidth(),
+              Text(
+                "$displaydata",
+                style: AppTextStyles.textSmallRegular.copyWith(
+                  color: AppColors.gray700Main,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
