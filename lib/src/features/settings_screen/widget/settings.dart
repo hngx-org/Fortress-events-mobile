@@ -2,6 +2,7 @@ import 'package:event_app/src/core/services/base_constants/failure.dart';
 import 'package:event_app/src/core/services/network/api_services.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_one.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '/src/features/settings_screen/model/settings._model.dart';
 
@@ -74,6 +75,8 @@ class SettingsCustomization extends StatelessWidget {
                               TextButton(
                                 onPressed: () async {
                                   try {
+                                    final googleAuth = GoogleSignIn();
+                                    googleAuth.disconnect();
                                     final res = await apiServices?.logout();
                                     if (res != null) {
                                       Navigator.of(context)
