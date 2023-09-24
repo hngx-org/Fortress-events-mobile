@@ -78,7 +78,7 @@ class _TimeLineHomepageThreeState extends ConsumerState<TimeLineHomepageThree> {
           ),
         ),
         body: state.loadState == LoadState.loading
-            ? Center(
+            ? const Center(
                 child: CupertinoActivityIndicator(
                 color: AppColors.primary1000,
               ))

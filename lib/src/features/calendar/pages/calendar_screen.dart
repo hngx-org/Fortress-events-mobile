@@ -1,6 +1,8 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/app_enums.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
+import 'package:event_app/src/features/calendar/data/calendar_utils.dart';
+import 'package:event_app/src/features/calendar/model/event_model/event_model.dart';
 import 'package:event_app/src/features/calendar/notifiers/calendar_notifier.dart';
 import 'package:event_app/src/features/calendar/widgets/calendar_widget.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
@@ -18,18 +20,20 @@ class CalendarScreen extends ConsumerStatefulWidget {
 }
 
 class _CalendarScreenState extends ConsumerState<CalendarScreen> {
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await ref.read(calendarNotifierProvider.notifier).getEvents();
-    });
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+  //     await ref.read(calendarNotifierProvider.notifier).getEvents();
+  //     final state = ref.watch(calendarNotifierProvider);
+  //     populateEventsFromApi(state.resp! ?? const EventModel());
+  //   });
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
-    final state = ref.watch(calendarNotifierProvider);
+    // final state = ref.watch(calendarNotifierProvider);
 
     return Scaffold(
       backgroundColor: AppColors.gray300,
@@ -53,16 +57,21 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
         ),
         children: [
           const Spacing.smallHeight(),
+          // state.loadState == LoadState.loading
+          //     ? const CupertinoActivityIndicator(
+          //         color: AppColors.primary1000,
+          //       )
+          //     :
           SizedBox(height: height * 0.9, child: const CalendarTable()),
-          state.loadState == LoadState.loading
-              ? CupertinoActivityIndicator()
-              : state.loadState == LoadState.error
-                  ? Text('Error ${state.errorMessage}')
-                  : SizedBox(
-                      height: 100,
-                      child:
-                          Text('${state.resp!.data!.first.title ?? 'chuks'}')),
-          const Spacing.bigHeight(),
+          // state.loadState == LoadState.loading
+          //     ? const CupertinoActivityIndicator()
+          //     : state.loadState == LoadState.error
+          //         ? Text('Error ${state.errorMessage}')
+          //         : SizedBox(
+          //             height: 100,
+          //             child:
+          //                 Text('${state.resp!.data!.first.title ?? 'chuks'}')),
+          // const Spacing.bigHeight(),
         ],
       ),
     );
