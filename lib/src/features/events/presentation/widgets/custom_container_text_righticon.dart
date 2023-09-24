@@ -10,7 +10,7 @@ class CustomContainerRightIcon extends StatelessWidget {
   final String iconSvgPath;
   final Color iconColor;
   final TextEditingController? controller;
-  
+
   const CustomContainerRightIcon({
     super.key,
     this.displaydata,
@@ -18,12 +18,12 @@ class CustomContainerRightIcon extends StatelessWidget {
     required this.iconSvgPath,
     required this.iconColor,
     this.controller,
-    
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onPressed,
       child: Container(
         height: 52,
         width: MediaQuery.sizeOf(context).width * 0.40,
@@ -51,7 +51,6 @@ class CustomContainerRightIcon extends StatelessWidget {
                 color: iconColor,
                 height: Dimensions.medium,
                 width: Dimensions.medium,
-                
               ),
             ),
           ],
