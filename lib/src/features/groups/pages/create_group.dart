@@ -1,14 +1,108 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:event_app/src/core/constants/dimensions.dart';
+import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
+import 'package:event_app/src/features/auth/notifiers/user_notifier.dart';
+import 'package:event_app/src/features/events/network/eventcall_api.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
+import 'package:event_app/src/features/events/presentation/widgets/custom_text_field.dart';
+import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
 import 'package:event_app/src/general_widgets/custom_container_text_field.dart';
+import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CreateGroup extends StatelessWidget {
-  const CreateGroup({super.key});
+class CreateGroup extends ConsumerStatefulWidget {
+  const CreateGroup({
+    super.key,
+  });
   static const routeName = '/create-group-screen';
+
+  @override
+  ConsumerState<CreateGroup> createState() => _CreateGroupState();
+}
+
+class _CreateGroupState extends ConsumerState<CreateGroup> {
+  final TextEditingController _groupController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+
+  bool validateForm() {
+    if (_groupController.text.isEmpty || _descriptionController.text.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Validation Error"),
+            content: const Text("Please fill in all fields."),
+            actions: [
+              TextButton(
+                child: const Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return false;
+    } else if (_groupController.text.length < 3 ||
+        _descriptionController.text.length < 5) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Validation Error"),
+            content: const Text("Please fill in all fields with valid data."),
+            actions: [
+              TextButton(
+                child: const Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return false;
+    }
+    return true;
+  }
+
+  Future _registergroup() async {
+    if (!validateForm()) {
+      return; // Don't proceed if form is not valid
+    }
+    final state = ref.watch(userNotifierProvider);
+    final eventdata = {
+      "creator_id": state.resp?.id,
+      'title': _groupController.text,
+      'description': _descriptionController.text,
+    };
+
+    log('Evernt Data => ${eventdata.toString()}');
+
+    var response = await CallApi().postData(eventdata, 'groups');
+    if (response != null) {
+      if (response.statusCode == 201) {
+        var body = json.decode(response.body);
+        log('Body response => $body');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MyPeopleScreen()),
+        );
+      } else {
+        print("Error: HTTP ${response.statusCode} - ${response.reasonPhrase}");
+      }
+    } else {
+      print("Error: Unable to send data. Check your internet connection.");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,29 +138,36 @@ class CreateGroup extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "GroupName",
+                    "Group Name",
                     style: AppTextStyles.textXsMeduim.copyWith(
                       color: AppColors.gray900,
                     ),
                   ),
                   const Spacing.smallHeight(),
-                  CustomContainerTextField(
+                  CustomTextField(
                     boxheight: MediaQuery.sizeOf(context).height * 0.06,
                     boxwidth: MediaQuery.sizeOf(context).width,
                     item: "Enter group name",
+                    controller: _groupController,
                   ),
                   const Spacing.mediumHeight(),
-                  CustomContainerTextField(
+                  CustomTextField(
                     boxheight: MediaQuery.sizeOf(context).height * 0.2,
                     boxwidth: MediaQuery.sizeOf(context).width,
                     item: "Group Description",
                     lines: 6,
+                    controller: _descriptionController,
                   ),
                   const Spacing.mediumHeight(),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text("Add Members"),
+                      Text(
+                        "Add Members",
+                        style: AppTextStyles.textXsMeduim.copyWith(
+                          color: AppColors.gray900,
+                        ),
+                      ),
                       const Spacing.smallHeight(),
                       Container(
                         height: MediaQuery.sizeOf(context).height * 0.06,
@@ -78,10 +179,14 @@ class CreateGroup extends StatelessWidget {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.search),
+                              const Spacing.smallWidth(),
+                              CustomImageView(
+                                svgPath: 'assets/images/search_timeline.svg',
+                                height: 20,
+                                width: 20,
+                                color: AppColors.gray700Main,
                               ),
+                              const Spacing.smallWidth(),
                               Text(
                                 "Search People...",
                                 style: AppTextStyles.textSmallRegular.copyWith(
@@ -97,6 +202,17 @@ class CreateGroup extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.primary1000,
+        child: CustomImageView(
+          svgPath: ImageConstant.imgArrowRight,
+          color: AppColors.accentGreen100,
+        ),
+        onPressed: () {
+          _registergroup();
+        },
       ),
     );
   }

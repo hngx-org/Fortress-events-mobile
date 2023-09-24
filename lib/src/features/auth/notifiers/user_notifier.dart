@@ -1,6 +1,7 @@
 import 'package:event_app/src/core/services/base_constants/logger.dart';
 import 'package:event_app/src/core/services/network/api_services.dart';
 import 'package:event_app/src/core/utils/app_enums.dart';
+import 'package:event_app/src/features/auth/model/profile_details/create_account.dart';
 import 'package:event_app/src/features/auth/notifiers/user_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,11 +9,11 @@ class UserNotifier extends StateNotifier<UserState> {
   UserNotifier(this.apiServices) : super(UserState.initialState());
   final ApiServices apiServices;
 
-  Future googleSign() async {
+  Future createAcc(CreateAccount account) async {
     try {
       state = state.copyWith(loadState: LoadState.loading);
-      final  resp = await apiServices.login();
-      debugLog('Event data ${resp.toString()}');
+      final resp = await apiServices.createAccount(userData: account);
+      debugLog('user data ${resp.toString()}');
       state = state.copyWith(
         loadState: LoadState.success,
         resp: resp,
@@ -28,7 +29,6 @@ class UserNotifier extends StateNotifier<UserState> {
   }
 }
 
-final userNotifierProvider =
-    StateNotifierProvider<UserNotifier, UserState>(
+final userNotifierProvider = StateNotifierProvider<UserNotifier, UserState>(
   (_) => UserNotifier(_.read(apiServicesProvider)),
 );
