@@ -45,9 +45,8 @@ class SettingsScreen extends StatelessWidget {
   }
 }
 
-class User {
-  static String handle = "Salome", email = 'salome367@gmail.com';
-  static var profileImage = AssetImage(ImageConstant.imgSalomeDP);
-
-  //const NetworkImage("https://via.placeholder.com/110x110");
-}
+// class User {
+//   static String handle = "Salome", email = 'salome367@gmail.com';
+//   static var profileImage = const AssetImage('assets/images/img_ellipse1.png');
+//   //const NetworkImage("https://via.placeholder.com/110x110");
+// }

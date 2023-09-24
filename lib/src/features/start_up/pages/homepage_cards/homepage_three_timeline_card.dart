@@ -17,8 +17,6 @@ class HomepageThreeTimelineCard extends StatelessWidget {
   HomepageThreeTimelineCard({
     required this.model,
     super.key,
-    // this.titleText = 'The Rapid UX Process',
-    // this.subTitileText =
     //     'Dive into the of creating seamless digital experiences.',
   });
 
