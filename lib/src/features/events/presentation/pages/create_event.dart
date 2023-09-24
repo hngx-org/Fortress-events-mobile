@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:event_app/src/core/constants/dimensions.dart';
-import 'package:event_app/src/core/services/network/api_services.dart';
+
 import 'package:event_app/src/core/utils/date_time_utils.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
@@ -11,7 +11,7 @@ import 'package:event_app/src/features/events/presentation/widgets/custom_headin
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_text_field.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
-import 'package:event_app/src/general_widgets/custom_icon_container.dart';
+
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +61,7 @@ class _CreateEventState extends State<CreateEvent> {
       );
       return false;
     } else if (_titleController.text.length < 3 ||
-        _descriptionController.text.length < 5git  ||
+        _descriptionController.text.length < 5  ||
         _locationController.text.length < 5) {
       showDialog(
         context: context,

@@ -16,9 +16,9 @@
     <application
 
     
-        android:label="event_app"
+        android:label="Fortress event app"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"

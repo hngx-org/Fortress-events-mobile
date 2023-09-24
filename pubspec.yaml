@@ -24,6 +24,7 @@ dependencies:
   intl: ^0.18.0
   table_calendar: ^3.0.9
   google_sign_in: ^5.2.1
+ 
   
 #   comment_box: ^0.0.18
 #   firebase_core: ^2.16.0
@@ -36,6 +37,13 @@ dependencies:
 dev_dependencies:
   custom_lint: ^0.5.3
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/homepage_logo_png.png"
+  min_sdk_android: 21
   
   flutter_test:
     sdk: flutter
