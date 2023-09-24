@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/src/general_widgets/custom_elevated_button.dart';
 import '/src/general_widgets/spacing.dart';
 import '/src/core/constants/dimensions.dart';
-import '../make_a_wish_4_screen.dart';
+import '../settings_screen.dart';
 
 // userprofile definition for user
 class UserProfile extends ConsumerWidget {
@@ -54,6 +54,22 @@ class UserProfile extends ConsumerWidget {
               height: 34,
               text: "Edit Profile",
               margin: const EdgeInsets.all(Dimensions.medium),
+              onTap: () => showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: const Text("Feature coming soon"),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Close'),
+                      )
+                    ],
+                  );
+                },
+              ),
             ),
           ],
         ),

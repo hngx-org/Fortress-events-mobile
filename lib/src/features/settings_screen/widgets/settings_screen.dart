@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:event_app/src/core/utils/image_constant.dart';
 
 import '../../../core/utils/theme/colors.dart';
 import '../../../core/utils/theme/text_styles.dart';
@@ -7,8 +8,9 @@ import '/src/features/settings_screen/widgets/widgets/user_profile.dart';
 import '/src/general_widgets/spacing.dart';
 
 //main screen for settings
-class MakeAWish4Screen extends StatelessWidget {
-  const MakeAWish4Screen({super.key});
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
+  static const routeName = '/settings';
 
   @override
   Widget build(BuildContext context) {
