@@ -5,6 +5,7 @@ import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
+import 'package:event_app/src/features/auth/notifiers/user_notifier.dart';
 import 'package:event_app/src/features/events/network/eventcall_api.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_text_field.dart';
@@ -13,18 +14,19 @@ import 'package:event_app/src/general_widgets/custom_container_text_field.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CreateGroup extends StatefulWidget {
-  CreateGroup({
+class CreateGroup extends ConsumerStatefulWidget {
+  const CreateGroup({
     super.key,
   });
   static const routeName = '/create-group-screen';
 
   @override
-  State<CreateGroup> createState() => _CreateGroupState();
+  ConsumerState<CreateGroup> createState() => _CreateGroupState();
 }
 
-class _CreateGroupState extends State<CreateGroup> {
+class _CreateGroupState extends ConsumerState<CreateGroup> {
   final TextEditingController _groupController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
@@ -34,11 +36,11 @@ class _CreateGroupState extends State<CreateGroup> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Validation Error"),
-            content: Text("Please fill in all fields."),
+            title: const Text("Validation Error"),
+            content: const Text("Please fill in all fields."),
             actions: [
               TextButton(
-                child: Text("OK"),
+                child: const Text("OK"),
                 onPressed: () {
                   Navigator.of(context).pop(); // Close the dialog
                 },
@@ -54,11 +56,11 @@ class _CreateGroupState extends State<CreateGroup> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Validation Error"),
-            content: Text("Please fill in all fields with valid data."),
+            title: const Text("Validation Error"),
+            content: const Text("Please fill in all fields with valid data."),
             actions: [
               TextButton(
-                child: Text("OK"),
+                child: const Text("OK"),
                 onPressed: () {
                   Navigator.of(context).pop(); // Close the dialog
                 },
@@ -76,8 +78,9 @@ class _CreateGroupState extends State<CreateGroup> {
     if (!validateForm()) {
       return; // Don't proceed if form is not valid
     }
+    final state = ref.watch(userNotifierProvider);
     final eventdata = {
-      "creator_id": "creator_id",
+      "creator_id": state.resp?.id,
       'title': _groupController.text,
       'description': _descriptionController.text,
     };
@@ -120,7 +123,7 @@ class _CreateGroupState extends State<CreateGroup> {
               backgroundColor: Colors.grey,
             ),
             onPressed: Navigator.of(context).pop,
-            icon: Icon(Icons.close),
+            icon: const Icon(Icons.close),
             color: Colors.black,
           ),
         ],
@@ -135,7 +138,7 @@ class _CreateGroupState extends State<CreateGroup> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "GroupName",
+                    "Group Name",
                     style: AppTextStyles.textXsMeduim.copyWith(
                       color: AppColors.gray900,
                     ),
@@ -159,7 +162,12 @@ class _CreateGroupState extends State<CreateGroup> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text("Add Members"),
+                      Text(
+                        "Add Members",
+                        style: AppTextStyles.textXsMeduim.copyWith(
+                          color: AppColors.gray900,
+                        ),
+                      ),
                       const Spacing.smallHeight(),
                       Container(
                         height: MediaQuery.sizeOf(context).height * 0.06,
@@ -171,10 +179,14 @@ class _CreateGroupState extends State<CreateGroup> {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.search),
+                              const Spacing.smallWidth(),
+                              CustomImageView(
+                                svgPath: 'assets/images/search_timeline.svg',
+                                height: 20,
+                                width: 20,
+                                color: AppColors.gray700Main,
                               ),
+                              const Spacing.smallWidth(),
                               Text(
                                 "Search People...",
                                 style: AppTextStyles.textSmallRegular.copyWith(
