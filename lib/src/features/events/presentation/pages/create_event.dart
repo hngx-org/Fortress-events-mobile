@@ -61,7 +61,7 @@ class _CreateEventState extends State<CreateEvent> {
       );
       return false;
     } else if (_titleController.text.length < 3 ||
-        _descriptionController.text.length < 50 ||
+        _descriptionController.text.length < 5git  ||
         _locationController.text.length < 5) {
       showDialog(
         context: context,
