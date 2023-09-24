@@ -7,10 +7,7 @@ import 'package:event_app/src/features/auth/model/profile_details/create_account
 import 'package:event_app/src/features/auth/model/profile_details/profile_details.dart';
 import 'package:event_app/src/features/auth/model/profile_details/user.dart';
 import 'package:event_app/src/features/calendar/model/event_model/event_model.dart';
-<<<<<<< HEAD
-=======
 // import 'package:event_app/src/features/settings_screen/widgets/make_a_wish_4_screen.dart';
->>>>>>> f9ff80b0843268bfd0acd8bfd52f079b7d9ecf62
 import 'package:http/http.dart' as http;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
