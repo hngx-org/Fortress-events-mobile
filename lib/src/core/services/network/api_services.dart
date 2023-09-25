@@ -103,6 +103,32 @@ class ApiServices {
     }
   }
 
+  Future indicateInterest(
+      {required String userID, required String eventID}) async {
+    try {
+      debugLog('Attemping to indicate interest Event');
+
+      final response = await _post(
+          data: {}, uri: AppApiData.baseUri('users/$userID/interest/$eventID'));
+     
+      return response;
+    } on SocketException catch (ex, stackTrace) {
+      debugLog('Socket Exception Error => ${ex.toString()}');
+      throw Failure(
+          message: 'You don\'t have internet connection',
+          devMessage: stackTrace.toString());
+    } on FormatException {
+      throw Failure(
+        message: 'Username or password is incorrect',
+        devMessage: 'Error at formatException',
+      );
+    } on Failure catch (ex, stackTrace) {
+      throw Failure(
+          message: ex.message,
+          devMessage: 'Error:${ex}, Stacktrace: $stackTrace');
+    }
+  }
+
   Future getAllUsers() async {
     try {
       debugLog('Attemping to get creating acc');
