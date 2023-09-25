@@ -35,7 +35,7 @@ class _CalendarTableState extends ConsumerState<CalendarTable> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await ref.read(calendarNotifierProvider.notifier).getEvents();
       final state = ref.watch(calendarNotifierProvider);
-      populateEventsFromApi(state.resp! ?? const EventModel());
+      populateEventsFromApi(state.resp ?? const EventModel());
     });
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));

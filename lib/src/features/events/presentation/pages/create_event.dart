@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:event_app/src/core/constants/dimensions.dart';
-
+import 'package:event_app/src/core/services/base_constants/logger.dart';
+import 'package:event_app/src/core/services/network/api_services.dart';
 import 'package:event_app/src/core/utils/date_time_utils.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
@@ -307,7 +308,15 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
                             // ['data 1', 'Data 2'],
                             hintText: 'Groups',
                             label: 'Search Group',
-                            onChanged: (p0) {},
+                            onChanged: (p0) {
+                              setState(() {
+                                String? selectedGroupId =
+                                    findGroupIdByTitle(p0);
+                                _groupController.text = selectedGroupId ?? '';
+                              });
+                              debugLog(
+                                  'title => $p0\n id => ${_groupController.text}');
+                            },
                           )
                         ],
                       ),
@@ -378,5 +387,16 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
     groupsList = [...allTitle.toSet()];
     print('data in groups stils  ${groupsList.length}');
     setState(() {});
+  }
+
+  String? findGroupIdByTitle(String? title) {
+    if (title != null) {
+      for (Group group in groups ?? []) {
+        if (group.title == title) {
+          return group.id;
+        }
+      }
+    }
+    return null; // Return null if title is not found.
   }
 }
