@@ -57,7 +57,7 @@ void populateEventsFromApi(EventModel eventModel) {
   if (eventModel.data != null) {
     for (final event in eventModel.data!) {
       final eventDate = DateTime.parse(
-          event.startDate!); // Assuming startDate is in ISO 8601 format
+          event.startDate ?? ''); // Assuming startDate is in ISO 8601 format
       if (_kEventSource.containsKey(eventDate)) {
         _kEventSource[eventDate]!.add(
           Event(title: event.title!, date: eventDate),

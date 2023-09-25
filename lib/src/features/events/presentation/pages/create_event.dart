@@ -78,7 +78,7 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
         },
       );
       return false;
-    } else if (_titleController.text.length < 3 ||
+    } else if (_titleController.text.length < 3) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -176,7 +176,9 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
 
   TimeOfDay _time = TimeOfDay(hour: 08, minute: 00);
   void _showTimePicker() {
-    showTimePicker(context: context, initialTime: TimeOfDay.now())
+    showTimePicker(
+      
+      context: context, initialTime: TimeOfDay.now())
         .then((value) {
       setState(() {
         _time = value ?? TimeOfDay.now();
@@ -370,7 +372,7 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
           return Theme(
             data: ThemeData.light().copyWith(
               colorScheme: ColorScheme.light(
-                primary: AppColors.gray900,
+                primary: AppColors.primary700Main,
               ),
             ),
             child: child!,
