@@ -7,6 +7,7 @@ import 'package:event_app/src/features/auth/model/profile_details/create_account
 import 'package:event_app/src/features/auth/model/profile_details/profile_details.dart';
 import 'package:event_app/src/features/auth/model/profile_details/user.dart';
 import 'package:event_app/src/features/calendar/model/event_model/event_model.dart';
+
 import 'package:event_app/src/features/comment_screen/model/comment_body.dart';
 import 'package:event_app/src/features/comment_screen/model/post_comment_resp/post_comment_resp.dart';
 import 'package:event_app/src/features/events/presentation/models/groups_model/groups_model.dart';

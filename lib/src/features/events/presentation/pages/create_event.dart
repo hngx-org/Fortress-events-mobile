@@ -16,7 +16,7 @@ import 'package:event_app/src/features/events/presentation/widgets/custom_contai
 import 'package:event_app/src/features/events/presentation/widgets/custom_text_field.dart';
 import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
-import 'package:event_app/src/general_widgets/custom_icon_container.dart';
+
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/dropdown_field.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
@@ -79,8 +79,6 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
       );
       return false;
     } else if (_titleController.text.length < 3 ||
-        _descriptionController.text.length < 5 ||
-        _locationController.text.length < 3) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
