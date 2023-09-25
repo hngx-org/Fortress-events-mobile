@@ -24,12 +24,12 @@ dependencies:
   intl: ^0.18.0
   table_calendar: ^3.0.9
   google_sign_in: ^5.2.1
-flutter_launcher_icons: 0^13.1
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/images/eventlogo.jpg"
-  min_sdk_android: 21 # android min sdk min:16, default 21
   fluttertoast: ^8.2.2
+
+
+
+
+  
 
 
   
