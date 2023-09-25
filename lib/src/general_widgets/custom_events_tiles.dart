@@ -182,7 +182,7 @@ class _CustomEventsTileState extends State<CustomEventsTile> {
                                     top: Radius.circular(25.0))),
                             builder: (context) => Padding(
                                   padding: MediaQuery.of(context).viewInsets,
-                                  child: const CommentScreen(),
+                                  child: CommentScreen(eventId: widget.eventID),
                                 )),
                         child: CustomIconAndText(
                           iconColor: appTheme.primary900,

@@ -7,10 +7,14 @@ import 'package:event_app/src/features/auth/model/profile_details/create_account
 import 'package:event_app/src/features/auth/model/profile_details/profile_details.dart';
 import 'package:event_app/src/features/auth/model/profile_details/user.dart';
 import 'package:event_app/src/features/calendar/model/event_model/event_model.dart';
+import 'package:event_app/src/features/comment_screen/model/comment_body.dart';
+import 'package:event_app/src/features/comment_screen/model/post_comment_resp/post_comment_resp.dart';
 import 'package:event_app/src/features/events/presentation/models/groups_model/groups_model.dart';
 // import 'package:event_app/src/features/settings_screen/widgets/make_a_wish_4_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../features/comment_screen/model/post_comments/post_comments.dart';
 
 class ApiServices {
   Future<http.Response> _post(
@@ -32,30 +36,57 @@ class ApiServices {
     return response;
   }
 
-  // Future getSample() async {
-  //   try {
-  //     debugLog('Attemping to get smaple list');
-  //     final response = await _get(uri: AppApiData.baseUri);
-  //     List<SampleModel> data = List<SampleModel>.from(
-  //             jsonDecode(response.body).map((x) => SampleModel.fromMap(x)))
-  //         .toList();
+  Future getComments({required String eventId}) async {
+    try {
+      debugLog('Attemping to get smaple list');
+      final response =
+          await _get(uri: AppApiData.baseUri('events/$eventId/comments'));
+      List<PostComments> data = List<PostComments>.from(
+              jsonDecode(response.body).map((x) => PostComments.fromMap(x)))
+          .toList();
 
-  //     return data;
-  //   } on SocketException catch (ex, stackTrace) {
-  //     throw Failure(
-  //         message: 'You don\'t have internet connection',
-  //         devMessage: stackTrace.toString());
-  //   } on FormatException {
-  //     throw Failure(
-  //       message: 'Username or password is incorrect',
-  //       devMessage: 'Error at formatException',
-  //     );
-  //   } on Failure catch (ex, stackTrace) {
-  //     throw Failure(
-  //         message: ex.message,
-  //         devMessage: 'Error:${ex}, Stacktrace: $stackTrace');
-  //   }
-  // }
+      return data;
+    } on SocketException catch (ex, stackTrace) {
+      throw Failure(
+          message: 'You don\'t have internet connection',
+          devMessage: stackTrace.toString());
+    } on FormatException {
+      throw Failure(
+        message: 'Username or password is incorrect',
+        devMessage: 'Error at formatException',
+      );
+    } on Failure catch (ex, stackTrace) {
+      throw Failure(
+          message: ex.message,
+          devMessage: 'Error:${ex}, Stacktrace: $stackTrace');
+    }
+  }
+
+  Future postComments(
+      {required CommentBody body, required String eventId}) async {
+    try {
+      debugLog('Attemping to get creating acc');
+      final response = await _post(
+          data: body.toMap(),
+          uri: AppApiData.baseUri('events/$eventId/comments'));
+      final PostCommentResp data = PostCommentResp.fromJson(response.body);
+      return data;
+    } on SocketException catch (ex, stackTrace) {
+      debugLog('Socket Exception Error => ${ex.toString()}');
+      throw Failure(
+          message: 'You don\'t have internet connection',
+          devMessage: stackTrace.toString());
+    } on FormatException {
+      throw Failure(
+        message: 'Username or password is incorrect',
+        devMessage: 'Error at formatException',
+      );
+    } on Failure catch (ex, stackTrace) {
+      throw Failure(
+          message: ex.message,
+          devMessage: 'Error:${ex}, Stacktrace: $stackTrace');
+    }
+  }
 
   Future getEvents() async {
     try {
@@ -110,7 +141,7 @@ class ApiServices {
 
       final response = await _post(
           data: {}, uri: AppApiData.baseUri('users/$userID/interest/$eventID'));
-     
+
       return response;
     } on SocketException catch (ex, stackTrace) {
       debugLog('Socket Exception Error => ${ex.toString()}');
