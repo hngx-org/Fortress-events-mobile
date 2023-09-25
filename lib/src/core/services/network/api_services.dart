@@ -7,7 +7,7 @@ import 'package:event_app/src/features/auth/model/profile_details/create_account
 import 'package:event_app/src/features/auth/model/profile_details/profile_details.dart';
 import 'package:event_app/src/features/auth/model/profile_details/user.dart';
 import 'package:event_app/src/features/calendar/model/event_model/event_model.dart';
-
+import 'package:event_app/src/features/events/presentation/models/allusers_model/allusers_model.dart';
 import 'package:event_app/src/features/comment_screen/model/comment_body.dart';
 import 'package:event_app/src/features/comment_screen/model/post_comment_resp/post_comment_resp.dart';
 import 'package:event_app/src/features/events/presentation/models/groups_model/groups_model.dart';
@@ -164,7 +164,7 @@ class ApiServices {
   Future getAllUsers() async {
     try {
       debugLog('Attemping to get creating acc');
-      final response = await _get(uri: AppApiData.baseUri('users/'));
+      final response = await _get(uri: AppApiData.baseUri('users'));
       final data = ProfileDetails.fromJson(response.body);
       return data;
     } on SocketException catch (ex, stackTrace) {
@@ -204,6 +204,29 @@ class ApiServices {
           devMessage: 'Error:${ex}, Stacktrace: $stackTrace');
     }
   }
+
+  Future getAllMembers() async {
+    try {
+      debugLog('Attemping to get all members');
+      final response = await _get(uri: AppApiData.baseUri('users'));
+      final data = MembersModel.fromJson(response.body);
+      return data;
+    } on SocketException catch (ex, stackTrace) {
+      throw Failure(
+          message: 'You don\'t have internet connection',
+          devMessage: stackTrace.toString());
+    } on FormatException {
+      throw Failure(
+        message: 'Username or password is incorrect',
+        devMessage: 'Error at formatException',
+      );
+    } on Failure catch (ex, stackTrace) {
+      throw Failure(
+          message: ex.message,
+          devMessage: 'Error:${ex}, Stacktrace: $stackTrace');
+    }
+  }
+
 
   Future logout() async {
     try {

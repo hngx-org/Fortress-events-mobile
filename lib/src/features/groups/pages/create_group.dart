@@ -2,19 +2,25 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:event_app/src/core/constants/dimensions.dart';
+import 'package:event_app/src/core/services/network/api_services.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/text_styles.dart';
+import 'package:event_app/src/features/auth/model/profile_details/user.dart';
 import 'package:event_app/src/features/auth/notifiers/user_notifier.dart';
 import 'package:event_app/src/features/events/network/eventcall_api.dart';
+import 'package:event_app/src/features/events/presentation/models/allusers_model/allusers_model.dart';
+import 'package:event_app/src/features/events/presentation/models/allusers_model/users.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_container_text_righticon.dart';
 import 'package:event_app/src/features/events/presentation/widgets/custom_text_field.dart';
 import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
 import 'package:event_app/src/general_widgets/custom_container_text_field.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
+import 'package:event_app/src/general_widgets/dropdown_field.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'add_members.dart';
 
 class CreateGroup extends ConsumerStatefulWidget {
   const CreateGroup({
@@ -27,6 +33,27 @@ class CreateGroup extends ConsumerStatefulWidget {
 }
 
 class _CreateGroupState extends ConsumerState<CreateGroup> {
+   List<String> items = [];
+   List<String> idArray = []; // Initialize an empty list to hold items
+
+  // Function to add an item to the list
+  void addItemToList(String newItem) {
+    setState(() {
+      items.add(newItem);
+    });
+    setState(() {
+      idArray.add(newItem);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await usersData();
+    });
+  }
   final TextEditingController _groupController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
@@ -159,43 +186,28 @@ class _CreateGroupState extends ConsumerState<CreateGroup> {
                     controller: _descriptionController,
                   ),
                   const Spacing.mediumHeight(),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Add Members",
-                        style: AppTextStyles.textXsMeduim.copyWith(
-                          color: AppColors.gray900,
-                        ),
-                      ),
-                      const Spacing.smallHeight(),
-                      Container(
-                        height: MediaQuery.sizeOf(context).height * 0.06,
-                        width: MediaQuery.sizeOf(context).width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: AppColors.gray500),
-                        ),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Spacing.smallWidth(),
-                              CustomImageView(
-                                svgPath: 'assets/images/search_timeline.svg',
-                                height: 20,
-                                width: 20,
-                                color: AppColors.gray700Main,
-                              ),
-                              const Spacing.smallWidth(),
-                              Text(
-                                "Search People...",
-                                style: AppTextStyles.textSmallRegular.copyWith(
-                                  color: AppColors.gray700Main,
-                                ),
-                              ),
-                            ]),
-                      ),
-                    ],
+                  DropDownField(
+                    values: usersList,
+                    // ['data 1', 'Data 2'],
+                    hintText: 'Members',
+                    label: 'Add Members',
+                    onChanged: (value) {
+                      if (items.contains(value)) {
+                        return;
+                      }
+                     addItemToList(value!);
+                     log(value);
+                     log(idArray.toString());
+
+                    },
+                  ),
+                  const Spacing.mediumHeight(),
+                  CustomTextField(
+                    boxheight: MediaQuery.sizeOf(context).height * 0.2,
+                    boxwidth: MediaQuery.sizeOf(context).width,
+                    item: items.toString(),
+                    lines: 6,
+                    
                   ),
                 ],
               ),
@@ -215,5 +227,36 @@ class _CreateGroupState extends ConsumerState<CreateGroup> {
         },
       ),
     );
+  }
+
+  List<String> usersList = ['Search'];
+
+  List<Member>? users = [];
+  Future usersData() async {
+    final api = ApiServices();
+
+    final MembersModel usersResponse = await api.getAllMembers();
+    users = [...usersResponse.users ?? []];
+    final allTitle = usersResponse.users!.map((e) => e.name ?? "").toList();
+    print('data retreved lenght ${allTitle.length}');
+    usersList = [...allTitle.toSet()];
+    print('data in users stils  ${usersList.length}');
+    setState(() {});
+  }
+}
+
+
+class MemberArray extends StatefulWidget {
+  const MemberArray({super.key});
+
+  @override
+  State<MemberArray> createState() => _MemberArrayState();
+}
+
+class _MemberArrayState extends State<MemberArray> {
+ 
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

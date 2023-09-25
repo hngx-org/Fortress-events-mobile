@@ -102,7 +102,8 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
   }
 
   Future _registerevent() async {
-    if (!validateForm()) {
+    if
+     (!validateForm()) {
       return; // Don't proceed if form is not valid
     }
     final state = ref.watch(userNotifierProvider);
