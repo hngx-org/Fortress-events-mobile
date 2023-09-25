@@ -41,6 +41,8 @@ class _CreateGroupState extends ConsumerState<CreateGroup> {
     setState(() {
       items.add(newItem);
     });
+  }
+   void addIdToList(String newItem) {
     setState(() {
       idArray.add(newItem);
     });
@@ -110,6 +112,7 @@ class _CreateGroupState extends ConsumerState<CreateGroup> {
       "creator_id": state.resp?.id,
       'title': _groupController.text,
       'description': _descriptionController.text,
+      'users': idArray,
     };
 
     log('Evernt Data => ${eventdata.toString()}');
@@ -196,6 +199,7 @@ class _CreateGroupState extends ConsumerState<CreateGroup> {
                         return;
                       }
                      addItemToList(value!);
+                     addIdToList(findUserIdByName(value)!);
                      log(value);
                      log(idArray.toString());
 
@@ -231,32 +235,44 @@ class _CreateGroupState extends ConsumerState<CreateGroup> {
 
   List<String> usersList = ['Search'];
 
-  List<Member>? users = [];
+  List<Member>? members = [];
   Future usersData() async {
     final api = ApiServices();
 
     final MembersModel usersResponse = await api.getAllMembers();
-    users = [...usersResponse.users ?? []];
+    members = [...usersResponse.users ?? []];
     final allTitle = usersResponse.users!.map((e) => e.name ?? "").toList();
     print('data retreved lenght ${allTitle.length}');
     usersList = [...allTitle.toSet()];
     print('data in users stils  ${usersList.length}');
     setState(() {});
   }
-}
-
-
-class MemberArray extends StatefulWidget {
-  const MemberArray({super.key});
-
-  @override
-  State<MemberArray> createState() => _MemberArrayState();
-}
-
-class _MemberArrayState extends State<MemberArray> {
- 
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
+  String? findUserIdByName(String? name) {
+    if (name != null) {
+      for (Member member in members ?? []) {
+        if (member.name == name) {
+          return member.id;
+        }
+      }
+    }
+    return null; // Return null if name is not found.
   }
 }
+
+
+// class MemberArray extends StatefulWidget {
+//   const MemberArray({super.key});
+
+//   @override
+//   State<MemberArray> createState() => _MemberArrayState();
+// }
+
+// class _MemberArrayState extends State<MemberArray> {
+ 
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Placeholder();
+//   }
+
+  
+// }

@@ -110,3 +110,6 @@ class GroupEventsScreen extends ConsumerWidget {
     );
   }
 }
+
+// final MembersModel usersResponse = await api._get();
+// '/groups/:groupId/events'
