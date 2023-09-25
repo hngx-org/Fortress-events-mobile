@@ -112,7 +112,7 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
       'description': _descriptionController.text,
       'location': _locationController.text,
       'start_date': _dateController.text,
-      'start_time': _timeController.text,
+      'start_time': _time.format(context), //_timeController.text,
       'group_id': _groupController.text, //'05dc4497-9993-4aa2-b0d8-ab679dc98ace
     };
 
@@ -172,6 +172,17 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
         _dateController.text = selectedDate.format('yyyy-MM-dd');
       });
     }
+  }
+
+  TimeOfDay _time = TimeOfDay(hour: 08, minute: 00);
+  void _showTimePicker() {
+    showTimePicker(context: context, initialTime: TimeOfDay.now())
+        .then((value) {
+      setState(() {
+        _time = value ?? TimeOfDay.now();
+        _timeController.text = _time.format(context);
+      });
+    });
   }
 
   @override
@@ -290,8 +301,8 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       CustomContainerRightIcon(
-                                        displaydata: "02:00pm",
-                                        onPressed: () {},
+                                        displaydata: _time.format(context),
+                                        onPressed: _showTimePicker,
                                         iconSvgPath: ImageConstant.imgClock,
                                         iconColor: AppColors.gray700Main,
                                         controller: _timeController,

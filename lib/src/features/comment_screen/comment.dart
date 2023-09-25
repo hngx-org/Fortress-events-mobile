@@ -1,19 +1,34 @@
+import 'dart:convert';
+
+import 'package:event_app/src/core/helper_fxn.dart';
+import 'package:event_app/src/core/services/network/api_services.dart';
+import 'package:event_app/src/features/auth/notifiers/user_notifier.dart';
+import 'package:event_app/src/features/comment_screen/model/comment_body.dart';
+import 'package:event_app/src/features/comment_screen/model/post_comment_resp/post_comment_resp.dart';
+import 'package:event_app/src/features/comment_screen/model/post_comments/post_comments.dart';
+import 'package:event_app/src/features/comment_screen/notifiers/comments_notifier.dart';
 import 'package:event_app/src/features/comment_screen/post_events_comments.dart';
 import 'package:event_app/src/features/comment_screen/pre_events_comments.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 
-class CommentScreen extends StatefulWidget {
-  const CommentScreen({super.key});
+class CommentScreen extends ConsumerStatefulWidget {
+  const CommentScreen({super.key, required this.eventId});
+  final String eventId;
 
   @override
-  State<CommentScreen> createState() => _CommentScreenState();
+  ConsumerState<CommentScreen> createState() => _CommentScreenState();
 }
 
-class _CommentScreenState extends State<CommentScreen> {
+class _CommentScreenState extends ConsumerState<CommentScreen> {
+  final TextEditingController _commentContrl = TextEditingController();
   int toggleSelectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    final userData = ref.watch(userNotifierProvider);
+    final api = ref.read(apiServicesProvider);
+
     return FractionallySizedBox(
       heightFactor: 0.93,
       child: Padding(
@@ -62,7 +77,9 @@ class _CommentScreenState extends State<CommentScreen> {
                   children: [
                     Center(
                         child: (toggleSelectedIndex == 0)
-                            ? const PreScreen()
+                            ? PreScreen(
+                                eventId: widget.eventId,
+                              )
                             : const PostScreen()),
                   ],
                 ),
@@ -77,6 +94,7 @@ class _CommentScreenState extends State<CommentScreen> {
                     const SizedBox(width: 20),
                     Expanded(
                       child: TextFormField(
+                        controller: _commentContrl,
                         decoration: InputDecoration(
                           label: const Text('Add a comment'),
                           suffixIcon: IconButton(
@@ -84,8 +102,28 @@ class _CommentScreenState extends State<CommentScreen> {
                               Icons.send,
                               color: Color.fromARGB(255, 1, 32, 10),
                             ),
-                            onPressed: () {
-                              // Add the action you want to perform when the button is pressed
+                            onPressed: () async {
+                              if (_commentContrl.text.isNotEmpty) {
+                                final data = CommentBody(
+                                    body: _commentContrl.text,
+                                    eventId: widget.eventId,
+                                    userId: userData.resp?.id ?? "");
+
+                                final PostCommentResp comments =
+                                    await api.postComments(
+                                        body: data, eventId: widget.eventId);
+
+                                toastMessage(comments.message ?? '');
+                                ref.watch(commentProvider).copyWith(resp: [
+                                  ...[
+                                    PostComments(
+                                        body: comments.newComment?.body ?? "",
+                                        id: comments.newComment?.id ?? '')
+                                  ]
+                                ]);
+                                _commentContrl.clear();
+                                setState(() {});
+                              }
                             },
                           ),
                           enabledBorder: OutlineInputBorder(

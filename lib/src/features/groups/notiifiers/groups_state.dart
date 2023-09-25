@@ -1,6 +1,5 @@
 import 'package:event_app/src/core/utils/app_enums.dart';
 
-
 class GroupState {
   final LoadState loadState;
   final String errorMessage;
