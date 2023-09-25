@@ -111,14 +111,14 @@ class _CommentScreenState extends ConsumerState<CommentScreen> {
 
                                 final PostCommentResp comments =
                                     await api.postComments(
-                                        body: data, eventId: widget.eventId);
+                                        body: data, eventId: widget.eventId, );
 
                                 toastMessage(comments.message ?? '');
                                 ref.watch(commentProvider).copyWith(resp: [
                                   ...[
                                     PostComments(
                                         body: comments.newComment?.body ?? "",
-                                        id: comments.newComment?.id ?? '')
+                                        id: comments.newComment?.id ?? '',  )
                                   ]
                                 ]);
                                 _commentContrl.clear();

@@ -52,6 +52,7 @@ class _PreScreenState extends ConsumerState<PreScreen> {
                 itemBuilder: (ctx, index) {
                   var item = comments[index];
                   final data = state.resp?[index];
+
                   return Container(
                     margin: const EdgeInsets.only(bottom: 5),
                     child: Padding(
@@ -66,7 +67,7 @@ class _PreScreenState extends ConsumerState<PreScreen> {
                               width: 30,
                               radius: BorderRadius.circular(15),
                               fit: BoxFit.cover,
-                              url: data?.imageUrl ?? '',
+                              url: data?.avatar ?? '',
                             ),
 
                             //  CircleAvatar(
@@ -88,7 +89,8 @@ class _PreScreenState extends ConsumerState<PreScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(item.handle,
+                                        Text(
+                                            '@${data?.user!.replaceAll(' ', '').toLowerCase() ?? ''}',
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold)),
                                         Text(data?.body ?? ""),
