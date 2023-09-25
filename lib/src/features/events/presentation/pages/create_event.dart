@@ -16,7 +16,7 @@ import 'package:event_app/src/features/events/presentation/widgets/custom_contai
 import 'package:event_app/src/features/events/presentation/widgets/custom_text_field.dart';
 import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
-import 'package:event_app/src/general_widgets/custom_icon_container.dart';
+
 import 'package:event_app/src/general_widgets/custom_image_view.dart';
 import 'package:event_app/src/general_widgets/dropdown_field.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
@@ -78,9 +78,7 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
         },
       );
       return false;
-    } else if (_titleController.text.length < 3 ||
-        _descriptionController.text.length < 5 ||
-        _locationController.text.length < 3) {
+    } else if (_titleController.text.length < 3) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -115,7 +113,7 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
       'description': _descriptionController.text,
       'location': _locationController.text,
       'start_date': _dateController.text,
-      'start_time': _timeController.text,
+      'start_time': _time.format(context), //_timeController.text,
       'group_id': _groupController.text, //'05dc4497-9993-4aa2-b0d8-ab679dc98ace
     };
 
@@ -175,6 +173,19 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
         _dateController.text = selectedDate.format('yyyy-MM-dd');
       });
     }
+  }
+
+  TimeOfDay _time = TimeOfDay(hour: 08, minute: 00);
+  void _showTimePicker() {
+    showTimePicker(
+      
+      context: context, initialTime: TimeOfDay.now())
+        .then((value) {
+      setState(() {
+        _time = value ?? TimeOfDay.now();
+        _timeController.text = _time.format(context);
+      });
+    });
   }
 
   @override
@@ -293,8 +304,8 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       CustomContainerRightIcon(
-                                        displaydata: "02:00pm",
-                                        onPressed: () {},
+                                        displaydata: _time.format(context),
+                                        onPressed: _showTimePicker,
                                         iconSvgPath: ImageConstant.imgClock,
                                         iconColor: AppColors.gray700Main,
                                         controller: _timeController,
@@ -362,7 +373,7 @@ class _CreateEventState extends ConsumerState<CreateEvent> {
           return Theme(
             data: ThemeData.light().copyWith(
               colorScheme: ColorScheme.light(
-                primary: AppColors.gray900,
+                primary: AppColors.primary700Main,
               ),
             ),
             child: child!,

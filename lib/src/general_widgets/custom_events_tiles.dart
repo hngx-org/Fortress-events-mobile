@@ -1,25 +1,35 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/constants/strings.dart';
+import 'package:event_app/src/core/utils/app_enums.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
 import 'package:event_app/src/core/utils/theme/app_decoration.dart';
+import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/custom_text_style.dart';
 import 'package:event_app/src/core/utils/theme/theme_helper.dart';
+import 'package:event_app/src/features/auth/notifiers/user_notifier.dart';
 import 'package:event_app/src/features/comment_screen/comment.dart';
 import 'package:event_app/src/features/comment_screen/notifications_two.dart';
+import 'package:event_app/src/features/groups/notiifiers/groups_notifiers.dart';
 import 'package:event_app/src/general_widgets/custom_icon_and_text.dart';
 import 'package:event_app/src/general_widgets/custom_text_button.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CustomEventsTile extends StatelessWidget {
+class CustomEventsTile extends StatefulWidget {
   final String eventTitle;
-  const CustomEventsTile({
-    super.key,
-    required this.eventTitle,
-  });
+  final String eventID;
+  const CustomEventsTile(
+      {super.key, required this.eventTitle, required this.eventID});
 
+  @override
+  State<CustomEventsTile> createState() => _CustomEventsTileState();
+}
+
+class _CustomEventsTileState extends State<CustomEventsTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -95,7 +105,7 @@ class CustomEventsTile extends StatelessWidget {
                               height: 15,
                             ),
                             Text(
-                              eventTitle,
+                              widget.eventTitle,
                               style: CustomTextStyles.titleMediumGrey1000,
                             ),
                           ],
@@ -172,7 +182,7 @@ class CustomEventsTile extends StatelessWidget {
                                     top: Radius.circular(25.0))),
                             builder: (context) => Padding(
                                   padding: MediaQuery.of(context).viewInsets,
-                                  child: const CommentScreen(),
+                                  child: CommentScreen(eventId: widget.eventID),
                                 )),
                         child: CustomIconAndText(
                           iconColor: appTheme.primary900,
@@ -187,9 +197,27 @@ class CustomEventsTile extends StatelessWidget {
                 //   width: Dimensions.bigSmall,
                 // ),
                 const Spacer(),
-                CustomTextButton(
-                  buttonText: AppStrings.buttonText,
-                  onPressed: () {},
+                Consumer(
+                  builder: (context, ref, child) {
+                    final notifier = ref.read(groupNotifierProvider.notifier);
+                    final state = ref.watch(groupNotifierProvider);
+                    final userState = ref.watch(userNotifierProvider);
+
+                    return state.loadState == LoadState.success
+                        ? Icon(
+                            Icons.check,
+                          )
+                        : CustomTextButton(
+                            buttonText: AppStrings.buttonText,
+                            onPressed: () async {
+                              //!Here
+                              await notifier.indicateInterest(
+                                  userId: userState.resp?.id ?? '',
+                                  eventId: widget.eventID);
+                              setState(() {});
+                            },
+                          );
+                  },
                 ),
                 const Spacing.tinyWidth(),
               ],

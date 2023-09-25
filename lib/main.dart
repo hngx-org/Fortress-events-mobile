@@ -1,3 +1,4 @@
+import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/features/people_groups/pages/my_people_screen.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_three.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_two.dart';
@@ -28,7 +29,7 @@ class FortressEventApp extends StatelessWidget {
       title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
       //TODO: Handle the app theming
-      theme: theme,
+      theme: ThemeData(primaryColor: AppColors.primary700Main,colorScheme: ColorScheme.light(primary: AppColors.primary700Main) ),
       //TODO: Handle the app navigation
       // home: const HomeScreenOne(),
       home: CreateGroup(),

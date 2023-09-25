@@ -1,8 +1,11 @@
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/constants/strings.dart';
 import 'package:event_app/src/core/utils/image_constant.dart';
+import 'package:event_app/src/core/utils/theme/colors.dart';
 import 'package:event_app/src/core/utils/theme/custom_text_style.dart';
 import 'package:event_app/src/core/utils/theme/theme_helper.dart';
+import 'package:event_app/src/features/auth/notifiers/user_notifier.dart';
+import 'package:event_app/src/features/groups/notiifiers/groups_notifiers.dart';
 import 'package:event_app/src/general_widgets/custom_events_tiles.dart';
 import 'package:event_app/src/general_widgets/custom_navigator_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../core/utils/app_enums.dart';
 import '../providers/group_events_provider.dart';
 
 class GroupEventsScreen extends ConsumerWidget {
@@ -88,6 +92,7 @@ class GroupEventsScreen extends ConsumerWidget {
                     final indexData = groupEvents[index];
                     return CustomEventsTile(
                       eventTitle: indexData.title ?? '',
+                      eventID: indexData.id ?? '',
                     );
                   },
                 )

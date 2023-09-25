@@ -18,4 +18,34 @@ List<CommentsModel> comments = [
       false, true, '4.png'),
   CommentsModel(
       '3.png', '@patrickhins', 'Who has a pen?', 'Yesterday', true, false, ''),
+  CommentsModel('1.png', '@blessing462', 'Hello, how is everyone doing?',
+      'Just Now', true, false, ''),
+  CommentsModel('2.png', '@moyin49826', 'Yes, we are okayone doing?', '1:41 pm',
+      false, true, '4.png'),
+  CommentsModel(
+      '3.png', '@patrickhins', 'Who has a pen?', 'Yesterday', true, false, ''),
+  CommentsModel('1.png', '@blessing462', 'Hello, how is everyone doing?',
+      'Just Now', true, false, ''),
+  CommentsModel('2.png', '@moyin49826', 'Yes, we are okayone doing?', '1:41 pm',
+      false, true, '4.png'),
+  CommentsModel(
+      '3.png', '@patrickhins', 'Who has a pen?', 'Yesterday', true, false, ''),
+  CommentsModel('1.png', '@blessing462', 'Hello, how is everyone doing?',
+      'Just Now', true, false, ''),
+  CommentsModel('2.png', '@moyin49826', 'Yes, we are okayone doing?', '1:41 pm',
+      false, true, '4.png'),
+  CommentsModel(
+      '3.png', '@patrickhins', 'Who has a pen?', 'Yesterday', true, false, ''),
+  CommentsModel('1.png', '@blessing462', 'Hello, how is everyone doing?',
+      'Just Now', true, false, ''),
+  CommentsModel('2.png', '@moyin49826', 'Yes, we are okayone doing?', '1:41 pm',
+      false, true, '4.png'),
+  CommentsModel(
+      '3.png', '@patrickhins', 'Who has a pen?', 'Yesterday', true, false, ''),
+  CommentsModel('1.png', '@blessing462', 'Hello, how is everyone doing?',
+      'Just Now', true, false, ''),
+  CommentsModel('2.png', '@moyin49826', 'Yes, we are okayone doing?', '1:41 pm',
+      false, true, '4.png'),
+  CommentsModel(
+      '3.png', '@patrickhins', 'Who has a pen?', 'Yesterday', true, false, ''),
 ];
