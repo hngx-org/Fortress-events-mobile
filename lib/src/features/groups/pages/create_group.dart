@@ -20,6 +20,7 @@ import 'package:event_app/src/general_widgets/dropdown_field.dart';
 import 'package:event_app/src/general_widgets/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'add_members.dart';
 
 class CreateGroup extends ConsumerStatefulWidget {
   const CreateGroup({
@@ -32,6 +33,18 @@ class CreateGroup extends ConsumerStatefulWidget {
 }
 
 class _CreateGroupState extends ConsumerState<CreateGroup> {
+   List<String> items = [];
+   List<String> idArray = []; // Initialize an empty list to hold items
+
+  // Function to add an item to the list
+  void addItemToList(String newItem) {
+    setState(() {
+      items.add(newItem);
+    });
+    setState(() {
+      idArray.add(newItem);
+    });
+  }
 
   @override
   void initState() {
@@ -178,7 +191,23 @@ class _CreateGroupState extends ConsumerState<CreateGroup> {
                     // ['data 1', 'Data 2'],
                     hintText: 'Members',
                     label: 'Add Members',
-                    onChanged: (p0) {},
+                    onChanged: (value) {
+                      if (items.contains(value)) {
+                        return;
+                      }
+                     addItemToList(value!);
+                     log(value);
+                     log(idArray.toString());
+
+                    },
+                  ),
+                  const Spacing.mediumHeight(),
+                  CustomTextField(
+                    boxheight: MediaQuery.sizeOf(context).height * 0.2,
+                    boxwidth: MediaQuery.sizeOf(context).width,
+                    item: items.toString(),
+                    lines: 6,
+                    
                   ),
                 ],
               ),
@@ -213,5 +242,21 @@ class _CreateGroupState extends ConsumerState<CreateGroup> {
     usersList = [...allTitle.toSet()];
     print('data in users stils  ${usersList.length}');
     setState(() {});
+  }
+}
+
+
+class MemberArray extends StatefulWidget {
+  const MemberArray({super.key});
+
+  @override
+  State<MemberArray> createState() => _MemberArrayState();
+}
+
+class _MemberArrayState extends State<MemberArray> {
+ 
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
