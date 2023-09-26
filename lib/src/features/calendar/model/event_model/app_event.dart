@@ -12,7 +12,7 @@ class AppEvents extends Equatable {
   final String? endDate;
   final String? startTime;
   final String? endTime;
-  final String? usersInterested;
+  final int? usersInterested;
 
   const AppEvents({
     this.id,
@@ -37,7 +37,7 @@ class AppEvents extends Equatable {
         endDate: data['end_date'] as String?,
         startTime: data['start_time'] as String?,
         endTime: data['end_time'] as String?,
-        usersInterested: data['interested_users'].length as String?,
+        usersInterested: data['interested_users'].length as int?,
       );
 
   Map<String, dynamic> toMap() => {
@@ -75,7 +75,7 @@ class AppEvents extends Equatable {
     String? endDate,
     String? startTime,
     String? endTime,
-    String? usersInterested,
+    int? usersInterested,
 
   }) {
     return AppEvents(
