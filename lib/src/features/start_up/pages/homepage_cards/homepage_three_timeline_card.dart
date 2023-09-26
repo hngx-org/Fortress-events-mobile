@@ -86,8 +86,8 @@ class HomepageThreeTimelineCard extends StatelessWidget {
                 avatarCountExternalRadius: 16,
                 avatarCountRadius: 14,
               ),
-              const CustomIconContainer(
-                containerText: '32',
+              CustomIconContainer(
+                containerText: model?.usersInterested,
                 spacingWidth: Dimensions.tiny,
                 containerColor: AppColors.accentGreen100,
                 containerHPadding: Dimensions.smedium,

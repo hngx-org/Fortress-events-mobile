@@ -4,7 +4,7 @@ import '../core/constants/dimensions.dart';
 import 'custom_image_view.dart';
 
 class CustomIconContainer extends StatelessWidget {
-  final String containerText;
+  final String? containerText;
   final TextStyle? containerTextStyle;
   final double spacingWidth;
   final String iconSvgPath;
@@ -80,7 +80,7 @@ class CustomIconContainer extends StatelessWidget {
           ),
           SizedBox(width: spacingWidth),
           Text(
-            containerText,
+            containerText!,
             style: containerTextStyle,
           ),
         ],

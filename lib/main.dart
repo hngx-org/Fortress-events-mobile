@@ -32,7 +32,7 @@ class FortressEventApp extends StatelessWidget {
       theme: ThemeData(primaryColor: AppColors.primary700Main,colorScheme: ColorScheme.light(primary: AppColors.primary700Main) ),
       //TODO: Handle the app navigation
       // home: const HomeScreenOne(),
-      home: CreateGroup(),
+      home: TimeLineHomepageThree(),
       routes: {
         HomeScreenOne.routeName: (context) => const HomeScreenOne(),
         HomepageTwo.routeName: (context) => const HomepageTwo(),

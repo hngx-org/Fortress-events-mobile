@@ -1,7 +1,7 @@
 import 'package:event_app/src/core/utils/app_enums.dart';
 import 'package:event_app/src/core/constants/dimensions.dart';
 import 'package:event_app/src/core/utils/theme/colors.dart';
-import 'package:event_app/src/features/calendar/model/event_model/app_event.dart';
+// import 'package:event_app/src/features/calendar/model/event_model/app_event.dart';
 import 'package:event_app/src/features/calendar/notifiers/calendar_notifier.dart';
 import 'package:event_app/src/features/start_up/pages/homepage_cards/homepage_three_timeline_card.dart';
 import 'package:event_app/src/general_widgets/custom_image_view.dart';

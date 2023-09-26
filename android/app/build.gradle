@@ -60,7 +60,7 @@ android {
 
     
     signingConfigs {
-      debug {
+      debug{
         keyAlias 'upload'
         keyPassword '123456'
         storeFile file('fortress_keystore.jks')
@@ -69,9 +69,9 @@ android {
     }
 
     buildTypes {
-        debug {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+        debug{
+            // TODO: Add your own signing config for the debug build.
+            // Signing with the debugkeys for now, so `flutter run --debug` works.
             signingConfig signingConfigs.debug
         }
     }

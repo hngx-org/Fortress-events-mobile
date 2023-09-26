@@ -12,6 +12,7 @@ class AppEvents extends Equatable {
   final String? endDate;
   final String? startTime;
   final String? endTime;
+  final String? usersInterested;
 
   const AppEvents({
     this.id,
@@ -23,6 +24,7 @@ class AppEvents extends Equatable {
     this.endDate,
     this.startTime,
     this.endTime,
+    this.usersInterested,
   });
 
   factory AppEvents.fromMap(Map<String, dynamic> data) => AppEvents(
@@ -35,6 +37,7 @@ class AppEvents extends Equatable {
         endDate: data['end_date'] as String?,
         startTime: data['start_time'] as String?,
         endTime: data['end_time'] as String?,
+        usersInterested: data['interested_users'].length as String?,
       );
 
   Map<String, dynamic> toMap() => {
@@ -47,6 +50,7 @@ class AppEvents extends Equatable {
         'end_date': endDate,
         'start_time': startTime,
         'end_time': endTime,
+        'interested_users': usersInterested,
       };
 
   /// `dart:convert`
@@ -71,6 +75,8 @@ class AppEvents extends Equatable {
     String? endDate,
     String? startTime,
     String? endTime,
+    String? usersInterested,
+
   }) {
     return AppEvents(
       id: id ?? this.id,
@@ -82,6 +88,7 @@ class AppEvents extends Equatable {
       endDate: endDate ?? this.endDate,
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
+      usersInterested: usersInterested ?? this.usersInterested,
     );
   }
 
@@ -97,6 +104,7 @@ class AppEvents extends Equatable {
       endDate,
       startTime,
       endTime,
+      usersInterested,
     ];
   }
 }
